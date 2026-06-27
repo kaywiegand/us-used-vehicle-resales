@@ -1,0 +1,1124 @@
+====================================================
+EDA ZUSAMMENFASSUNG: KATEGORIALE FEATURES
+Gesamtzeilen: 52496
+====================================================
+Feature                   | Missing (Abs) | Missing (%)  | Status
+---------------------------------------------------------------------------
+Trim                      | 1655         | 3.15       % | Imputation nötig
+SubModel                  | 6            | 0.01       % | Imputation nötig
+Color                     | 6            | 0.01       % | Imputation nötig
+Transmission              | 7            | 0.01       % | Imputation nötig
+WheelTypeID               | 2303         | 4.39       % | Imputation nötig
+WheelType                 | 2307         | 4.39       % | Imputation nötig
+Nationality               | 2            | 0.00       % | Imputation nötig
+Size                      | 2            | 0.00       % | Imputation nötig
+TopThreeAmericanName      | 2            | 0.00       % | Imputation nötig
+PRIMEUNIT                 | 50025        | 95.29      % | KRITISCH (Hoher Verlust)
+AUCGUART                  | 50025        | 95.29      % | KRITISCH (Hoher Verlust)
+
+
+====================================================
+DETAIL-ANALYSE: EINZELWERTE PRO FEATURE
+====================================================
+
+--- FEATURE: Trim ---
+Check: Summe plausibel (52496)
+Trim
+Bas    10077
+LS      7332
+SE      6734
+SXT     2780
+LT      2539
+LX      1748
+NaN     1655
+Tou     1636
+EX      1527
+XLT      977
+GLS      946
+SEL      922
+Spo      922
+SLT      851
+Lim      706
+Lar      654
+ST       619
+GT       577
+2        561
+XLS      545
+ES       500
+S        459
+ZX4      440
+SES      424
+LE       416
+SLE      385
+Cla      362
+i        351
+XL       315
+Nor      307
+GL       283
+Cus      224
+150      222
+GS       222
+STX      202
+ZX3      184
+CX       163
+CE       162
+Adv      162
+s        155
+Edd      153
+XE       153
+3        133
+1        121
+L30      102
+L20       86
+LXi       75
+W/T       74
+Edg       73
+CXL       70
+ZX5       64
+SV6       64
+ZTS       56
+SX        51
+GTP       48
+SS        48
+SR5       44
+Her       43
+Pre       42
+SL        40
+DX        35
+DE        31
+LW3       30
+Lux       28
+SL1       26
+R/T       26
+Z71       26
+GTC       26
+Ren       24
+GXE       23
+SL2       22
+ZXW       22
+Plu       19
+XR        17
+VP        17
+Exe       16
+Sta       15
+L10       14
+Val       14
+SC2       14
+SC1       13
+LTZ       13
+GLE       12
+Spy       11
+X         10
+CXS        9
+Pro        9
+Max        9
+FX4        9
+OZ         9
+ZX2        8
+Kin        8
+Sig        8
+GTS        7
+Cin        7
+LW2        7
+SVT        7
+C          6
+XRS        6
+L          6
+EX-        6
+DS         6
+RS         5
+Spe        5
+RT         5
+GX         5
+SE-        5
+3 R        4
+eL         4
+250        3
+Hyb        3
+Ove        3
+Si         3
+eC         3
+ZTW        3
+Den        3
+Ral        3
+Hig        3
+Car        2
+XS         2
+ZR2        2
+Ent        2
+T5         2
+Out        1
+LL         1
+Ult        1
+JLS        1
+Z24        1
+Dur        1
+L 3        1
+GXP        1
+JLX        1
+Har        0
+Xsp        0
+Maz        0
+
+........................................
+
+--- FEATURE: SubModel ---
+Check: Summe plausibel (52496)
+SubModel
+4D SEDAN                            10956
+4D SEDAN LS                          3423
+4D SEDAN SE                          2800
+4D WAGON                             1580
+MINIVAN 3.3L                          934
+4D SUV 4.2L LS                        851
+4D SEDAN LT                           810
+4D SEDAN LX                           781
+4D SEDAN SXT FFV                      779
+2D COUPE                              774
+4D SEDAN EX                           682
+4D SEDAN LT 3.5L                      605
+4D SEDAN SEL                          578
+4D SEDAN LEVEL 2                      489
+4D SPORT                              477
+4D SEDAN SE1                          414
+4D SEDAN LS 3.5L FFV                  412
+4D SUV 4.2L                           388
+4D SEDAN S                            373
+4D SUV                                367
+4D SEDAN CLASSIC                      362
+4D SEDAN GT                           360
+4D SEDAN ES                           356
+4D SUV 4.7L                           340
+4D SEDAN GLS                          334
+4D SEDAN TOURING                      327
+PASSENGER EXT 3.5L                    314
+4D SUV LS                             310
+4D WAGON LAREDO                       308
+4D SEDAN SXT                          307
+4D SEDAN I                            304
+4D SEDAN ZX4                          303
+4D SUV 2.2L LS                        297
+4D SEDAN LIMITED                      287
+4D SUV 4.7L SLT                       287
+QUAD CAB 4.7L SLT                     276
+4D WAGON SXT                          276
+WAGON 2.7L                            266
+4D CUV 3.0L XLT                       255
+4D SPORT UTILITY EX                   246
+4D SEDAN CE                           239
+4D SUV LT                             226
+4D SEDAN CUSTOM                       224
+4D SUV 4.6L XLT                       212
+2D COUPE LS                           210
+4D SPORT UTILITY                      203
+4D SEDAN SES                          196
+MINIVAN 3.3L FFV SE                   194
+4D SEDAN 1.8                          193
+2D CONVERTIBLE                        192
+4D SUV SPORT                          189
+MINIVAN 3.3L SE                       187
+4D CUV 2.2L                           184
+4D SEDAN LE                           181
+4D SUV 4.0L FFV XLS                   177
+4D SUV 2.2L LT                        176
+4D SUV 3.7L                           173
+4D SEDAN LT 3.5L FFV                  173
+4D SUV 5.4L XLT                       170
+4D SPORT TOURING                      168
+4D UTILITY 4.2L SLE                   168
+4D SUV 4.0L FFV XLT                   163
+4D SEDAN 2.7L                         162
+PASSENGER 3.9L LX                     159
+2D COUPE ZX3                          158
+4D SPORT TOURER                       153
+MINIVAN 3.8L SXT                      152
+4D CUV 2.3L XLS                       150
+4D SEDAN GS                           142
+MINIVAN 3.3L LX                       140
+4D SEDAN LXI                          138
+4D SEDAN SE FFV                       137
+PASSENGER EXT 3.5L LS                 137
+2D COUPE SE                           136
+PASSENGER 3.9L SE                     131
+4D CUV 3.0L SE                        128
+MINIVAN 3.8L                          126
+EXT CAB 4.6L STX                      126
+4D CUV 3.0L SEL                       125
+4D SEDAN LEVEL 1                      122
+PASSENGER 3.4L                        120
+4D SUV 5.7L SLT                       117
+4D SEDAN LS PREMIUM                   115
+QUAD CAB 4.7L                         109
+4D SPORT UTILITY LS                   107
+4D SEDAN LX AUTO                      105
+4D SEDAN XE                           103
+4D SEDAN L300                         102
+QUAD CAB 5.7L SLT                     101
+MINIVAN 2.4L                          100
+REG CAB 4.3L                           99
+PASSENGER 3.8L LX                      98
+4D SPORT UTILITY SE                    97
+4D SUV CX                              97
+4D SEDAN LEVEL 3                       95
+4D MINIVAN EXT 3.4L                    95
+4D SUV 5.4L EDDIE BAUER                94
+2D COUPE LT                            92
+4D SUV-PICKUP 5.3L                     89
+4D WAGON SE                            88
+4D SEDAN GL2                           88
+4D SEDAN L200                          86
+SPORT UTILITY                          86
+4D SEDAN LT 3.9L                       86
+4D SEDAN CX                            85
+4D SPORT UTILITY LX                    85
+PASSENGER EXT 3.4L                     83
+4D PASSENGER 3.9L SES                  83
+PASSENGER EXT 3.9L LS                  82
+2D QUAD COUPE LEVEL 2                  82
+PASSENGER 3.9L                         81
+QUAD CAB 5.7L                          80
+2D COUPE GT                            79
+4D SEDAN SES DURATEC                   77
+4D CUV 3.0L                            72
+EXT CAB 4.3L                           72
+4D SUV 3.0L                            71
+4D SEDAN SE SVG                        71
+CREW CAB 4.6L XLT                      70
+4D SUV LIMITED                         68
+MINIVAN 3.3L SPORT                     68
+4D SEDAN 2.5 S                         67
+MINIVAN 3.3L FFV SPORT                 65
+QUAD CAB 3.7L                          64
+4D SEDAN GT2                           64
+4D SEDAN 2.7L SE                       64
+REG CAB 4.2L XL                        64
+2D COUPE GS                            62
+4D CUV 3.0L XLS                        62
+4D SPORT UTILITY ES                    62
+4D SUV 4.0L XLT                        61
+4D SUV 4.7L ADVENTURER                 60
+4D SEDAN EX AUTO                       59
+2D CONVERTIBLE TOURING                 58
+WAGON 3.5L SXT                         58
+4D SUV 5.7L LIMITED                    58
+REG CAB 4.2L STX                       57
+4D SEDAN GL                            56
+4D SEDAN ZTS                           56
+EXT CAB 5.4L LARIAT                    56
+REG CAB 3.7L                           56
+MINIVAN 3.3L SXT                       55
+4D CUV 2.7L GLS                        55
+4D SPORT UTILITY I                     54
+4D MINIVAN EXT 3.5L                    53
+4D UTILITY 5.3L FFV LS                 52
+4D UTILITY 4.2L                        52
+EXT CAB 4.8L                           52
+4D SUV 4.6L EDDIE BAUER                52
+2D COUPE EX AUTO                       50
+PASSENGER EXT 3.5L LT                  49
+REG CAB 3.0L EDGE                      49
+REG CAB 4.7L                           49
+PASSENGER 3.9L LS                      48
+REG CAB 2.8L                           47
+EXT CAB 5.6L                           46
+EXT CAB 4.8L LS                        46
+2D HATCHBACK                           46
+EXT CAB 5.3L                           46
+4D SEDAN 3.5L                          45
+4D CUV                                 45
+4D SEDAN GTP                           45
+MINIVAN 2.4L SE                        44
+PASSENGER 3.9L SEL                     44
+4D SUV 4.8L                            43
+4D SUV 3.7L SLT                        43
+4D SUV 4.0L XLS                        43
+2D COUPE SS                            43
+4D UTILITY 5.3L SLE                    43
+4D SEDAN LS CLASSIC                    43
+PASSENGER 3.5L LS                      42
+4D SUV 5.3L FFV LS                     42
+4D SUV 4.8L LS                         42
+4D SEDAN SE COMFORT                    42
+4D WAGON EX                            41
+4D SEDAN LUXURY                        40
+4D SUV 2.2L 1LT                        39
+4D SUV SPORT 2.0L                      39
+4D SUV 5.3L FFV                        39
+4D PASSENGER 3.8L SE                   38
+4D SUV 4.6L                            38
+REG CAB 2.3L EDGE                      37
+EXT CAB 5.3L LS                        37
+4D SUV 3.7L SXT                        37
+4D SPORT UTILITY XLS                   36
+4D SPORT UTILITY LE                    36
+2D SUV 4.0L SPORT                      36
+4D SPORT UTILITY S                     35
+4D SEDAN ZX4 SE                        35
+4D SUV 4.0L                            34
+4D SEDAN LS 3.5L                       34
+EXT CAB 4.2L W/T                       34
+CREW CAB 5.6L LE                       34
+CREW CAB 5.3L                          34
+4D SUV 4.2L LT                         33
+MINIVAN 3.8L LXI                       33
+4D HATCHBACK S                         32
+REG CAB 4.6L STX                       31
+2D QUAD COUPE LEVEL 3                  31
+4D SEDAN DE                            31
+4D WAGON LW300                         30
+REG CAB 3.7L ST                        30
+4D CUV 3.0L LIMITED                    29
+4D SUV 5.9L SLT                        29
+4D SUV 4.0L SPORT TRAC                 29
+4D SUV 5.3L LS                         29
+4D SEDAN PREMIER                       28
+4D WAGON LIMITED                       28
+4D CROSSOVER SEL                       28
+4D SEDAN 2.4I                          28
+4D WAGON LS                            28
+4D WAGON SX                            27
+4D SEDAN SEL AWD                       27
+MINIVAN 3.8L EX                        27
+2D CONVERTIBLE GTC                     26
+4D SUV SPORT 2.4L                      26
+4D SUV 3.0L PREMIER                    26
+4D SEDAN SL1                           26
+4D SUV 4.7L ST                         26
+4D CUV 2.7L                            26
+REG CAB 2.3L                           26
+PASSENGER 3.8L                         26
+WAGON 3.5L                             25
+2D CONVERTIBLE LX                      25
+4D SPORT UTILITY XE                    25
+MINIVAN 3.8L SPORT                     24
+PASSENGER EXT 3.4L LS                  24
+2D SUV 4.0L SPORT XLS                  24
+4D SUV 4.6L XLS                        24
+EXT CAB 3.7L                           24
+4D SEDAN 1.8S                          23
+4D SEDAN 3.5L SE                       23
+4D CUV DLX                             22
+4D SEDAN GXE                           22
+4D WAGON S                             22
+4D SEDAN SL2                           22
+2D COUPE GL2                           21
+4D WAGON SPORT                         21
+5D SEDAN ZX5                           21
+4D SUV RENEGADE                        21
+CREW CAB 5.4L KING RANCH               20
+4D SEDAN SEL FFV                       20
+4D SPORT UTILITY LIMITED               20
+QUAD CAB 3.7L ST                       19
+4D SUV 2.2L                            19
+4D SEDAN XR                            19
+EXT MINIVAN 3.3L LX                    19
+4D HATCHBACK ZX5 S                     19
+4D SUV 5.7L HEMI SLT                   19
+CREW CAB 5.6L                          19
+4D WAGON LX                            19
+2D COUPE GL                            19
+QUAD CAB 5.9L SLT                      18
+PASSENGER EXT 3.9L                     18
+QUAD CAB 4.7L FFV BIG HORN             18
+REG CAB 4.3L LS                        18
+WAGON LX                               18
+4D SEDAN CXL                           18
+EXT CAB 4.6L LARIAT                    18
+4D SUV 4.7L LIMITED                    17
+EXT CAB 5.4L XL                        17
+MINIVAN 3.8L LIMITED                   17
+4D UTILITY 5.3L LS                     17
+4D SUV 4.7L SXT                        17
+4D SEDAN DX                            17
+4D SUV 4.7L FFV SXT                    17
+QUAD CAB 5.7L BIG HORN                 17
+2D HATCHBACK ZX3                       17
+EXT CAB 2.4L XE                        16
+4D SUV 5.7L                            16
+MAZDA3 4D I SPORT                      16
+4D HATCHBACK                           16
+4D CUV 3.5L GLS                        16
+4D SEDAN PKG1                          16
+REG CAB 4.8L                           16
+4D SEDAN EXECUTIVE                     16
+2D COUPE LX AUTO                       16
+REG CAB 2.2L FFV                       15
+REG CAB 4.8L LS                        15
+CREW CAB 4.8L                          15
+4D SUV CXL                             15
+EXT CAB 4.6L XLT                       15
+4D SUV HARDTOP 2.0L                    15
+3D COUPE SC2                           14
+EXT CAB 5.6L LE                        14
+4D SEDAN SL                            14
+EXT CAB 3.7L SLT                       14
+4D UTILITY 4.2L SLT                    14
+CREW CAB 5.4L LARIAT                   14
+4D SUV 5.3L                            14
+4D SEDAN LT 3.8L FFV                   14
+3D COUPE SC1                           13
+EXT CAB 4.7L SR5                       13
+4D SEDAN TOURING TURBO                 13
+4D UTILITY 5.3L FFV                    13
+REG CAB 4.7L SLT                       13
+4D SEDAN LIMITED TURBO                 13
+4D UTILITY 5.3L SLT                    13
+PASSENGER 3.4L VALUE                   13
+REG CAB 5.7L SLT                       13
+4D PASSENGER 3.8L SEL                  13
+4D SEDAN SE AWD                        13
+4D SEDAN ZX4 ST                        12
+4D SUV 2.3L                            12
+4D SPORT UTILITY SR5                   12
+4D CUV 2.0L XLS                        12
+2D EXT CAB 3.0L EDGE                   12
+2D COUPE LIMTED                        12
+2D COUPE LXI                           12
+EXT CAB 4.6L FX2 SPORT                 12
+4D SUV 5.3L LT                         12
+4D SUV 4.7L SPORT                      12
+4D UTILITY XUV 4.2L SLE                12
+4D SUV 5.4L                            12
+4D SEDAN GL1                           12
+4D SEDAN VALUE                         11
+QUAD CAB 3.7L SLT                      11
+QUAD CAB 4.7L FFV SLT                  11
+5D HATCHBACK I                         11
+4D WAGON LS PREMIUM                    11
+4D SPORT UTILITY 3.5L XLS              11
+4D UTILITY 4.8L SLE                    11
+4D SEDAN LX 5SP                        11
+EXT CAB 5.3L SLE                       11
+4D SEDAN SEL DURATEC                   11
+2D COUPE GLS                           11
+4D SPORT UTILITY DX                    11
+4D SEDAN LTZ                           11
+4D SUV 3.0L LUXURY                     11
+4D WAGON ZXW                           11
+4D SPORTBACK LS                        11
+EXT CAB 4.3L LS                        10
+4D SEDAN SLE                           10
+REG CAB 3.7L SXT                       10
+MINIVAN 2.4L LX                        10
+4D SEDAN LIMITED AWD                   10
+EXT CAB 5.4L FX4                       10
+4D SUV 4.7L FFV SLT                    10
+CREW CAB 3.5L LS                       10
+5D SEDAN I                             10
+2D COUPE R/T                           10
+4D SUV-PICKUP 5.3L Z66                 10
+4D WAGON SE DURATEC                     9
+4D WAGON ZX5                            9
+4D SEDAN CXS                            9
+4D SEDAN DX AUTO                        9
+EXT CAB 5.4L XLT                        9
+REG CAB 2.5L                            9
+QUAD CAB 4.7L BIG HORN                  9
+4D SUV 5.4L XLS                         9
+4D SPORT UTILITY XL7                    9
+2D COUPE ZX2                            8
+WAGON DX                                8
+2D COUPE ZX3 S                          8
+2D CONVERTIBLE DREAM CRUISER            8
+3D EXT CAB 4.3L                         8
+4D WAGON CX                             8
+4D WAGON GS                             8
+REG CAB 5.4L XL                         8
+REG CAB 4.6L XL                         8
+4D CUV GLS                              8
+4D MINIVAN 3.4L VALUE                   8
+4D SEDAN XL                             8
+QUAD CAB 3.9L SLT                       8
+4D MINIVAN 3.4L                         8
+REG CAB 3.9L                            8
+CREW CAB 4.7L SR5                       8
+EXT CAB 2.8L LS                         8
+4D SEDAN GLE                            8
+4D SEDAN R/T                            8
+4D SEDAN FFV TOURING                    8
+PASSENGER EXT 3.9L LT                   8
+EXT CAB 4.2L XL                         7
+EXT CAB 4.2L XLT                        7
+4D UTILITY 5.3L                         7
+4D UTILITY 4.8L                         7
+4D SEDAN SIGNATURE                      7
+QUAD CAB 5.9L                           7
+4D SEDAN 2.5I                           7
+MINIVAN 3.3L LX POPULAR                 7
+4D SEDAN GT TURBO                       7
+4D SEDAN GS 3.0L FFV                    7
+4D SEDAN SX                             7
+EXT CAB 5.6L SE                         7
+4D WAGON LW200                          7
+4D WAGON CINCO                          7
+REG CAB 4.3L SLE                        7
+4D SEDAN O-Z RALLY                      7
+4D CUV 2.2L XE                          6
+4D SEDAN ES HIGHLINE                    6
+CREW CAB 5.3L LS                        6
+4D SUV 5.7L HEMI LIMITED                6
+4D SUV 4.6L LIMITED                     6
+CREW CAB 5.4L XLT                       6
+4D SEDAN HEMI                           6
+4D SEDAN AUTO                           6
+BASE                                    6
+4D UTILITY 5.3L FFV LT                  6
+NaN                                     6
+EXT CAB 4.6L HERITAGE XL                6
+EXT CAB 3.9L                            6
+EXT CAB 3.5L LS                         6
+EXT CAB 4.6L XL                         6
+REG CAB 3.5L LS                         6
+4D CUV 2.3L XLT                         6
+4D HATCHBACK ZX5                        6
+EXT CAB 2.8L                            6
+QUAD CAB 5.7L LARAMIE                   6
+4D SPORT UTILITY SL                     6
+MAZDA5 GRAND TOURING                    6
+4D CUV 3.5L                             6
+EXT CAB 3.0L EDGE                       6
+CREW CAB 6.0L LS                        6
+2D COUPE SXT                            5
+4D SEDAN XRS                            5
+4D WAGON LAREDO FFV                     5
+4D SEDAN 2.5 SE                         5
+4D CROSSOVER SE                         5
+4D SPORT UTILITY 5 PASS                 5
+2D COUPE EX 5SP                         5
+WAGON R/T                               5
+2D CONVERTIBLE GT                       5
+2D CONVERTIBLE LIMITED                  5
+PASSENGER EXT 3.4L WARNER BROS          5
+REG CAB 4.0L                            5
+4D SUV 4.0L FFV EDDIE BAUER             5
+EXT CAB 3.7L SXT                        5
+REG CAB 2.2L FFV SL                     5
+2D LIFTBACK GT                          5
+MINIVAN 3.8L TOURING                    5
+MINIVAN 3.8L ES                         5
+QUAD CAB 3.7L SXT                       5
+REG CAB 5.3L                            5
+CREW CAB 4.6L KING RANCH                5
+4D SEDAN GT1                            5
+QUAD CAB 4.7L SPORT                     5
+4D SEDAN XLE                            5
+4D EXT CAB 3.0L EDGE                    5
+EXT CAB 4.7L SLT                        5
+4D SEDAN SE AUTO                        5
+EXT CAB 4.3L SLE                        5
+4D SEDAN SE-R                           5
+JEEP X                                  5
+2D SPYDER GT                            5
+2D COUPE RS                             5
+4D SUV HARDTOP 2.2L LT                  5
+4D PASSENGER 4.2L SEL                   5
+CREW CAB 4.0L LE                        5
+4D SEDAN SPECIAL                        4
+EXT CAB 5.4L HARLEY DAVIDSON            4
+4D SEDAN SS                             4
+CREW CAB 5.3L SLE                       4
+QUAD CAB 4.7L FFV                       4
+PASSENGER EXT 3.4L ENTERTAINER          4
+2D COUPE DX AUTO                        4
+5D HATCHBACK S                          4
+2D COUPE Z24                            4
+2D COUPE LX                             4
+4D SEDAN 2.5L                           4
+CREW CAB 3.3L XE                        4
+4D SEDAN EX 5SP                         4
+2D COUPE SVT                            4
+4D WAGON SEL                            4
+4D SEDAN AWD SE                         4
+4D SEDAN GX                             4
+CREW CAB 3.3L                           4
+2D SPYDER GS                            4
+PASSENGER EXT 3.4L LT                   4
+REG CAB 2.2L SL                         4
+PASSENGER 3.9L LIMITED                  4
+4D SUV 2.3L CONVENIENCE                 4
+DOUBLE CAB 4.7L SR5                     4
+EXT CAB 2.2L LS                         4
+EXT CAB 3.4L SR5                        4
+CREW CAB 5.3L LT                        4
+2D COUPE SE1                            4
+CREW CAB 3.5L Z71                       4
+CREW CAB 3.5L SL                        4
+4D SUV 5.3L FFV LT                      4
+4D SUV HARDTOP 2.5L                     4
+4D SEDAN SE COMFORT DURATEC             4
+EXT CAB 3.9L SXT                        4
+REG CAB 2.2L                            4
+4D HATCHBACK ZX5 SE                     4
+4D HATCHBACK AWD                        4
+4D EXT CAB 4.0L EDGE                    4
+4D SEDAN GTS                            3
+WAGON 2.7L SE                           3
+WAGON ES                                3
+4D SEDAN AWD                            3
+4D WAGON SEL DURATEC                    3
+4D WAGON R/T AWD                        3
+3D EXT CAB 2.2L FFV                     3
+2D HATCKBACK SI 5SP                     3
+4D SEDAN AWD 3.5L                       3
+5D SEDAN S                              3
+4D HARDTOP EX                           3
+4D WAGON LUXURY                         3
+4D WAGON GRAND TOURING                  3
+4D WAGON GT                             3
+4D SEDAN LS 3.6L                        3
+4D SUV 5.9L R/T                         3
+4D SPORT UTILITY 2.5X                   3
+4D SPORT UTILITY GRAND TOURING A        3
+4D SPORT UTILITY LX AUTO                3
+4D SPORT UTILITY SXT                    3
+2D COUPE TYPE S                         3
+2D HATCHBACK GS                         3
+QUAD CAB 4.7L ST                        3
+2D COUPE GTS                            3
+4D SUV LIMITED 2.4L                     3
+REG CAB 3.0L XL                         3
+4D SUV 3.7L ST                          3
+4D SEDAN SE2                            3
+REG CAB 5.9L SLT                        3
+2D EXT CAB 3.0L XLT                     3
+REG CAB 3.9L SPORT                      3
+REG CAB 4.0L EDGE                       3
+4D SPORT UTILITY JS                     3
+4D SEDAN RALLIART                       3
+EXT CAB 4.0L EDGE                       3
+4D SEDAN 1LT                            3
+4D PASSENGER 4.2L LIMITED               3
+CREW CAB 2.8L LS                        3
+4D WAGON ZTW                            3
+4D WAGON OVERLAND                       3
+REG CAB 4.7L FFV                        3
+REG CAB 4.6L XLT                        3
+2D COUPE GTP                            3
+2D COUPE GT1                            3
+CREW CAB 5.4L HARLEY DAVIDSON           3
+DOUBLE CAB LS 3.7L                      3
+4D SUV 5.7L HEMI                        3
+REG CAB 5.7L                            3
+4D MINIVAN EXT 3.4L GLS                 3
+4D SEDAN ZX5                            3
+4D SEDAN SVT                            3
+4D SEDAN SPORT                          3
+EXT CAB 3.9L SLT                        3
+EXT CAB 4.6L LARIAT FX4 OFF-RD          3
+MINIVAN 2.4L EC                         3
+MINIVAN 3.3L EL                         3
+CREW CAB 4.8L LS                        3
+4D EXT CAB 3.0L XLT                     3
+2D ROADSTER                             3
+2D SEDAN                                3
+REG CAB 2.9L LS                         3
+4D CUV DELUXE                           3
+EXT CAB 4.7L                            3
+2D COUPE AUTO                           3
+2D CONVERTIBLE GLS                      2
+2D CONVERTIBLE SE                       2
+2D COUPE DX 5SP                         2
+2D SUV 4.0L SPORT XLT                   2
+4D SPORT UTILITY LIMITED FFV            2
+4D SPORT UTILITY EX-P                   2
+4D SPORT UTILITY 3.5L XS                2
+REG CAB 2.5L EDGE                       2
+EXT CAB LS SPECIAL 3.7L                 2
+EXT CAB LS 3.7L                         2
+2D SPYDER GTS                           2
+REG CAB 2.4L                            2
+REG CAB 2.3L XLT                        2
+MINIVAN EX-L                            2
+EXT CAB 3.0L XLT                        2
+CARGO EXT 3.9L                          2
+4D WAGON 2.5I                           2
+4D UTILITY 6.0L DENALI                  2
+4D UTILITY 5.3L LT                      2
+4D SUV 4.7L SL                          2
+4D SPORT UTILITY X                      2
+EXT CAB 5.3L LT Z71                     2
+MAZDA3 4D I TOURING VALUE               2
+REG CAB 2.3L XL                         2
+4D CUV 2.0L XLT                         2
+4D EXT CAB 4.0L XL                      2
+3D EXT CAB 2.2L                         2
+2D HARTOP CONVERTIBLE GT                2
+2D EXT CAB 2.3L XL                      2
+2D COUPE EX 6SP                         2
+2D COUPE 5SP                            2
+WAGON SXT AWD                           2
+REG CAB 5.4L XLT                        2
+REG CAB 5.3L SLE                        2
+QUAD CAB 5.9L SPORT                     2
+QUAD CAB 4.7L SLT FFV                   2
+QUAD CAB 4.7L LARAMIE                   2
+QUAD CAB 3.9L SPORT                     2
+CREW CAB 4.3L LS                        2
+EXT CAB 3.5L                            2
+EXT CAB 2.2L FFV                        2
+CREW CAB 5.6L SE                        2
+REG CAB 5.3L LS                         2
+REG CAB 4.8L SL                         2
+EXT CAB 3.9L SPORT                      2
+MINIVAN 3.8L LX                         2
+MINIVAN 3.8L EL                         2
+4D SEDAN ZX4 SES                        2
+4D SEDAN VP AUTO                        2
+4D SEDAN VALUE PACKAGE AUTO             2
+4D SEDAN TYPE S                         2
+4D SEDAN TURBO                          2
+4D SPORT UTILITY XSPORT                 2
+MINIVAN 3.3L CARGO                      2
+EXT CAB 6.0L                            2
+EXT CAB 5.4L HERITAGE                   2
+EXT CAB 4.7L LIMITED                    2
+EXT CAB 4.0L LE                         2
+4D SEDAN CARTIER                        2
+4D SEDAN 6SP                            2
+4D SEDAN 3.5L SXT                       2
+4D SEDAN 2.5L GLS                       2
+2D COUPE LX 5SP                         2
+2D COUPE GT PREMIUM                     2
+SPORT UTILITY 7 PASSENGER               2
+CREW CAB 5.4L FX4                       2
+CREW CAB 4.6L LARIAT                    2
+EXT CAB 3.4L PRERUNNER SR5              2
+4D SUV 4.0L FFV LIMITED                 2
+4D SUV 4.0L EDDIE BAUER                 2
+4D SUV 2.4L LUXURY                      2
+4D SUV 2.4L                             2
+CREW CAB 4.7L LIMITED                   2
+5D MINIVAN LE                           2
+5D MINIVAN CE                           2
+2D EXT CAB 3.0L SE                      2
+2D COUPE LTZ                            2
+CREW CAB 3.5L                           2
+4D WAGON R/T                            2
+4D SEDAN LT CLASSIC                     2
+4D SEDAN T5                             2
+4D SUV HARDTOP 2.5L LT                  2
+4D SUV 5.3L XLT                         2
+4D SUV HARDTOP 2.5L ZR2                 2
+4D UTILITY 6.0L                         2
+4D SEDAN EX AUTO NAVIGATION             2
+4D SPORT UTILITY TOURING                2
+4D SEDAN OZ                             2
+4D SEDAN LS FFV                         2
+4D WAGON CONVENIENCE                    2
+4D SEDAN HYBRID AUTO                    2
+4D SEDAN AWD SEL                        2
+4D SEDAN 2.5 SL                         2
+4D MINIVAN EXT 3.4L GL                  2
+4D HARDTOP LX                           2
+CREW CAB 2.8L                           2
+CREW CAB 6.0L                           1
+CREW CAB 6.0L LT                        1
+EXT CAB 3.3L XE                         1
+EXT CAB 4.3L W/T                        1
+EXT CAB 5.3L LT                         1
+EXT CAB 5.4L FFV FX4                    1
+EXT CAB 5.4L FX2 SPORT                  1
+EXT CAB 5.6L XE                         1
+4D SUV 4.7L FFV LIMITED                 1
+4D UTILITY 4.8L SLT                     1
+4D SUV 6.0L LS                          1
+4D EXT CAB 4.0L XLT                     1
+4D EXT CAB 3.0L XL                      1
+4D WAGON CLASSIC                        1
+4D WAGON FREEDOM                        1
+4D SEDAN 2.0L GLS                       1
+4D SEDAN VP 5SP                         1
+4D SEDAN L AWD                          1
+4D SEDAN 2.5RS                          1
+4D HATCHBACK ZX5 SES                    1
+REG CAB 4.3L SL                         1
+REG CAB 5.7L HEMI                       1
+4D SEDAN XLS                            1
+4D SEDAN ZX4 S                          1
+4D SPORT UTILITY JLX                    1
+4D SPORT UTILITY PREMIUM                1
+REG CAB 4.2L XLT                        1
+4D CUV 3.6L XE                          1
+5D SEDAN S GRAND TOURING                1
+4D WAGON LIMITED HEMI                   1
+4D WAGON LL BEAN                        1
+4D WAGON L                              1
+4D WAGON 2.4L                           1
+4D PASSENGER 3.8L SEL LIMITED           1
+4D PASSENGER 3.8L SE SPORT              1
+2D COUPE GL1                            1
+4D WAGON 1.8L                           1
+2D CONVERTIBLE LXI                      1
+4D SUV 4.8L LT                          1
+4D SUV ULTRA                            1
+4D SUV 5.9L SPORT                       1
+4D SEDAN LUXURY AWD                     1
+4D SEDAN PKG2                           1
+4D SUV 5.9L SXT                         1
+4D SEDAN PREMIER AWD                    1
+4D SPORT UTILITY BASE                   1
+4D SPORT UTILITY LUXURY                 1
+4D SPORT UTILITY SPORT EDITION          1
+4D SUV 4.0L PREMIER                     1
+4D SPORT UTILITY TOURING NAV            1
+4D SEDAN LS SPORT                       1
+CREW CAB 3.3L SE                        1
+4D SUV 4.2L LTZ                         1
+4D UTILITY 5.3L FFV Z71                 1
+4D SEDAN 2.5L PKG 2                     1
+EXT CAB 2.4L SE                         1
+EXT CAB 3.5L Z71 LS                     1
+4D SEDAN SIGNATURE LTD                  1
+EXT CAB 3.0L SE                         1
+5D SEDAN GS                             1
+CREW CAB 3.5L SLE                       1
+EXT CAB 2.4L                            1
+4D WAGON SE COMFORT DURATEC             1
+4D WAGON SE COMFORT                     1
+ACCESS CAB 4.7L SR5                     1
+4D WAGON ROCKY MOUNTAIN EDITION         1
+4D CROSSOVER SEL PLUS                   1
+2D COUPE ZX3 SES                        1
+4D SPORT UTILITY OFF-ROAD               1
+2D EXT CAB 4.0L EDGE                    1
+REG CAB 2.7L PRERUNNER SR5              1
+QUAD CAB 4.7L FFV LONESTAR              1
+2D EXT CAB 3.0L DUAL SPORT FFV          1
+2D EXT CAB 3.0L DUAL SPORT              1
+2D EXT CAB 3.0L                         1
+4D EXT CAB 3.0L                         1
+REG CAB 3.5L SL                         1
+2D CONVERTIBLE GL                       1
+REG CAB 5.7L ST                         1
+REG CAB 4.3L W/T                        1
+4D SEDAN 2.5T                           1
+4D SEDAN 3.5L AWD                       1
+CREW CAB 5.4L FX2 SPORT                 1
+EXT CAB 2.4L LE                         1
+EXT CAB 4.0L SE                         1
+REG CAB 5.2L LARAMIE                    1
+MINIVAN 3.3L FFV EL                     1
+EXT CAB 4.3L SL                         1
+REG CAB 4.7L ST                         1
+2D COUPE GX                             1
+2D CONVERTIBLE SLE                      1
+UTILITY                                 1
+REG CAB 5.4L FX4                        1
+REG CAB 4.6L W/T                        1
+REG CAB 3.0L SPORT                      1
+QUAD CAB 3.7L SPORT                     1
+CREW CAB 4.0L SE                        1
+CREW CAB 3.5L Z71 LS                    1
+EXT CAB 2.5L                            1
+MEGA CAB 5.7L                           1
+4D SEDAN 35TH ANNIVERSARY AWD           1
+4D SEDAN GXP                            1
+4D HARDTOP JLS                          1
+4D SEDAN VALUE AUTO                     1
+REG CAB 3.4L                            1
+REG CAB 2.3L STX                        1
+4D HATCHBACK GS                         1
+MINIVAN 3.3L FFV SXT                    1
+REG CAB 4.2L W/T                        1
+2D COUPE TYPE S NAVIGATION AUTO         1
+2D EXT CAB 3.0L XL                      1
+2D HATCHBACK S                          1
+2D SUV CONVERTIBLE 2.0L                 1
+4D CUV GL                               1
+4D SEDAN 2.0L GL                        1
+REG CAB 3.7L STAMPEDE                   1
+CREW CAB 5.4L FFV FX4                   1
+CREW CAB 5.4L XL                        1
+CREW CAB 5.7L LIMITED                   1
+4D SUV-PICKUP 8.1L                      1
+CARGO 3.9L                              1
+4D SUV 4.0L LUXURY                      1
+4D SUV 4.0L LIMITED                     1
+4D SUV 2.2L PANEL SS                    1
+4D SUV 2.2L PANEL LS                    1
+4D SPORT WAGON 2.5I                     1
+4D SPORT UTILITY SE SUPERCHARGED        1
+4D SPORT UTILITY LEVEL 3                1
+4D SEDAN Z24                            1
+EXT CAB 4.8L SLE                        1
+EXT CAB 4.7L ST                         1
+MAZDA3 4D I                             1
+MEGA CAB 5.7L SLT                       1
+EXT CAB DURO CROSS 3.7L                 1
+MINIVAN EX                              1
+CREW CAB LIMITED                        1
+EXT CAB 2.9L LS                         1
+EXT CAB 4.0L NISMO                      1
+REG CAB 4.0L XL                         1
+4D WAGON OUTBACK SPORT                  1
+4D WAGON SE FFV                         1
+REG CAB 3.5L Z71                        1
+PASSENGER 4.2L SE                       1
+REG CAB 2.7L                            1
+REG CAB 4.8L SLE                        1
+CREW CAB 3.4L PRERUNNER                 1
+4D SUV 2.5L PREMIER                     0
+2D EXT CAB 2.3L EDGE                    0
+4D SEDAN CARTIER L                      0
+4D UTILITY XUV 5.3L SLE                 0
+4D SUV 2.4L LT                          0
+4D SPORT UTILITY HYBRID LIMITED         0
+4D SEDAN 2.7L SXT                       0
+4D SUV 5.3L FFV Z71                     0
+4D EXT CAB 4.0L FX4                     0
+4D SUV 5.9L SLT PLUS                    0
+4D SPORT UTILITY EX AUTO                0
+4D SUV 4.0L CONVENIENCE                 0
+4D SUV 4.7L SLT PLUS                    0
+REG CAB 6.0L LS                         0
+EXT CAB 5.3L SL                         0
+JEEP SPORT                              0
+REG CAB 6.0L                            0
+REG CAB 3.7L SLT                        0
+4D SEDAN MAZDASPEED                     0
+4D SEDAN TYPE S NAVIGATION              0
+4D SEDAN NAVIGATION                     0
+2D HATCHBACK GT                         0
+EXT CAB 3.7L ST                         0
+2D EXT CAB 4.0L XL                      0
+2D SEDAN GX                             0
+EXT CAB 3.9L BASE                       0
+2D SPORT UTILITY                        0
+CREW CAB 2.9L LT                        0
+4D SUV HARDTOP 2.2L ZR2                 0
+EXT CAB 3.5L SLE                        0
+4D SUV 4.0L SPORT TRAC FFV XLS          0
+4D UTILITY DENALI 6.0L                  0
+4D WAGON CXL                            0
+EXT CAB 4.0L XLT                        0
+EXT CAB 4.7L FFV ST                     0
+EXT CAB 4D 5.2L LARAMIE SLT             0
+EXT CAB 5.4L KING RANCH                 0
+REG CAB 2.5L XLT                        0
+PASSENGER 3.4L LS                       0
+4D WAGON OUTBACK                        0
+REG CAB 3.9L SXT                        0
+REG CAB 3.7L LS                         0
+REG CAB 3.0L XLT                        0
+MINIVAN LX                              0
+2D COUPE ZX5 S                          0
+REG CAB 2.8L LS                         0
+EXT CAB 6.0L SLE                        0
+EXT CAB 5.9L R/T                        0
+4D SPORT UTILITY 4XMOTION               0
+
+........................................
+
+--- FEATURE: Color ---
+Check: Summe plausibel (52496)
+Color
+SILVER       10727
+WHITE         8656
+BLUE          7482
+GREY          5709
+BLACK         5471
+RED           4507
+GOLD          3824
+GREEN         2255
+MAROON        1441
+BEIGE         1127
+BROWN          315
+ORANGE         312
+PURPLE         260
+YELLOW         176
+OTHER          160
+NOT AVAIL       68
+NaN              6
+
+........................................
+
+--- FEATURE: Transmission ---
+Check: Summe plausibel (52496)
+Transmission
+AUTO      50616
+MANUAL     1872
+NaN           7
+Manual        1
+
+........................................
+
+--- FEATURE: WheelTypeID ---
+Check: Summe plausibel (52496)
+WheelTypeID
+1      25904
+2      23754
+NaN     2303
+3        531
+0          4
+
+........................................
+
+--- FEATURE: WheelType ---
+Check: Summe plausibel (52496)
+WheelType
+Alloy      25904
+Covers     23754
+NaN         2307
+Special      531
+
+........................................
+
+--- FEATURE: Nationality ---
+Check: Summe plausibel (52496)
+Nationality
+AMERICAN          43948
+OTHER ASIAN        5730
+TOP LINE ASIAN     2674
+OTHER               142
+NaN                   2
+
+........................................
+
+--- FEATURE: Size ---
+Check: Summe plausibel (52496)
+Size
+MEDIUM         22199
+LARGE           6330
+MEDIUM SUV      5824
+COMPACT         5197
+VAN             4236
+LARGE TRUCK     2280
+SMALL SUV       1660
+SPECIALTY       1335
+CROSSOVER       1262
+LARGE SUV       1017
+SMALL TRUCK      600
+SPORTS           554
+NaN                2
+
+........................................
+
+--- FEATURE: TopThreeAmericanName ---
+Check: Summe plausibel (52496)
+TopThreeAmericanName
+GM          18206
+CHRYSLER    16897
+FORD         8845
+OTHER        8546
+NaN             2
+
+........................................
+
+--- FEATURE: PRIMEUNIT ---
+Check: Summe plausibel (52496)
+PRIMEUNIT
+NaN    50025
+NO      2425
+YES       46
+
+........................................
+
+--- FEATURE: AUCGUART ---
+Check: Summe plausibel (52496)
+AUCGUART
+NaN      50025
+GREEN     2411
+RED         60
+
+........................................
+

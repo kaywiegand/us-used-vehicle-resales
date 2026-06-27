@@ -1,0 +1,31 @@
++--------------------------------------+
+|               Account                |
++--------------------------------------+
+| - bank_num: str                      |
+| - IBAN: str                          |
+| - customer: str                      |
+| - transactions: list                 |
+| - credit_limit: int                  |
+|--------------------------------------|
+| + __init__(customer, bank,           |
+|            init_balance=0)           |
+| - _create_new_IBAN(): str            |
+| - _init_balance(init_balance): void  |
+| - _get_balance(): float              |
+| + deposit(amount, sender='CASH'):    |
+|     bool                             |
+| + withdraw(amount, receiver='CASH'): |
+|     bool                             |
+| - _add_transaction(transaction):     |
+|     Account                          |
+|--------------------------------------|
+| + balance: float {read-only}         |
++--------------------------------------+        
+
+
+
+
+
++---------+        1     *        +---------+
+|  Bank   |---------------------->| Account |
++---------+                       +---------+

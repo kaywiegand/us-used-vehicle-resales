@@ -1,0 +1,53 @@
+# .gitignore – Python / Data Science (uv + venv)
+# ------------------------------------------------
+# WICHTIG: Daten und Modelle NICHT in Git einchecken!
+# Datenquelle wird in README.md + DATA_DICTIONARY.md dokumentiert.
+
+# ── Persönliche Notizen ────────────────────────────────────────────────────
+NOTES.md
+
+# ── Daten ──────────────────────────────────────────────────────────────────
+data/
+*.csv
+*.xlsx
+*.parquet
+*.feather
+*.h5
+*.hdf5
+
+# ── Modelle & Artefakte ────────────────────────────────────────────────────
+models/
+*.pkl
+*.joblib
+*.pt
+*.pth
+
+# ── Python ─────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.so
+
+# ── Virtuelle Umgebung (uv erstellt .venv/) ────────────────────────────────
+.venv/
+.env
+*.env
+
+# ── Jupyter ────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_metadata
+.jupyter/
+
+# ── IDE & OS ───────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
