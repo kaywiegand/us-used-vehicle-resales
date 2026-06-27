@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-import wgnd as wg
 import matplotlib.pyplot as plt
 import seaborn as sns
+from IPython.display import display
 
 from .printing import print_header, print_title, print_footer, print_seperator
 
@@ -186,7 +186,7 @@ def inspect_data(df, name="DataFrame", raw=None):
 def inspect_correlations(df, target=None, pairplot=True, threshold=0.4):
     """Gibt Spaltenpaare mit hoher Korrelation zurück."""
 
-    wg.print_header('Check Correlations')
+    print_header('Check Correlations')
 
     
     if target != None:
@@ -292,6 +292,16 @@ def inspect_split_consistency(y_full, y_train, y_test):
     else:
         print("\nNote: Die Verteilung im Training-Set ist annähernd symmetrisch oder linksschief.")
     print_seperator()
+
+
+# =============================================================================
+# --- COMPAT WRAPPERS ---
+# inspect_split_consistency vergleicht die Zielverteilung Original/Train/Test und
+# ist verteilungs-agnostisch. process.py + __init__ erwarten benannte Varianten.
+# =============================================================================
+
+inspect_continuous_split_consistency = inspect_split_consistency
+inspect_classification_split_consistency = inspect_split_consistency
 
 
 

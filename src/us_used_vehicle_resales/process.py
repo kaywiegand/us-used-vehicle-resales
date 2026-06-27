@@ -4,8 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
-from wgnd.inspect import inspect_classification_split_consistency, inspect_continuous_split_consistency
-from wgnd.printing import print_header, print_title, print_footer, print_seperator
+from .inspect import inspect_classification_split_consistency, inspect_continuous_split_consistency
+from .printing import print_header, print_title, print_footer, print_seperator
 
 def continuous_split_train_test(df_train, TARGET): 
     print_header('Continuous Data Train Test Split (Regression)')

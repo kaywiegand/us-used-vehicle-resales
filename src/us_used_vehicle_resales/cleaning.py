@@ -137,3 +137,15 @@ def clean_data(df, cols_to_drop=None):
     print(f"-------------------------------------------------------\nENDERGEBNIS:\n  - Datensätze (Rows): {cnt_new:>6}\n  - Retention Rate:   {retention:>7.2f}%\n  - Churn Rate:       {churn:>7.2f}%\n{'='*55}\n")
     
     return df_clean
+
+
+# =============================================================================
+# --- HELPERS (vormals src/wgnd/cleaning.py) ---
+# =============================================================================
+
+def safe_drop(df, columns):
+    return df.drop(columns=columns, errors='ignore')
+
+
+def safe_reset(df):
+    return df.drop_duplicates().reset_index(drop=True)
