@@ -20,5 +20,15 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   Push zu `git@github.com:kaywiegand/us-used-vehicle-resales.git`.
 - **Phase 1 erledigt:** Fundament-MD-Files angelegt (CLAUDE · README-Gerüst · ROADMAP ·
   PROCESS_LOG · BACKLOG · `.python-version`), Eintrag in `docs/PROJECTS.md`.
-- **Nächster Schritt:** Phase 2 — `src/` konsolidieren + wgnd-Toolkit integrieren
-  (Notebooks vorher schliessen/speichern).
+- **Phase 2 erledigt:** Commit `538704c`.
+  - Alle Module nach `src/us_used_vehicle_resales/` konsolidiert (`git mv`, Historie erhalten).
+  - `wgnd`-Namenskollision aufgelöst; echtes Toolkit (`wgnd==0.2.0`) als Git-Dependency.
+  - `inspect.py` repariert (war kaputt: fehlte als `.py`, zwei split-consistency-Aliase
+    ergänzt, `display`-Import, tote `wg`-Referenz entfernt).
+  - `shap`/`lightgbm`/`xgboost` aus Deps entfernt — ungenutzt (Projekt ist reines
+    scikit-learn); `shap` brach zudem auf Python 3.12 (altes `llvmlite`).
+  - 8 Notebooks auf `us_used_vehicle_resales` repointed.
+  - Verifiziert: `uv pip install -e ".[dev]"`, Paket-Import, alle `wg.*`-Symbole,
+    echtes Toolkit, alle Notebook-Import-Statements im venv.
+- **Nächster Schritt:** Phase 3 — Notebook-Hygiene (Intro bereinigen, `03a/03b`,
+  Tabellen, lose Artefakte verschieben).
