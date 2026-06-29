@@ -30,5 +30,16 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   - 8 Notebooks auf `us_used_vehicle_resales` repointed.
   - Verifiziert: `uv pip install -e ".[dev]"`, Paket-Import, alle `wg.*`-Symbole,
     echtes Toolkit, alle Notebook-Import-Statements im venv.
-- **Nächster Schritt:** Phase 3 — Notebook-Hygiene (Intro bereinigen, `03a/03b`,
-  Tabellen, lose Artefakte verschieben).
+- **Phase 3 erledigt:** Commit `41cf47b`.
+  - `00_introducing.ipynb` (LLM-Boilerplate-Navigation auf erfundene Dateinamen) komplett
+    ersetzt durch `00_introduction.ipynb` — echter Einstieg (Szenario, Aufgabe, Datenbasis,
+    Navigation, Setup).
+  - Modell-Notebooks linearisiert: `03_modelling-prep`, `03a_modelling-logreg`,
+    `03b_modelling-rf`, `04a_evaluation-baseline`, `04b_evaluation-logreg` (Entscheidung
+    Kay: Varianten behalten, klar nummerieren).
+  - Lose Artefakte verschoben: `feature_importance.png` → `reports/img/`,
+    `Data-Dictionary.html` → `reports/`, Text-Dumps → `docs/`.
+  - `01_exploring`/`02_processing` bewusst nicht umbenannt (Namen klar, kein Scope-Creep).
+  - Offen (BACKLOG #5): `show_df()`-Tabellen-Retrofit als optionaler Feinschliff.
+- **Nächster Schritt:** Phase 4 — voller README, `DATA_DICTIONARY.md`,
+  `reports/index.html` + ≥3 Charts nach `reports/img/`.
