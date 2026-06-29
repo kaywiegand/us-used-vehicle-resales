@@ -55,13 +55,14 @@ Data-Science-Workflow ("StackFuel-Way"):
 
 | # | Notebook | Inhalt |
 | :--- | :--- | :--- |
-| 00 | `notebooks/00_introduction.ipynb` | Einstieg, Szenario, Navigation |
-| 01 | `notebooks/01_exploring.ipynb` | Explorative Datenanalyse |
-| 02 | `notebooks/02_processing.ipynb` | Cleaning, Feature Engineering, Split |
-| 03 | `notebooks/03_modelling*.ipynb` | Modellierung (LogReg, Random Forest) |
-| 04 | `notebooks/04_evaluation*.ipynb` | Evaluation & Modellvergleich |
-
-> Hinweis: Notebook-Benennung wird in der Aufbereitung linearisiert (`03a/03b`, `04`).
+| 00 | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) | Einstieg, Szenario, Navigation |
+| 01 | [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) | Explorative Datenanalyse |
+| 02 | [`02_processing.ipynb`](notebooks/02_processing.ipynb) | Cleaning, Feature Engineering, Split |
+| 03 | [`03_modelling-prep.ipynb`](notebooks/03_modelling-prep.ipynb) | Modelling-Vorbereitung |
+| 03a | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) | Logistische Regression |
+| 03b | [`03b_modelling-rf.ipynb`](notebooks/03b_modelling-rf.ipynb) | Random Forest |
+| 04a | [`04a_evaluation-baseline.ipynb`](notebooks/04a_evaluation-baseline.ipynb) | Baseline-Evaluation |
+| 04b | [`04b_evaluation-logreg.ipynb`](notebooks/04b_evaluation-logreg.ipynb) | Finale Evaluation |
 
 ---
 
