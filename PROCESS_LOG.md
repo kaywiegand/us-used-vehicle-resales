@@ -41,5 +41,15 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     `Data-Dictionary.html` → `reports/`, Text-Dumps → `docs/`.
   - `01_exploring`/`02_processing` bewusst nicht umbenannt (Namen klar, kein Scope-Creep).
   - Offen (BACKLOG #5): `show_df()`-Tabellen-Retrofit als optionaler Feinschliff.
-- **Nächster Schritt:** Phase 4 — voller README, `DATA_DICTIONARY.md`,
-  `reports/index.html` + ≥3 Charts nach `reports/img/`.
+- **Phase 4 erledigt:** Commit `1741535`.
+  - Echte Zahlen aus Rohdaten + Notebook-Outputs extrahiert (65.620 Zeilen, 33 Spalten,
+    Bad-Buy-Rate 12,35 %; Modell-Metriken aus 04a/04b + Model-Tracking 03b).
+  - README.md neu (Englisch, portfolio-facing) mit Results-Tabelle Baseline → LogReg-Lasso
+    → Random Forest (Bad-Buy F1 0.29 → 0.39) und Key Visual.
+  - `DATA_DICTIONARY.md` (33 Spalten + Known Issues).
+  - `reports/index.html` self-contained (3 Charts inline base64), per Preview verifiziert
+    (Charts geladen, Tabelle korrekt).
+  - 5 echte Charts nach `reports/img/` (target_distribution, feature_correlations,
+    logreg_feature_importance, threshold_f1_curve, feature_importance).
+  - Kernbefund: fehlende `WheelType`-Info ist stärkster Bad-Buy-Prädiktor.
+- **Nächster Schritt:** Phase 5 — `/project-review` erneut, dann `/project-case`.
