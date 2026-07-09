@@ -1,0 +1,675 @@
+{
+  "meta": {
+    "project": "US Used Vehicle Resales",
+    "period": "StackFuel Capstone",
+    "author": "Kay Wiegand",
+    "github": "kaywiegand/us-used-vehicle-resales",
+    "presentation_title": "Technischer Deep Dive",
+    "audience": "Data Scientists · Tech Leads · Interviewer",
+    "duration_minutes": 15,
+    "closing_links": [
+      {
+        "href": "../notebooks/",
+        "label": "Notebooks"
+      },
+      {
+        "href": "data-dictionary.html",
+        "label": "Data Dictionary"
+      }
+    ]
+  },
+  "chapters": [
+    {
+      "nav_label": "Einstieg",
+      "slides": [
+        {
+          "role": "title",
+          "title": "US Used Vehicle Resales",
+          "subtitle": [
+            "Bad-Buy Prediction als Klassifikations-Case",
+            "Feature-Katalog · Model-Katalog · ModelTracker · Error Analysis"
+          ],
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "52.496 / 13.124",
+                  "label": "Train / Test (stratifiziert)",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "28 / 6",
+                  "label": "Features Champion / Modellfamilien getestet",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "F1 0,3726",
+                  "label": "bester Tracker-Lauf (Val-Split)",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "F1 0,42",
+                  "label": "Champion, Held-out-Test, Threshold 0,65",
+                  "sentiment": "positive"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Das Problem",
+          "subtitle": "Ein Fehlkauf beim Gebrauchtwagen-Ankauf kostet mehr als den Kaufpreis",
+          "content": [
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Ein US-Gebrauchtwagenhändler kauft Fahrzeuge günstig auf Auktionen ein, um sie mit Marge weiterzuverkaufen. Das größte Risiko: ein 'Bad Buy' — ein Fahrzeug mit schweren Mängeln, das sich nicht weiterverkaufen lässt und stattdessen Lager-, Reparatur- und Abschreibungskosten verursacht."
+            },
+            {
+              "type": "statement",
+              "sentiment": "warning",
+              "text": "Leitfrage: Lässt sich vor dem Kauf erkennen, ob ein Angebot ein Fehlkauf ist — ohne zu viele gute Autos abzulehnen? Das ist ein Precision/Recall-Abwägungsproblem auf einer seltenen Zielklasse, kein Accuracy-Problem."
+            }
+          ]
+        },
+        {
+          "title": "Zielmetrik und Trade-off",
+          "subtitle": "Warum Accuracy hier die falsche Metrik ist",
+          "content": [
+            {
+              "type": "figures_with_context",
+              "items": [
+                {
+                  "value": "12,35 %",
+                  "label": "Bad-Buy-Rate\nim Datensatz",
+                  "sentiment": "warning",
+                  "context": "Nur jedes achte Auto ist ein Fehlkauf — eine stark unausgewogene Zielklasse."
+                },
+                {
+                  "value": "87,65 %",
+                  "label": "Accuracy eines\nStumpfen Modells",
+                  "sentiment": "negative",
+                  "context": "Ein Modell, das stur immer 'guter Kauf' tippt, hätte schon 87,65 % Accuracy — und würde trotzdem keinen einzigen Fehlkauf erkennen."
+                },
+                {
+                  "value": "F1",
+                  "label": "Leitmetrik\n(Bad-Buy-Klasse)",
+                  "sentiment": "positive",
+                  "context": "F1 der Bad-Buy-Klasse zwingt das Modell, die seltene Klasse tatsächlich zu treffen statt sie zu ignorieren."
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Rahmen: Triage, nicht Automatik. Das Modell soll auffällige Fahrzeuge markieren, damit ein Mensch sie prüft — nicht automatisch ablehnen oder automatisch durchwinken."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Datenstrategie",
+      "slides": [
+        {
+          "title": "Dataset & Cleaning",
+          "subtitle": "65.620 Fahrzeuge, 33 Rohspalten — nichts gelöscht, alles aufgefüllt",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Datensatz",
+                  "points": [
+                    "65.620 Trainings-Fahrzeuge, 33 Rohspalten, StackFuel-Capstone-Datensatz",
+                    "Stratifizierter Split: 52.496 Train / 13.124 Test, 12,35 % Bad-Buy-Rate in beiden identisch erhalten"
+                  ]
+                },
+                {
+                  "label": "Bereinigt",
+                  "points": [
+                    "106.348 kategoriale Lücken über mehrere Spalten (u. a. Trim, SubModel, Color, WheelType) gefunden und mit 'Unknown' aufgefüllt statt gelöscht",
+                    "PRIMEUNIT und AUCGUART fehlen bei 95,3 % aller Fahrzeuge — bleiben trotzdem als eigene Kategorie drin",
+                    "621 unplausible Preis-/Alters-/Kilometerstand-Werte (z. B. Preis < 100 $) über gestufte Gruppen-Median-Imputation geheilt (Modell+Baujahr → Marke+Baujahr → Alter → Baujahr)"
+                  ]
+                },
+                {
+                  "label": "Ergebnis",
+                  "points": [
+                    "0 Zeilen gelöscht — 100 % Retention Rate, jedes Auto bleibt im Datensatz"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Class Imbalance",
+          "subtitle": "12,35 % Bad Buys — der Kern der Herausforderung",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "Klassenverteilung IsBadBuy",
+                  "source": "target_distribution",
+                  "caption": "57.516 gute Käufe (87,65 %) vs. 8.104 Bad Buys (12,35 %). Ein Modell, das immer 'guter Kauf' tippt, hätte 87,65 % Accuracy und würde trotzdem keinen einzigen Fehlkauf finden — deshalb ist F1 der Bad-Buy-Klasse die Leitmetrik, nicht Accuracy."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Bivariate Risk-Analyse",
+          "subtitle": "Text-Spalten ohne offensichtlichen Zahlenwert sind die stärksten Risikotreiber",
+          "content": [
+            {
+              "type": "contrasts",
+              "items": [
+                {
+                  "assumption": "Trim, SubModel, VNZIP1 wirken wie reiner Text ohne mathematischen Wert",
+                  "finding": "Bivariate Analyse zeigt: seltene Ausprägungen dieser Spalten haben eine stark überproportionale Fehlkaufquote — 'High-Risk-Nischen', die Expertenwissen bündeln (Standort, Bauart-Qualität, Serien-Ruf), das in nackten Zahlen wie VehBCost fehlt."
+                },
+                {
+                  "assumption": "Nur numerische Werte (Preis, Alter, Kilometerstand) sind aussagekräftig",
+                  "finding": "Diese Hypothese rechtfertigt später die Aufnahme der starken Kategorien (Make, Model, Trim, SubModel, VNZIP1, Auction, WheelType) in den Feature-Katalog — und wird durch die systematische Testreihe bestätigt (Kapitel 3–4)."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Preis-Korrelation → Feature Engineering",
+          "subtitle": "8 redundante MMR-Preisspalten werden zu 3 Verhältnis-Features verdichtet",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "Korrelation der Preis-Features",
+                  "source": "feature_correlations",
+                  "caption": "Die MMR-Preisfamilie (Einkauf/Aktuell × Auktion/Handel × Schnitt/Clean) ist stark untereinander korreliert — die 8 rohen Preis-Spalten sagen im Grunde alle dasselbe. Schlussfolgerung: 3 verdichtete Verhältnis-Features statt 8 Rohspalten — feat_price_ratio (Einkaufspreis vs. Marktpreis), feat_price_diff (Abweichung), feat_market_trend (Marktpreis-Entwicklung seit Einkauf)."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Systematisches Experimentieren",
+      "slides": [
+        {
+          "title": "Feature-Katalog & Model-Katalog",
+          "subtitle": "19 Feature-Sets × 6 Modellfamilien statt Ad-hoc-Training",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Feature-Katalog — jede Gruppe testet eine Ja/Nein-Frage",
+                  "points": [
+                    "baseline_minimal (4 Feat.): Nullpunkt — was passiert mit fast nichts?",
+                    "numeric (6 Feat.): nur rohe Zahlen, keine Kategorien — Referenzwert",
+                    "modern_engineered_only: helfen die gebauten Ratio-/Bin-Features auch ohne komplexe Kategorien?",
+                    "cats_strong / high_impact_categories (7 Feat.): nur die im Risk-Spread-Plot entdeckten starken Kategorien",
+                    "cats_weak: die schwächeren Kategorien (Farbe, Getriebe) — Rauschen oder Signal?",
+                    "champion_v1: beste Kategorien + beste Engineered-Features + Basis-Zahlen kombiniert",
+                    "all_in_with_noise (28 Feat.): wirklich alles rein — verschlechtert sich der Score durch Rauschen?"
+                  ]
+                },
+                {
+                  "label": "Model-Katalog — 3 Lernprinzipien, je 2 Ausbaustufen",
+                  "points": [
+                    "Logistische Regression: Ridge (L2, alle Features geschrumpft) vs. Lasso (L1, Feature-Selektion — macht Koeffizienten als Wichtigkeits-Ranking lesbar)",
+                    "Random Forest: flach (Tiefe 7) vs. tief (Tiefe 15) — mehr Baum-Komplexität sinnvoll oder Überanpassung?",
+                    "HistGradientBoosting: Standard vs. aggressiv — der 'State of the Art'-Kandidat für Tabellendaten"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Der ModelTracker",
+          "subtitle": "Selbstgebauter Experiment-Logger statt manuellem Vergleich",
+          "content": [
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Pro Durchlauf werden F1, Recall, Precision und ROC-AUC in eine dauerhafte CSV geschrieben. Ein neuer Bestwert wird automatisch markiert. Das Modell selbst wird nur bei Bestwert oder F1 ≥ 0,30 exportiert ('Smart Export') — kein Datenmüll durch schwache Modelle."
+            }
+          ]
+        },
+        {
+          "title": "Die Testreihe",
+          "subtitle": "448 protokollierte Durchläufe in rund einer Stunde aktiver Rechenzeit",
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "448",
+                  "label": "geloggte Durchläufe (19 Feature-Sets × 6 Modellfamilien)",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "3 Sek.",
+                  "label": "Median-Abstand zwischen Durchläufen",
+                  "sentiment": "positive"
+                },
+                {
+                  "value": "~62 Min.",
+                  "label": "aktive Rechenzeit für alle 448 Durchläufe zusammen",
+                  "sentiment": "positive"
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "positive",
+              "text": "Der Vorteil: nach knapp einer Stunde Wartezeit steht eine fertige, sofort auswertbare Tabelle mit allen 448 Kombinationen — statt einzeln nacheinander von Hand zu trainieren und zu vergleichen."
+            }
+          ]
+        },
+        {
+          "title": "Die Testreihe",
+          "subtitle": "Top-10 von 448 Durchläufen nach F1",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "Top-10-Durchläufe nach F1",
+                  "source": "model_comparison_t10",
+                  "caption": "Die 10 stärksten von 448 protokollierten Kombinationen aus Feature-Set und Modell."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Key Findings",
+      "slides": [
+        {
+          "title": "Breiter Katalog schlägt Handpicking",
+          "subtitle": "Kategoriale Signale sind kein Rauschen, sondern der Haupthebel",
+          "content": [
+            {
+              "type": "comparison_table",
+              "columns": [
+                "Feature-Set",
+                "Features",
+                "Bester F1 (Tracker)"
+              ],
+              "rows": [
+                {
+                  "cells": [
+                    "numeric — nur Zahlen (Preis, Alter, Kilometerstand)",
+                    "6",
+                    "0,2918"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "all_in_with_noise — voller Katalog inkl. Kategorien",
+                    "28",
+                    "0,3726"
+                  ],
+                  "highlight": true
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "positive",
+              "text": "Der Unterschied hält über mehrere Modellfamilien hinweg — kein Zufallstreffer. Casting a wide net statt Vorab-Auswahl nach vermuteter Wichtigkeit war der entscheidende Schritt, nicht ein bestimmter Algorithmus."
+            }
+          ]
+        },
+        {
+          "title": "Der WheelType-Fund",
+          "subtitle": "Das stärkste Signal ist ein fast leeres Datenfeld",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "LogReg-Lasso Feature Importance",
+                  "source": "logreg_feature_importance",
+                  "caption": "WheelType = Unknown dominiert die Koeffizienten des Champion-Modells — vor Preis und Alter."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Der WheelType-Fund",
+          "subtitle": "95,6 % unauffällig gefüllt, aber die fehlenden 4,4 % sind der Alarm",
+          "content": [
+            {
+              "type": "comparison_table",
+              "columns": [
+                "WheelType-Wert",
+                "Anteil der Autos",
+                "Fehlkaufquote"
+              ],
+              "rows": [
+                {
+                  "cells": [
+                    "Alloy (Alufelgen)",
+                    "49,3 %",
+                    "11,1 %"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "Covers (Radkappen)",
+                    "45,3 %",
+                    "8,1 %"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "Special",
+                    "1,0 %",
+                    "12,6 %"
+                  ],
+                  "highlight": false
+                },
+                {
+                  "cells": [
+                    "Fehlt (leer)",
+                    "4,4 %",
+                    "70,3 %"
+                  ],
+                  "highlight": true
+                },
+                {
+                  "cells": [
+                    "Durchschnitt (alle Autos)",
+                    "—",
+                    "12,3 %"
+                  ],
+                  "highlight": false
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "positive",
+              "text": "Ein Feld, das in 95,6 % der Fälle einfach normal ausgefüllt und damit unauffällig ist, wird in den seltenen 4,4 % zum stärksten Alarmsignal im ganzen Datensatz — sechsmal höher als der Durchschnitt."
+            }
+          ]
+        },
+        {
+          "title": "Threshold-Tuning für Business-Balance",
+          "subtitle": "Der Standard-Schwellenwert markiert zu viele Autos",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "F1 vs. Decision Threshold",
+                  "source": "threshold_f1_curve",
+                  "caption": "F1-optimaler Schwellenwert bei 0,65 statt Standard 0,5 — abgestimmt auf den Triage-Zweck: Fehlkäufe fangen, ohne zu viele gute Autos abzulehnen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Threshold-Tuning für Business-Balance",
+          "subtitle": "F1 0,37 → 0,42 durch den richtigen Schwellenwert",
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "F1 0,37 → 0,42",
+                  "label": "Threshold 0,5 → 0,65",
+                  "sentiment": "positive"
+                },
+                {
+                  "value": "Precision 0,45",
+                  "label": "bei getuntem Threshold",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "Recall 0,40",
+                  "label": "bei getuntem Threshold",
+                  "sentiment": "neutral"
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "neutral",
+              "text": "Abgestimmt auf den Triage-Zweck: Fehlkäufe fangen, ohne zu viele gute Autos abzulehnen — nicht auf einen generischen 0,5-Default."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Results & Error Analysis",
+      "slides": [
+        {
+          "title": "Modellvergleich",
+          "subtitle": "Alle drei Kandidaten auf demselben Held-out-Test (13.124 Fahrzeuge)",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "Modellvergleich auf dem Test-Set",
+                  "source": "model_comparison",
+                  "caption": "Baseline F1 0,29 (Recall 0,61/Precision 0,19) · Random Forest F1 0,35 (0,64/0,24) · LogReg Lasso F1 0,37 (0,60/0,27) — Champion."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Confusion Matrix",
+          "subtitle": "Beim getunten Threshold 0,65",
+          "content": [
+            {
+              "type": "chart_refs",
+              "items": [
+                {
+                  "label": "Confusion Matrix, Threshold 0,65",
+                  "source": "confusion_matrix",
+                  "caption": "643 von 1.621 echten Fehlkäufen erkannt (TP), 978 verpasst (FN), 778 gute Autos fälschlich markiert (FP), 10.725 korrekt durchgewunken (TN)."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Fehlerbild — FN/FP-Segmente",
+          "subtitle": "Blinder Fleck bei verpassten Fehlkäufen, akzeptabler Trade-off bei Fehlalarmen",
+          "content": [
+            {
+              "type": "contrasts",
+              "items": [
+                {
+                  "assumption": "Verpasste Fehlkäufe (FN) — 978 Fahrzeuge",
+                  "finding": "Nur 0,1 % WheelType=Unknown (vs. 62,8 % bei erkannten TP), im Schnitt $672 teurer und 0,9 Jahre neuer — Modell hat kein zweites Signal für diesen Fall."
+                },
+                {
+                  "assumption": "Fälschlich markierte gute Autos (FP) — 778 Fahrzeuge",
+                  "finding": "Im Schnitt $1.740 günstiger und 2,3 Jahre älter als korrekt durchgewunkene (TN) — akzeptabler Trade-off für einen Triage-Filter, günstig einzeln nachzuprüfen."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Empfehlungen & Opportunities",
+      "slides": [
+        {
+          "title": "Empfehlungen & Opportunities",
+          "subtitle": "Einsatz heute, offene Schritte für morgen",
+          "content": [
+            {
+              "type": "recommendations",
+              "items": [
+                {
+                  "category": "R1 · Einsatz",
+                  "title": "Triage-Filter (Threshold 0,65)",
+                  "points": [
+                    "~10 % markiert für Review, ~45 % Precision — kein Auto-Reject"
+                  ]
+                },
+                {
+                  "category": "R2 · Intake",
+                  "title": "WheelType=Unknown als Warnsignal",
+                  "points": [
+                    "70,3 % Fehlkaufquote bei fehlendem Eintrag vs. 12,3 % Durchschnitt"
+                  ]
+                },
+                {
+                  "category": "O1 · Modell erweitern",
+                  "title": "Zweites Signal für den blinden Fleck",
+                  "points": [
+                    "Unabhängiges Risiko-Merkmal für neuere/teurere Fehlkäufe (z. B. Marktpreis-Abweichung)"
+                  ]
+                },
+                {
+                  "category": "O2 · Modell vereinfachen",
+                  "title": "cats_strong (7 Feat., F1 0,3587) als schlankere Alternative testen",
+                  "points": [
+                    "96 % der Leistung des vollen Katalogs mit einem Viertel der Features"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Learnings & Ausblick",
+      "slides": [
+        {
+          "title": "Projekt-Rahmen",
+          "subtitle": "Tech-Stack, Reproduzierbarkeit, Links",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Tech-Stack",
+                  "points": [
+                    "Python · pandas · scikit-learn · Matplotlib/Seaborn · Jupyter · uv"
+                  ]
+                },
+                {
+                  "label": "Reproduzierbarkeit",
+                  "points": [
+                    "12 Notebooks, durchgehend nummeriert (00–07) und ausgeführt",
+                    "Selbstgebauter ModelTracker wandert perspektivisch ins eigene wgnd-toolkit"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "links",
+              "primary": "https://github.com/kaywiegand/us-used-vehicle-resales",
+              "items": [
+                {
+                  "label": "Notebooks",
+                  "href": "../notebooks/"
+                },
+                {
+                  "label": "Data Dictionary",
+                  "href": "data-dictionary.html"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Learnings",
+          "subtitle": "Vier Methodik-Lehren, kompakt",
+          "content": [
+            {
+              "type": "sections",
+              "items": [
+                {
+                  "label": "Learnings",
+                  "points": [
+                    "Breiten Feature-Net vor dem Aussortieren casten (F1 0,29 → 0,37, siehe Findings)",
+                    "Prüfen, ob 'fehlt' selbst ein Signal ist, bevor man auffüllt (WheelType-Fund)",
+                    "Batch-Statistiken für Einzelfall-Scoring einfrieren (Median-Imputation, Quantil-Bins)",
+                    "Alle Finalisten auf demselben Test-Set vergleichen — RF-0,39-Annahme widerlegt (tatsächlich 0,35)"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Ende",
+      "slides": [
+        {
+          "role": "abbinder",
+          "title": "US Used Vehicle Resales",
+          "subtitle": "Kay Wiegand",
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "52.496 / 13.124",
+                  "label": "Train / Test",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "28",
+                  "label": "Features Champion",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "448",
+                  "label": "geloggte Modell-Läufe",
+                  "sentiment": "neutral"
+                },
+                {
+                  "value": "F1 0,42",
+                  "label": "Champion, getunter Threshold",
+                  "sentiment": "positive"
+                }
+              ]
+            },
+            {
+              "type": "links",
+              "primary": "https://github.com/kaywiegand/us-used-vehicle-resales",
+              "items": [
+                {
+                  "label": "Ergebnisübersicht",
+                  "href": "overview.html"
+                },
+                {
+                  "label": "Projektverlauf (Portfolio)",
+                  "href": "storyview.html"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

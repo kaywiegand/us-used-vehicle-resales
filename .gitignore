@@ -44,6 +44,10 @@ build/
 *.ipynb_metadata
 .jupyter/
 
+# ── Portfolio Pipeline ─────────────────────────────────────────────────────
+# Versionierte Snapshots vor jedem Regenerierungs-Lauf (lokale Historie, kein Artefakt)
+public/archive/
+
 # ── IDE & OS ───────────────────────────────────────────────────────────────
 .vscode/settings.json
 .idea/

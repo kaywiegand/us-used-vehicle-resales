@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "reports",
+      "name": "public",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8753", "--directory", "reports"],
+      "runtimeArgs": ["-m", "http.server", "8753", "--directory", "public"],
       "port": 8753
     }
   ]
