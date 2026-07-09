@@ -148,3 +148,30 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
 - **Offen:** BACKLOG #15 (nbstripout/rerun-Hygiene), #16 (AIM-Schärfung teilw. erledigt),
   #17 (qcut/Imputation in Pipeline fitten — vom Audit als Empfehlung bestätigt).
 - **Nächster Schritt:** `/project-case check`.
+
+## 2026-07-09 — `/project-case check` + Error-Analysis-/Results-Notebooks
+
+- **`/project-case check` durchgeführt:** alle Pflicht-Artefakte ✅, Story-Phase freigegeben.
+  Top-3-Gaps: (1) Notebook-Header-Format weicht vom Standard ab (Title/Subtitle in getrennten
+  statt einer Zelle, `01_exploring` hat vertauschte Zellen + falschen Titel „Preparation", `03a`
+  hat deutschen Titel, `00`-Subtitle deutsch) — nicht in dieser Session gefixt, bleibt offen;
+  (2) **Error Analysis fehlte** — `ConfusionMatrixDisplay` nur importiert, nie genutzt/besprochen;
+  (3) `public/md/portfolio.md` fehlt erwartungsgemäß (Story-Phase stand noch aus).
+- **`notebooks/06_error_analysis.ipynb`** neu angelegt (Kay-Wunsch): Confusion Matrix (echt
+  geplottet, `public/img/confusion_matrix.png`), False-Negative-Segmentanalyse (verpasste Bad Buys
+  sind newer + teurer, tragen fast nie `WheelType=Unknown` — Modell-Blind-Spot identifiziert),
+  False-Positive-Segmentanalyse (fälschlich geflaggte Autos sind älter + günstiger — akzeptabler
+  Trade-off für Triage-Filter), kurzer Verweis auf `ModelTracker`/Catalogs (`05`) für schnelles
+  Testen/Protokollieren. Deterministisch per nbconvert ausgeführt, 0 Fehler.
+- **`notebooks/07_results.ipynb`** neu angelegt — übernimmt den kompletten Inhalt von
+  `docs/RESULTS.md` (Objective, Modeling Journey, Results intern + AIM-true-holdout, Leakage-
+  Zusammenfassung, Root-Cause, Lessons Learned, Recommendations). AIM-Zahlen (Baseline F1 0.2799,
+  Champion F1 0.409 @0.65) werden live gegen `target_aim.csv` reproduziert, nicht kopiert —
+  reproduziert exakt die zuvor dokumentierten Werte. Deterministisch per nbconvert ausgeführt,
+  0 Fehler. **`docs/RESULTS.md` danach gelöscht** (Inhalt lebt jetzt im Notebook, MD-Anti-Pattern
+  „Findings in MD-Files" damit aufgelöst).
+- **README.md** aktualisiert: Notebook-Tabelle (+06, +07), alle `docs/RESULTS.md`-Links auf
+  `notebooks/07_results.ipynb` umgebogen, Error-Analysis-Finding in TL;DR + Results-Section
+  ergänzt, Approach-Section um Error-Analysis-Schritt erweitert.
+- **Nächster Schritt:** `/project-case story` (`public/md/portfolio.md`) → `slides` (Dialog) →
+  `report` (`make portfolio`).

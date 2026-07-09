@@ -19,6 +19,7 @@
 - **Strongest signal:** a **missing wheel-type** (`WheelType = Unknown`) is the single most predictive feature for a bad buy — a data-quality flag that doubles as a risk flag.
 - **Deliverable:** scored predictions for **7,292 unlabeled vehicles** (`features_aim.csv`); at the deployment threshold ≈ **10 %** are flagged for review.
 - **Rigor:** a reproducible [**data-leakage audit**](docs/DATA_LEAKAGE_AUDIT.md) clears the pipeline — no target leakage, no high-cardinality memorization. Verified on the **hidden holdout labels**: the champion generalizes with a 0.013 F1 gap and, at the tuned threshold, reaches **F1 0.409 on the true out-of-sample set** — clearing the original assessment's 0.40 bar that a mis-submitted baseline had missed. Experiments were logged with a self-built `ModelTracker` (448 runs).
+- **Error analysis:** the model's blind spot is newer, pricier bad buys that don't carry the `WheelType = Unknown` flag — see [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb).
 
 ![Class distribution of IsBadBuy](public/img/target_distribution.png)
 
@@ -89,6 +90,9 @@ Decision threshold tuned on the F1 curve:
 **4 · Evaluation** ([`04a`](notebooks/04a_evaluation-baseline.ipynb) ·
 [`04b`](notebooks/04b_evaluation-logreg.ipynb)) — bad-buy precision/recall/F1 vs. the baseline.
 
+**5 · Error analysis** ([`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb)) — confusion
+matrix plus a segment breakdown of the missed and wrongly-flagged cars.
+
 ---
 
 ## Results
@@ -120,8 +124,13 @@ coefficients, followed by specific ZIP regions, models and sub-models.
 filter** — it flags ~10 % of an unlabeled batch for human review at ~0.45 precision, not as an
 automatic reject. Treat missing `WheelType` as a first-order risk indicator at intake.
 
-> **Full write-up:** [`docs/RESULTS.md`](docs/RESULTS.md) — results, the true-holdout confirmation,
-> a root-cause analysis of the original assessment score, and lessons learned.
+**Error analysis:** the model's blind spot is newer, pricier bad buys that don't carry the
+`WheelType = Unknown` flag — they look clean on paper and slip through more often than the
+data-quality-flagged ones the model catches easily. See
+[`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb).
+
+> **Full write-up:** [`07_results.ipynb`](notebooks/07_results.ipynb) — results, the true-holdout
+> confirmation, a root-cause analysis of the original assessment score, and lessons learned.
 
 ---
 
@@ -139,6 +148,8 @@ automatic reject. Treat missing `WheelType` as a first-order risk indicator at i
 | 04a | [`04a_evaluation-baseline.ipynb`](notebooks/04a_evaluation-baseline.ipynb) | Baseline evaluation (exploratory) |
 | 04b | [`04b_evaluation-logreg.ipynb`](notebooks/04b_evaluation-logreg.ipynb) | LogReg deployment walk-through (exploratory) |
 | 05 | [`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb) | **Engineering showcase** — feature catalog, model catalog & the self-built `ModelTracker` (448-run sweep) |
+| 06 | [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | **Error analysis** — confusion matrix, false-negative/false-positive segment breakdown |
+| 07 | [`07_results.ipynb`](notebooks/07_results.ipynb) | **Full results & retrospective** — internal + true-holdout numbers, root-cause analysis, lessons learned |
 
 ---
 
@@ -183,7 +194,8 @@ import us_used_vehicle_resales as wg     # ModelTracker, print_*, save_*, inspec
 
 | Artifact | Path | Content |
 | :--- | :--- | :--- |
-| Results & retrospective | [`docs/RESULTS.md`](docs/RESULTS.md) | Full results, true-holdout proof, root-cause analysis, lessons learned |
+| Results & retrospective | [`notebooks/07_results.ipynb`](notebooks/07_results.ipynb) | Full results, true-holdout proof, root-cause analysis, lessons learned |
+| Error analysis | [`notebooks/06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | Confusion matrix, false-negative/false-positive segment breakdown |
 | Project hub | [`public/index.html`](public/index.html) | Self-contained overview: pitch, key charts, results table |
 | Data dictionary | [`public/data-dictionary.html`](public/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | All 33 columns + known issues |
 | Charts | [`public/img/`](public/img/) | Target distribution, correlations, feature importance, threshold curve |
