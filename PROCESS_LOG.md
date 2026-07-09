@@ -81,3 +81,31 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   - → Findings in BACKLOG (#13–#17). **Entscheidung offen (Kay):** Results-Story korrigieren
     vor `/project-case` — nicht eigenmächtig umgeschrieben.
 - **Nächster Schritt:** Content-Findings mit Kay klären → dann `/project-case check`.
+
+## 2026-07-09 — Phase 5: Results-Reproduktion + Data-Leakage-Audit
+
+- **Entscheidung Kay:** Notebooks sauber rerun → neues `04_evaluation.ipynb` als Single Source
+  of Truth (deterministisch, per nbconvert ausgeführt, echte Outputs eingebettet).
+- **Reproduzierte Test-Zahlen** (alle 3 Archetypen auf demselben Held-out-Test, n=13.124):
+  Ergebnis-Tabelle in `04_evaluation.ipynb`. Winner = **LogReg Lasso**, nicht RF.
+  Das behauptete „RF F1 0.39" war nicht reproduzierbar → retired. RF landet zweiter.
+  Threshold-Tuning hebt den Winner auf ein brauchbares Operating Point (Notebook §4).
+  → BACKLOG #13 + #14 erledigt.
+- **AIM** neu mit Winner + getuntem Threshold: ein kanonisches File
+  `data/05_results/predictions_aim_final.csv` (gitignored).
+- **Data-Leakage-Audit** (`docs/DATA_LEAKAGE_AUDIT.md`) — ausgelöst durch Kays Hinweis: die
+  StackFuel-Prüfung verlangte F1 > 0.40, wurde nicht erreicht, Leakage vermutet, Projekt gestoppt.
+  - Prüfer-Zahlen (echte AIM-Labels) belegt: eingereicht wurde die **Baseline** (AIM-F1 0.281 ≈
+    interne Baseline 0.287) → Baseline generalisiert sauber, kein Leakage.
+  - Vektor-für-Vektor geprüft: Split vor FE, Transformer nur auf Train gefittet, keine
+    target-abgeleiteten Features, 0 Duplikate → **kein Leakage**.
+  - **Experiment** (Notebook-nahe, Script): hochkardinale Identifier (VNZIP1/Model/SubModel/Trim/
+    BYRNO, 2.082 Levels) entfernen kostet **nur 0.003 F1** (0.373→0.370) → **kein Overfitting**.
+  - Fazit: kein Leakage, kein Overfitting. Der niedrige Prüfer-Score war ein **Submission-Fehler
+    (Baseline statt Champion)**. Die 0.40-Hürde ist mit dem getunten Champion erreichbar.
+- **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
+  erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
+- README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.
+- **Offen:** BACKLOG #15 (nbstripout/rerun-Hygiene), #16 (AIM-Schärfung teilw. erledigt),
+  #17 (qcut/Imputation in Pipeline fitten — vom Audit als Empfehlung bestätigt).
+- **Nächster Schritt:** `/project-case check`.

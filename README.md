@@ -15,9 +15,10 @@
 
 - **Task:** binary classification of `IsBadBuy` on **65,620 auctioned vehicles** with **33 features**.
 - **Hard part:** the classes are strongly **imbalanced** — only **12.35 %** of cars are bad buys, so accuracy is meaningless; the project optimizes the **F1 score of the bad-buy class**.
-- **Best model:** Random Forest (`class_weight='balanced'`) reaches **bad-buy F1 ≈ 0.39**, up from a **0.29 baseline** (≈ +34 % relative).
+- **Best model:** Logistic Regression with L1 penalty (`class_weight='balanced'`) reaches **bad-buy F1 ≈ 0.37** on the held-out test set, up from a **0.29 baseline**. Tuning the decision threshold lifts it to **F1 ≈ 0.42 at precision ≈ 0.45**.
 - **Strongest signal:** a **missing wheel-type** (`WheelType = Unknown`) is the single most predictive feature for a bad buy — a data-quality flag that doubles as a risk flag.
-- **Deliverable:** scored predictions for **7,291 unlabeled vehicles** (`features_aim.csv`).
+- **Deliverable:** scored predictions for **7,292 unlabeled vehicles** (`features_aim.csv`); at the deployment threshold ≈ **10 %** are flagged for review.
+- **Rigor:** a reproducible [**data-leakage audit**](docs/DATA_LEAKAGE_AUDIT.md) clears the pipeline — no target leakage, and removing 2 082 high-cardinality category levels changes test F1 by only 0.003 (no memorization). Experiments were logged with a self-built `ModelTracker` (448 runs).
 
 ![Class distribution of IsBadBuy](public/img/target_distribution.png)
 
@@ -90,26 +91,30 @@ Decision threshold tuned on the F1 curve:
 
 Performance on the **bad-buy class** (the minority class that matters):
 
-| Model | Recall | Precision | F1 | Accuracy |
+| Model | Recall | Precision | F1 (bad-buy) | ROC-AUC |
 | :--- | :---: | :---: | :---: | :---: |
-| Baseline — Logistic Regression | 0.61 | 0.19 | 0.29 | 0.62 |
-| Logistic Regression Lasso (L1, balanced) | 0.59 | 0.26 | 0.36 | 0.74 |
-| **Random Forest (balanced)** | 0.52 | 0.31 | **0.39** | 0.80 |
+| Baseline — Logistic Regression (8 feat) | 0.61 | 0.19 | 0.29 | 0.67 |
+| Random Forest (deep, balanced) | 0.64 | 0.24 | 0.35 | 0.75 |
+| **Logistic Regression Lasso (L1, balanced)** | 0.60 | 0.27 | **0.37** | 0.77 |
 
-<sub>Baseline & LogReg-Lasso from the held-out test set (n = 13,124; notebooks `04a`/`04b`).
-Random Forest from internal validation in model tracking (n = 10,500; notebook `03b`).
-Project selection metric: F1 of the bad-buy class.</sub>
+<sub>All three on the **same held-out test set** (n = 13,124), threshold 0.5, selection metric =
+F1 of the bad-buy class. Reproduced end-to-end in [`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb).</sub>
 
-**Most predictive features** (consistent across LogReg L1 and Random Forest): a **missing
-wheel type** (`WheelType = Unknown`) dominates, followed by specific models/sub-models and
-vehicle age.
+![Model comparison on the held-out test set](public/img/model_comparison.png)
+
+**Threshold tuning** — with balanced class weights the default 0.5 threshold over-flags. At the
+F1-optimal threshold (0.65) the winning model reaches **F1 0.42 · Precision 0.45 · Recall 0.40**:
+
+![Decision threshold vs. F1](public/img/threshold_f1_curve.png)
+
+**Most predictive feature:** a **missing wheel type** (`WheelType = Unknown`) dominates the L1
+coefficients, followed by specific ZIP regions, models and sub-models.
 
 ![Logistic Regression feature importance](public/img/logreg_feature_importance.png)
 
-**Recommendation:** Random Forest with balanced class weights is the strongest candidate.
-Because precision on bad buys is still modest (~0.31), deploy the model as a **triage
-filter** that flags risky offers for human review, not as an automatic reject — and treat
-missing `WheelType` as a first-order risk indicator at intake.
+**Recommendation:** deploy the **L1 Logistic Regression** at the tuned threshold as a **triage
+filter** — it flags ~10 % of an unlabeled batch for human review at ~0.45 precision, not as an
+automatic reject. Treat missing `WheelType` as a first-order risk indicator at intake.
 
 ---
 
@@ -123,8 +128,9 @@ missing `WheelType` as a first-order risk indicator at intake.
 | 03 | [`03_modelling-prep.ipynb`](notebooks/03_modelling-prep.ipynb) | Modeling setup |
 | 03a | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) | Logistic Regression |
 | 03b | [`03b_modelling-rf.ipynb`](notebooks/03b_modelling-rf.ipynb) | Random Forest |
-| 04a | [`04a_evaluation-baseline.ipynb`](notebooks/04a_evaluation-baseline.ipynb) | Baseline evaluation |
-| 04b | [`04b_evaluation-logreg.ipynb`](notebooks/04b_evaluation-logreg.ipynb) | Final evaluation |
+| 04 | [`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb) | **Results SSoT** — all models on the same held-out test, threshold tuning, scoring |
+| 04a | [`04a_evaluation-baseline.ipynb`](notebooks/04a_evaluation-baseline.ipynb) | Baseline evaluation (exploratory) |
+| 04b | [`04b_evaluation-logreg.ipynb`](notebooks/04b_evaluation-logreg.ipynb) | LogReg deployment walk-through (exploratory) |
 
 ---
 
@@ -134,7 +140,14 @@ Python 3.12 · pandas · NumPy · scikit-learn (Logistic Regression, Random Fore
 pipelines, `ColumnTransformer`) · Matplotlib / Seaborn · Jupyter · uv ·
 [`wgnd`](https://github.com/kaywiegand/wgnd-toolkit) toolkit for EDA helpers.
 
-Project code lives in the installable package `us_used_vehicle_resales`.
+Project code lives in the installable package `us_used_vehicle_resales`. Model experiments were
+tracked with a **self-built `ModelTracker`** — a lightweight experiment logger that records
+F1 / recall / precision / ROC-AUC per run to CSV, flags the best run, and exports the fitted
+pipeline (448 runs across feature sets and model families).
+
+> **Related work:** this project shares the `wgnd` toolkit and project scaffolding with
+> [**zh-tram-flow**](https://github.com/kaywiegand/zh-tram-flow) — the portfolio's flagship
+> end-to-end data-science project (a Zürich tram-delay prediction pipeline).
 
 ---
 

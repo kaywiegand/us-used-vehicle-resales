@@ -23,7 +23,7 @@ Referenz-Standard: `zh-tram-flow` · Struktur-Referenz: `wgnd-scaffolding`.
 - [x] **Phase 2 — src-Konsolidierung + wgnd-Toolkit** — ein Paket `us_used_vehicle_resales/`, Namenskollision `wgnd` aufgelöst, echtes Toolkit als Git-Dependency, `pyproject.toml` neu, Notebook-Imports repointed. Verifiziert (Install + Importe).
 - [x] **Phase 3 — Notebook-Hygiene** — Intro neu (`00_introduction`), Modell-Notebooks linearisiert (`03_modelling-prep`, `03a/03b`, `04a/04b`), lose Artefakte verschoben. _Offen (→ BACKLOG #5): `show_df()`-Tabellen-Retrofit als optionaler Feinschliff._
 - [x] **Phase 4 — README + Reports (Schicht 2)** — voller englischer README mit echten Zahlen + Key Visual, `DATA_DICTIONARY.md`, self-contained `public/index.html`, 5 Charts in `public/img/`.
-- [~] **Phase 5 — Re-Review & Case Study** — `/project-review` gelaufen (BEDINGT). Struktur-Cleanup erledigt (`reports/`→`public/`, MD-Drift, 2 Leichen-Notebooks entfernt). **Offen vor `/project-case`: Content-Findings aus dem Audit klären (v.a. RF-als-Best-Claim vs. deploytes LogReg-Lasso, nicht-reproduzierte Test-Zahlen).**
+- [~] **Phase 5 — Re-Review & Case Study** — `/project-review` gelaufen (BEDINGT). Struktur-Cleanup erledigt. **Results-Reproduktion + Data-Leakage-Audit abgeschlossen:** `04_evaluation.ipynb` als SSoT (Winner LogReg Lasso F1 0.37/0.42), `docs/DATA_LEAKAGE_AUDIT.md` (kein Leakage). README+Hub korrigiert. Offen: `/project-case check → story → full`.
 
 ---
 
