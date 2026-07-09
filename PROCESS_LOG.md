@@ -175,3 +175,26 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   ergänzt, Approach-Section um Error-Analysis-Schritt erweitert.
 - **Nächster Schritt:** `/project-case story` (`public/md/portfolio.md`) → `slides` (Dialog) →
   `report` (`make portfolio`).
+
+## 2026-07-09 — BACKLOG #20: Notebook-Header-Format-Feinschliff
+
+- Alle 12 Notebooks gegen das Pflicht-Format aus `wgnd-skills/project-case/project-case.md`
+  geprüft (`# Titel` + `**SUBTITLE**` + `---` **in einer** Markdown-Zelle) — Script zeigte alle 12
+  als ❌, weil Title und Subtitle projektweit in zwei getrennten Zellen standen (nicht nur in den
+  3 im Backlog explizit genannten Notebooks).
+- **Alle 12 Notebooks**: Title-Zelle + Subtitle-Zelle zu einer Zelle zusammengeführt, Text
+  unverändert. Direkt per JSON-Patch (nicht NotebookEdit) — `03a_modelling-logreg.ipynb` u.a. sind
+  zu gross fürs Read-Tool-Preflight von NotebookEdit; Formatierung (`indent=1`, `ensure_ascii=False`,
+  Trailing-Newline) manuell an den Originalstil angeglichen, um den Diff auf die Header-Zellen zu
+  begrenzen. Mit `nbformat.validate()` gegengeprüft — alle 12 valide, keine Outputs/Code-Zellen
+  angefasst.
+- **`00_introduction.ipynb`**: Subtitle DE→EN.
+- **`03a_modelling-logreg.ipynb`**: Titel DE→EN (Subtitle war schon EN).
+- **`01_exploring.ipynb`**: Cell 0 war ein verwaister `---`-Divider vor dem eigentlichen Titel
+  (nichts davor zu trennen), Cell 1 „# Preparation" passte nicht zum Inhalt (Setup/Data
+  Gathering/Split — „Preparation" ist inhaltlich der Job von `02_processing.ipynb`). Beide Zellen
+  durch einen neuen Header ersetzt: „# Exploring" + Subtitle „SETUP · SPLIT · EXPLORATORY DATA
+  ANALYSIS". Mid-Notebook-Kapiteltitel „Explorative Data Analysis" → „Exploratory Data Analysis"
+  (EN); der `---`-Divider davor blieb unangetastet (regulärer Kapitel-Break, kein Bug).
+- **Nächster Schritt:** BACKLOG #21 — Kay: manuelle Durchsicht der `public/`-Artefakte, letzter
+  Schritt vor Phase-5-Abschluss.
