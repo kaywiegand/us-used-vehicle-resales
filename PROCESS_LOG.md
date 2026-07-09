@@ -112,6 +112,10 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   - **`docs/RESULTS.md` erstellt** (Kay-Wunsch): vollständiger Results-Report + Retrospektive
     (Modeling-Journey, interne + AIM-Zahlen, Leakage-Zusammenfassung, Root-Cause der 0.28,
     Lessons Learned, Recommendations). Als Narrative-Spine für `/project-case`. Aus README verlinkt.
+  - **`notebooks/05_experiment_framework.ipynb` erstellt** (Kay-Wunsch): Engineering-Showcase der
+    Experimentier-Infrastruktur — Feature-Catalog, Model-Catalog, `ModelTracker` (Live-Demo +
+    realer 448-Run-Benchmark, Top-10-Chart). Deterministisch per nbconvert ausgeführt (0 Fehler).
+    Aus README-Notebooks + RESULTS.md verlinkt.
 - **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
   erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
 - README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.

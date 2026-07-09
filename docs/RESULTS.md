@@ -50,6 +50,11 @@ bar of **F1 > 0.40** on a hidden scoring set (`features_aim`, 7 292 vehicles).
 correctly rejected in favour of the higher-recall Logistic Regression. Chasing the headline F1
 there would have been the wrong call.
 
+> **Engineering showcase:** the feature catalog, the model catalog and the self-built `ModelTracker`
+> (persistent CSV log · smart model export · best-run flag) are demonstrated in
+> [`notebooks/05_experiment_framework.ipynb`](../notebooks/05_experiment_framework.ipynb). The value
+> isn't one lucky model — it's a repeatable framework for finding it.
+
 ---
 
 ## 3 · Results
