@@ -53,3 +53,31 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     logreg_feature_importance, threshold_f1_curve, feature_importance).
   - Kernbefund: fehlende `WheelType`-Info ist stärkster Bad-Buy-Prädiktor.
 - **Nächster Schritt:** Phase 5 — `/project-review` erneut, dann `/project-case`.
+
+## 2026-07-09 — Phase 5: Re-Review + Struktur-Cleanup + Content-Audit
+
+- `/project-review` erneut: Ergebnis **BEDINGT** — Fundament/README/Hub portfolio-tauglich,
+  aber Konventions-Drift + MD-Drift + Leichen-Notebooks.
+- **Struktur-Cleanup (dieser Commit):**
+  - `reports/` → `public/` (neuer Workspace-Standard, `git mv` — Historie erhalten).
+    Pfade in README/CLAUDE/ROADMAP repointed. Hub-Links (relativ, eine Ebene höher) bleiben gültig.
+  - 2 unnummerierte Leichen-Notebooks entfernt (`Workflow.ipynb`, `Data-Dictionary.ipynb` —
+    redundant zu `DATA_DICTIONARY.md`).
+  - MD-Drift: ROADMAP Phase 1 `[x]`; CLAUDE.md-Stack auf reines scikit-learn korrigiert
+    (LightGBM/XGBoost waren nie im Code); README um „Reports & Artifacts" + LinkedIn ergänzt.
+- **Content-Audit (inhaltliche Prüfung der Notebooks, da Lernphasen-Projekt):**
+  - Split sauber (stratified, vor Cleaning/FE) — **kein** Leakage.
+  - **Kernproblem = Ergebnis-Kommunikation, nicht die Pipeline:**
+    - README/Hub krönen **RF (F1 0.39)** als Best — Tracking-CSVs zeigen RF max ~0.37,
+      LogReg-Lasso 0.38–0.40; **deploytes Modell in `04b` ist LogReg-Lasso, nicht RF**;
+      RF nie auf Held-out-Test evaluiert.
+    - Test-`classification_report` in `04a/04b` nicht als Output gespeichert →
+      README-Testzahlen nicht reproduzierbar belegt.
+    - Notebook-Outputs stale (autoreload: `engineer_features` 5 vs 9 Features zwischen
+      04a/04b; `os.getcwd()` = alter Pfad `DSC_Gebrauchtwagen`). `nbstripout` inaktiv.
+    - AIM-Predictions über-flaggen (Baseline 40,6 % / Lasso 27 % vs. 12,35 % Basisrate),
+      2 widersprüchliche Result-Files, getunter Threshold nicht genutzt.
+    - `feat_price_cat` via `pd.qcut` → Bin-Grenzen pro Datensatz inkonsistent (train/test/aim).
+  - → Findings in BACKLOG (#13–#17). **Entscheidung offen (Kay):** Results-Story korrigieren
+    vor `/project-case` — nicht eigenmächtig umgeschrieben.
+- **Nächster Schritt:** Content-Findings mit Kay klären → dann `/project-case check`.

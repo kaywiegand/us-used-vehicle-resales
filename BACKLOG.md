@@ -20,4 +20,9 @@ Prio: `1` = hoch · `2` = mittel · `3` = niedrig
 | ~~9~~ | ✅ Phase 4: `reports/index.html` + 5 Charts in `reports/img/` (1741535) | 1 | project-review 2026-06-27 |
 | ~~10~~ | ✅ Paketname `us_used_vehicle_resales` beibehalten (Slug-konform) | 3 | Planung 2026-06-27 |
 | 12 | `tests/`-Ordner mit Smoke-Test (Paket-Import) anlegen | 3 | Phase 2 2026-06-27 |
-| 11 | Phase 5: `/project-review` erneut, dann `/project-case` | 1 | project-review 2026-06-27 |
+| 11 | Phase 5: `/project-review` erneut ✅ (BEDINGT, 2026-07-09), dann `/project-case` | 1 | project-review 2026-06-27 |
+| 13 | **Results-Story korrigieren**: README/Hub nennen RF (F1 0.39) als Best, deployt wird aber LogReg-Lasso; RF nie auf Test evaluiert; Tracking zeigt RF ~0.37, Lasso 0.38–0.40. Ergebnis-Tabelle + Recommendation auf das bringen, was die Notebooks hergeben. **Blocker vor `/project-case`.** | 1 | content-audit 2026-07-09 |
+| 14 | **Test-Metriken reproduzierbar machen**: `04a/04b` speichern keinen `classification_report` auf Test → README-Zahlen (0.29/0.36) nicht belegt. Report-Zelle ausführen + Output sichern, oder Zahlen aus einer Single Source of Truth ziehen. | 1 | content-audit 2026-07-09 |
+| 15 | **Notebooks reproduzierbar durchlaufen**: Outputs stale (autoreload, 5 vs 9 Features 04a/04b; alter Pfad `DSC_Gebrauchtwagen`). Top-to-bottom rerun im aktuellen venv; `nbstripout` aktivieren (pre-commit) oder bewusst Outputs committen. | 2 | content-audit 2026-07-09 |
+| 16 | **AIM-Deliverable schärfen**: Predictions über-flaggen (40,6 %/27 % vs 12,35 %). Getunten Threshold (0.72, Precision ~0.50) nutzen, EIN eindeutiges Result-File definieren, Business-Framing (Triage-Filter) klarziehen. | 2 | content-audit 2026-07-09 |
+| 17 | **`feat_price_cat` qcut-Bug**: `pd.qcut` bildet Bin-Grenzen pro Datensatz → train/test/aim inkonsistent. Auf feste Grenzen (aus Train-Quantilen) umstellen, in Pipeline fitten. | 2 | content-audit 2026-07-09 |

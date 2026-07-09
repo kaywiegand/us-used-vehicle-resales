@@ -13,7 +13,7 @@
 | Paket | `us_used_vehicle_resales` (Import mit Underscores) |
 | Typ | DSC — Data Science / Klassifikation |
 | Aufgabe | "Bad Buy"-Vorhersage: Wird ein ersteigerter Gebrauchtwagen ein Fehlkauf ("Montagsauto")? |
-| Stack | Pandas · NumPy · scikit-learn · LightGBM/XGBoost · Matplotlib/Seaborn · Jupyter · uv |
+| Stack | Pandas · NumPy · scikit-learn · Matplotlib/Seaborn · Jupyter · uv |
 | Herkunft | StackFuel-Abschlussprojekt (Modul 3, Kapitel 4) |
 | Status | 🔄 in Portfolio-Aufbereitung |
 
@@ -58,7 +58,7 @@ from wgnd import setup, inspect, show_df   # echtes wgnd-Toolkit (Git-Dependency
   Accuracy ist keine sinnvolle Primärmetrik (→ Recall/Precision/F1, PR-AUC).
 - `wgnd` referenziert ausschliesslich das **offizielle Toolkit** (Git-Dependency).
   Projekt-eigene Helfer liegen in `us_used_vehicle_resales.*` — nicht mehr unter `wgnd`.
-- Outputs (Charts) → `reports/img/`, nie im Notebook-Root ablegen.
+- Outputs (Charts) → `public/img/`, nie im Notebook-Root ablegen.
 
 ---
 
@@ -80,4 +80,4 @@ dass Kay das Notebook geschlossen/gespeichert hat.
 - Phase 2: `src/` zu einem Paket `us_used_vehicle_resales/` konsolidieren,
   lokale `src/wgnd/`-Namenskollision auflösen, echtes Toolkit als Dependency.
 - Phase 3: Notebook-Hygiene (Intro bereinigen, Modell-Notebooks `03a/03b`, Tabellen).
-- Phase 4: README + reports/index.html + DATA_DICTIONARY.md.
+- Phase 4: README + public/index.html + DATA_DICTIONARY.md.

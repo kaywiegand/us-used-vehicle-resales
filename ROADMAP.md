@@ -19,17 +19,17 @@ Referenz-Standard: `zh-tram-flow` · Struktur-Referenz: `wgnd-scaffolding`.
 ## Phasen
 
 - [x] **Phase 0 — Git Safety Net** — Repo initialisiert, `.gitignore`, Snapshot-Commit, Push zu origin.
-- [ ] **Phase 1 — Fundament (Schicht 1)** — MD-Files: CLAUDE · README (Gerüst) · ROADMAP · PROCESS_LOG · BACKLOG · `.python-version`; Eintrag in `docs/PROJECTS.md`.
+- [x] **Phase 1 — Fundament (Schicht 1)** — MD-Files: CLAUDE · README (Gerüst) · ROADMAP · PROCESS_LOG · BACKLOG · `.python-version`; Eintrag in `docs/PROJECTS.md`.
 - [x] **Phase 2 — src-Konsolidierung + wgnd-Toolkit** — ein Paket `us_used_vehicle_resales/`, Namenskollision `wgnd` aufgelöst, echtes Toolkit als Git-Dependency, `pyproject.toml` neu, Notebook-Imports repointed. Verifiziert (Install + Importe).
 - [x] **Phase 3 — Notebook-Hygiene** — Intro neu (`00_introduction`), Modell-Notebooks linearisiert (`03_modelling-prep`, `03a/03b`, `04a/04b`), lose Artefakte verschoben. _Offen (→ BACKLOG #5): `show_df()`-Tabellen-Retrofit als optionaler Feinschliff._
-- [x] **Phase 4 — README + Reports (Schicht 2)** — voller englischer README mit echten Zahlen + Key Visual, `DATA_DICTIONARY.md`, self-contained `reports/index.html`, 5 Charts in `reports/img/`.
-- [ ] **Phase 5 — Re-Review & Case Study** — `/project-review` erneut, dann `/project-case check → story → full`.
+- [x] **Phase 4 — README + Reports (Schicht 2)** — voller englischer README mit echten Zahlen + Key Visual, `DATA_DICTIONARY.md`, self-contained `public/index.html`, 5 Charts in `public/img/`.
+- [~] **Phase 5 — Re-Review & Case Study** — `/project-review` gelaufen (BEDINGT). Struktur-Cleanup erledigt (`reports/`→`public/`, MD-Drift, 2 Leichen-Notebooks entfernt). **Offen vor `/project-case`: Content-Findings aus dem Audit klären (v.a. RF-als-Best-Claim vs. deploytes LogReg-Lasso, nicht-reproduzierte Test-Zahlen).**
 
 ---
 
 ## Ziel
 
 Ein portfolio-ready DSC-Projekt: reproduzierbares Setup (`uv` + `pip install -e ".[dsc]"`),
-saubere lineare Notebook-Strecke, externes Leseartefakt (`reports/index.html`),
+saubere lineare Notebook-Strecke, externes Leseartefakt (`public/index.html`),
 aussagekräftige README mit Findings + Modellvergleich (inkl. Baseline) — bereit für
 `/project-case`.

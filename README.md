@@ -19,7 +19,7 @@
 - **Strongest signal:** a **missing wheel-type** (`WheelType = Unknown`) is the single most predictive feature for a bad buy — a data-quality flag that doubles as a risk flag.
 - **Deliverable:** scored predictions for **7,291 unlabeled vehicles** (`features_aim.csv`).
 
-![Class distribution of IsBadBuy](reports/img/target_distribution.png)
+![Class distribution of IsBadBuy](public/img/target_distribution.png)
 
 *Class distribution: ~57,500 good buys vs ~8,100 bad buys — the core modeling challenge.*
 
@@ -68,7 +68,7 @@ Full column reference → [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md).
 missing values, and the strong class imbalance; price columns (MMR family) are highly
 correlated.
 
-![Feature correlations](reports/img/feature_correlations.png)
+![Feature correlations](public/img/feature_correlations.png)
 
 **2 · Preparation** ([`02_processing.ipynb`](notebooks/02_processing.ipynb)) — cleaning,
 feature engineering (price ratios, mileage-per-year, risk buckets), and a **stratified**
@@ -79,7 +79,7 @@ train/test split to preserve the 12.35 % bad-buy rate.
 Regression and Random Forest, all with `class_weight='balanced'` to counter the imbalance.
 Decision threshold tuned on the F1 curve:
 
-![Threshold tuning](reports/img/threshold_f1_curve.png)
+![Threshold tuning](public/img/threshold_f1_curve.png)
 
 **4 · Evaluation** ([`04a`](notebooks/04a_evaluation-baseline.ipynb) ·
 [`04b`](notebooks/04b_evaluation-logreg.ipynb)) — bad-buy precision/recall/F1 vs. the baseline.
@@ -104,7 +104,7 @@ Project selection metric: F1 of the bad-buy class.</sub>
 wheel type** (`WheelType = Unknown`) dominates, followed by specific models/sub-models and
 vehicle age.
 
-![Logistic Regression feature importance](reports/img/logreg_feature_importance.png)
+![Logistic Regression feature importance](public/img/logreg_feature_importance.png)
 
 **Recommendation:** Random Forest with balanced class weights is the strongest candidate.
 Because precision on bad buys is still modest (~0.31), deploy the model as a **triage
@@ -155,6 +155,14 @@ import us_used_vehicle_resales as wg     # ModelTracker, print_*, save_*, inspec
 
 ---
 
+## Reports & Artifacts
+
+| Artifact | Path | Content |
+| :--- | :--- | :--- |
+| Project hub | [`public/index.html`](public/index.html) | Self-contained overview: pitch, key charts, results table |
+| Data dictionary | [`public/data-dictionary.html`](public/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | All 33 columns + known issues |
+| Charts | [`public/img/`](public/img/) | Target distribution, correlations, feature importance, threshold curve |
+
 ## Author
 
-**Kay Wiegand** · [GitHub](https://github.com/kaywiegand)
+**Kay Wiegand** · [GitHub](https://github.com/kaywiegand) · [LinkedIn](https://www.linkedin.com/in/kaywiegand/)
