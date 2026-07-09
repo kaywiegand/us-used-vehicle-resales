@@ -109,6 +109,9 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     bewiesen. **Champion AIM-F1: 0.360 @0.5, 0.409 @tuned 0.65 → knackt die 0.40-Hürde auf echten
     Daten.** Intern→AIM-Gap nur 0.013 → Leakage/Overfitting empirisch ausgeschlossen.
     Audit + README + Hub auf diese belegten Zahlen gehoben. (`target_aim.csv` bleibt gitignored.)
+  - **`docs/RESULTS.md` erstellt** (Kay-Wunsch): vollständiger Results-Report + Retrospektive
+    (Modeling-Journey, interne + AIM-Zahlen, Leakage-Zusammenfassung, Root-Cause der 0.28,
+    Lessons Learned, Recommendations). Als Narrative-Spine für `/project-case`. Aus README verlinkt.
 - **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
   erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
 - README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.

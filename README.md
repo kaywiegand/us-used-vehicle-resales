@@ -116,6 +116,9 @@ coefficients, followed by specific ZIP regions, models and sub-models.
 filter** — it flags ~10 % of an unlabeled batch for human review at ~0.45 precision, not as an
 automatic reject. Treat missing `WheelType` as a first-order risk indicator at intake.
 
+> **Full write-up:** [`docs/RESULTS.md`](docs/RESULTS.md) — results, the true-holdout confirmation,
+> a root-cause analysis of the original assessment score, and lessons learned.
+
 ---
 
 ## Notebooks
@@ -172,6 +175,7 @@ import us_used_vehicle_resales as wg     # ModelTracker, print_*, save_*, inspec
 
 | Artifact | Path | Content |
 | :--- | :--- | :--- |
+| Results & retrospective | [`docs/RESULTS.md`](docs/RESULTS.md) | Full results, true-holdout proof, root-cause analysis, lessons learned |
 | Project hub | [`public/index.html`](public/index.html) | Self-contained overview: pitch, key charts, results table |
 | Data dictionary | [`public/data-dictionary.html`](public/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | All 33 columns + known issues |
 | Charts | [`public/img/`](public/img/) | Target distribution, correlations, feature importance, threshold curve |
