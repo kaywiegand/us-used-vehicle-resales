@@ -124,6 +124,14 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     korrigiert (Helfer liegen lokal, nicht via wgnd). Paket-Import verifiziert.
   - **Schritt 2 (Workspace-Task):** Toolkit-Konsolidierung — `ModelTracker` + generische Helfer ins
     `wgnd-toolkit` promoten, alle 3 Nachzügler migrieren, Release. → Workspace-BACKLOG.
+  - **`infos.md` → `docs/ASSIGNMENT.md`** verschoben (Provenance; Inhalt redundant zu README+DATA_DICTIONARY). Root aufgeräumt.
+  - **2. `/project-review` (BEDINGT):** Hauptbefund = Notebook-Konventionsverstöße.
+    **Notebook-Header-Cleanup (Schritt 1 — Header, erledigt):** programmatischer Transform über alle
+    10 Notebooks — Emojis aus Überschriften entfernt (`01` allein hatte 39), jede Überschrift in
+    eigene Markdown-Zelle gesplittet (CONVENTIONS-Kernregel), leere MD-Zellen entfernt, Cell-IDs
+    ergänzt. Content-Erhalt verifiziert, nbformat-validiert, Code-Outputs unberührt. Betraf auch
+    meine `04`/`05`. Zusätzlich: toter `mad`-Import (`statsmodels`, nicht installiert) aus `01` raus.
+    **Offen (Schritt 2 — Tabellen):** `show_df()`-Tabellen zu Plots (BACKLOG #5), eins nach dem anderen.
 - **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
   erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
 - README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.
