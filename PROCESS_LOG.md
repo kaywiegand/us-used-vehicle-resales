@@ -132,6 +132,16 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     ergänzt. Content-Erhalt verifiziert, nbformat-validiert, Code-Outputs unberührt. Betraf auch
     meine `04`/`05`. Zusätzlich: toter `mad`-Import (`statsmodels`, nicht installiert) aus `01` raus.
     **Offen (Schritt 2 — Tabellen):** `show_df()`-Tabellen zu Plots (BACKLOG #5), eins nach dem anderen.
+  - **Docs angereichert:** `00_introduction` neu (Standard-Header + ToC, Ansatz/Modelle, Zielmetrik
+    F1>0.40), README (Ziel + ASSIGNMENT-Link, 7.291→7.292). Header/Subtitle/ToC auf alle NBs,
+    `03b`-Titel-Typo gefixt.
+  - **Entscheidung Kay:** `01`-Split + Tabellen **geparkt** (gekoppelt an Run-Loop) → BACKLOG #19/#5.
+    Exploration bleibt vorerst unverändert.
+  - **Cleanup-Pass (kein Notebook-Run):** `nbstripout`-Dev-Dep entfernt (war inaktiv; Outputs bewusst
+    committet behalten). `tests/test_import.py` angelegt (3 passed). BACKLOG #12/#16 geschlossen.
+    ROADMAP Phase 5 + PROJECTS.md aktualisiert. Lokaler Cruft (`.ipynb_checkpoints`/`.DS_Store`/
+    `__pycache__`) entfernt.
+- **Nächster Schritt:** `/project-case check` — oder Run-Loop für Exploration-Split + Tabellen.
 - **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
   erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
 - README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.
