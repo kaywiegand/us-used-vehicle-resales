@@ -116,6 +116,14 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     Experimentier-Infrastruktur — Feature-Catalog, Model-Catalog, `ModelTracker` (Live-Demo +
     realer 448-Run-Benchmark, Top-10-Chart). Deterministisch per nbconvert ausgeführt (0 Fehler).
     Aus README-Notebooks + RESULTS.md verlinkt.
+  - **Toolkit-Hygiene (Schritt 1 von 2):** Cross-Projekt-Scan zeigte — us-used ist einer von 3
+    Nachzüglern (mit quito, zomato) mit lokalem Toolkit-Fork; Flaggschiff `zh-tram-flow` konsumiert
+    `wgnd` bereits extern. `ModelTracker` existiert nur in den 3 Forks, nicht im Toolkit.
+    Hygiene hier: toter Code entfernt (`utils_tracker`/`utils_export`/`sampling`), Phantom-`wgnd`-
+    Dependency aus `pyproject` raus (war deklariert, nie importiert), README auf die Realität
+    korrigiert (Helfer liegen lokal, nicht via wgnd). Paket-Import verifiziert.
+  - **Schritt 2 (Workspace-Task):** Toolkit-Konsolidierung — `ModelTracker` + generische Helfer ins
+    `wgnd-toolkit` promoten, alle 3 Nachzügler migrieren, Release. → Workspace-BACKLOG.
 - **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
   erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
 - README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.

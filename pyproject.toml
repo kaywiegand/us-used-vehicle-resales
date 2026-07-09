@@ -30,8 +30,10 @@ dependencies = [
   "joblib>=1.3",
   "pyarrow>=14.0",
   "rich>=13.0",
-  "wgnd @ git+https://github.com/kaywiegand/wgnd-toolkit.git@main",
 ]
+# NOTE: EDA/experiment helpers currently live in this project's own package
+# (src/us_used_vehicle_resales). A workspace-wide consolidation into the shared
+# `wgnd-toolkit` (git dependency) is tracked in the workspace BACKLOG.
 
 [project.optional-dependencies]
 # Das Projekt nutzt aktuell ausschliesslich scikit-learn (LogReg, RandomForest,
