@@ -40,7 +40,8 @@ data/05_results/    ← Predictions auf features_aim
 ```
 
 Daten und Modelle sind via `.gitignore` ausgeschlossen.
-Datenquelle + Spaltenbeschreibung → `DATA_DICTIONARY.md` (bzw. vorerst `infos.md`).
+Datenquelle + Spaltenbeschreibung → `DATA_DICTIONARY.md`.
+Original-Aufgabenstellung (StackFuel-Briefing, DE) → `docs/ASSIGNMENT.md`.
 
 Python-Paket (Zielzustand nach Phase 2):
 ```python
