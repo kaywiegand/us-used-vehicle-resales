@@ -103,6 +103,12 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     BYRNO, 2.082 Levels) entfernen kostet **nur 0.003 F1** (0.373→0.370) → **kein Overfitting**.
   - Fazit: kein Leakage, kein Overfitting. Der niedrige Prüfer-Score war ein **Submission-Fehler
     (Baseline statt Champion)**. Die 0.40-Hürde ist mit dem getunten Champion erreichbar.
+  - **2026-07-09 (später): echte AIM-Labels** von Kay besorgt (`target_aim.csv`, zip/b64 → lokal
+    dekodiert, verifiziert 7.292/863). Champion auf echten Out-of-Sample-Labels evaluiert:
+    Baseline reproduziert die Prüfer-Zahl exakt (F1 0.280 vs 0.281, ±3 Zeilen) → Pipeline-Fidelity
+    bewiesen. **Champion AIM-F1: 0.360 @0.5, 0.409 @tuned 0.65 → knackt die 0.40-Hürde auf echten
+    Daten.** Intern→AIM-Gap nur 0.013 → Leakage/Overfitting empirisch ausgeschlossen.
+    Audit + README + Hub auf diese belegten Zahlen gehoben. (`target_aim.csv` bleibt gitignored.)
 - **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
   erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
 - README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.

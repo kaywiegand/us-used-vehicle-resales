@@ -131,7 +131,7 @@
       Logistic Regression with an L1 penalty (balanced) is the strongest model on the held-out test set. At the tuned threshold (0.65) it reaches F1 0.42 at precision ~0.45 (recall 0.40). Deploy it as a <strong>triage filter</strong> that
       flags ~10% of an unlabeled batch for human review — not as an automatic reject — and treat a missing
       <code>WheelType</code> as a first-order risk indicator at intake.
-      <br><br><strong>Leakage audit:</strong> a reproducible check clears the pipeline — no target leakage; removing 2,082 high-cardinality category levels changes test F1 by only 0.003 (no memorization). Experiments were logged with a self-built <code>ModelTracker</code> (448 runs).
+      <br><br><strong>Leakage audit:</strong> a reproducible check clears the pipeline — no target leakage, no high-cardinality memorization. Verified on the hidden holdout labels: the champion generalizes with a 0.013 F1 gap and, at the tuned threshold, reaches <strong>F1 0.409 on the true out-of-sample set</strong> — clearing the assessment&rsquo;s 0.40 bar that a mis-submitted baseline had missed. Experiments were logged with a self-built <code>ModelTracker</code> (448 runs).
     </div>
   </div>
 </section>

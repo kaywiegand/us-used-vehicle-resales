@@ -18,7 +18,7 @@
 - **Best model:** Logistic Regression with L1 penalty (`class_weight='balanced'`) reaches **bad-buy F1 ≈ 0.37** on the held-out test set, up from a **0.29 baseline**. Tuning the decision threshold lifts it to **F1 ≈ 0.42 at precision ≈ 0.45**.
 - **Strongest signal:** a **missing wheel-type** (`WheelType = Unknown`) is the single most predictive feature for a bad buy — a data-quality flag that doubles as a risk flag.
 - **Deliverable:** scored predictions for **7,292 unlabeled vehicles** (`features_aim.csv`); at the deployment threshold ≈ **10 %** are flagged for review.
-- **Rigor:** a reproducible [**data-leakage audit**](docs/DATA_LEAKAGE_AUDIT.md) clears the pipeline — no target leakage, and removing 2 082 high-cardinality category levels changes test F1 by only 0.003 (no memorization). Experiments were logged with a self-built `ModelTracker` (448 runs).
+- **Rigor:** a reproducible [**data-leakage audit**](docs/DATA_LEAKAGE_AUDIT.md) clears the pipeline — no target leakage, no high-cardinality memorization. Verified on the **hidden holdout labels**: the champion generalizes with a 0.013 F1 gap and, at the tuned threshold, reaches **F1 0.409 on the true out-of-sample set** — clearing the original assessment's 0.40 bar that a mis-submitted baseline had missed. Experiments were logged with a self-built `ModelTracker` (448 runs).
 
 ![Class distribution of IsBadBuy](public/img/target_distribution.png)
 
