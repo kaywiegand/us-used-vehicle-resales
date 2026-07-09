@@ -1,0 +1,40 @@
+# Slide-Matrix — US Used Vehicle Resales — Bad-Buy Prediction
+
+Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matrix.py`. Nicht von Hand editieren — bei jeder Registry-Änderung neu ausführen.
+
+| id | Kapitel | Inhalt | StoryView | TechView | Overview |
+|:---|:---|:---|:---:|:---:|:---:|
+| `einstieg-title-overview` | Einstieg | KPIs |  |  | ✅ |
+| `einstieg-title-storyview` | Einstieg | KPIs | ✅ |  |  |
+| `einstieg-title-techview` | Einstieg | KPIs |  | ✅ |  |
+| `einstieg-problem` | Einstieg | Statement + Statement | ✅ | ✅ | ✅ |
+| `einstieg-aufgabe` | Einstieg | KPIs+Kontext + Statement | ✅ | ✅ | ✅ |
+| `daten-cleaning` | Data & Exploration (storyview) / Datenstrategie (techview) | Abschnitte | ✅ | ✅ |  |
+| `daten-imbalance` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Chart | ✅ | ✅ | ✅ |
+| `daten-risk-analyse` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Annahme/Befund | ✅ | ✅ | ✅ |
+| `daten-preis-korrelation` | Data & Exploration (storyview) / Datenstrategie (techview) | Chart | ✅ | ✅ |  |
+| `experimentieren-infrastruktur` | Systematisches Experimentieren | Abschnitte | ✅ | ✅ |  |
+| `experimentieren-modeltracker` | Systematisches Experimentieren | Statement | ✅ | ✅ |  |
+| `experimentieren-testreihe-figures` | Systematisches Experimentieren | KPIs + Statement | ✅ | ✅ | ✅ |
+| `experimentieren-testreihe-chart` | Systematisches Experimentieren | Chart | ✅ | ✅ |  |
+| `findings-breiter-katalog` | Key Findings | Vergleichstabelle + Statement | ✅ | ✅ |  |
+| `findings-wheeltype-chart` | Key Findings | Chart | ✅ | ✅ | ✅ |
+| `findings-wheeltype-table` | Key Findings | Vergleichstabelle + Statement | ✅ | ✅ |  |
+| `findings-threshold-chart` | Key Findings | Chart | ✅ | ✅ | ✅ |
+| `findings-threshold-detail` | Key Findings | KPIs + Statement | ✅ | ✅ |  |
+| `results-modellvergleich-storyview` | Results & Error Analysis | Chart | ✅ | ✅ |  |
+| `results-confusion-matrix-storyview` | Results & Error Analysis | Chart | ✅ | ✅ |  |
+| `results-blinder-fleck-storyview` | Results & Error Analysis | Annahme/Befund + Statement | ✅ |  |  |
+| `results-falsch-markiert-storyview` | Results & Error Analysis | Statement | ✅ |  |  |
+| `results-fehlerbild-techview` | Results & Error Analysis | Annahme/Befund |  | ✅ |  |
+| `empfehlungen-storyview-overview` | Empfehlungen & Opportunities | Empfehlungen | ✅ |  | ✅ |
+| `opportunities-storyview-overview` | Empfehlungen & Opportunities | Empfehlungen | ✅ |  | ✅ |
+| `empfehlungen-opportunities-techview` | Empfehlungen & Opportunities | Empfehlungen |  | ✅ |  |
+| `learnings-storyview` | Learnings & Ausblick | Abschnitte | ✅ |  |  |
+| `learnings-ausblick-overview` | Learnings & Ausblick | Abschnitte + Links | ✅ | ✅ | ✅ |
+| `learnings-techview` | Learnings & Ausblick | Abschnitte |  | ✅ |  |
+| `ende-abbinder-overview` | Ende | KPIs + Links |  |  | ✅ |
+| `ende-abbinder-storyview` | Ende | KPIs + Links | ✅ |  |  |
+| `ende-abbinder-techview` | Ende | KPIs + Links |  | ✅ |  |
+
+**32 Slide-Einträge total · 20 davon in mehr als 1 View wiederverwendet.**
