@@ -46,6 +46,10 @@ resold and instead generates follow-up costs (storage, repairs, write-downs).
 **without rejecting too many good cars**? This is a precision/recall trade-off on a rare
 positive class, not an accuracy problem.
 
+**Objective (assessment bar):** reach **bad-buy F1 > 0.40** on the hidden scoring set
+`features_aim.csv`, whose labels are known only to the examiner. The deliverable is the set of
+predictions for that file. (Original brief → [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md).)
+
 ---
 
 ## Dataset
@@ -53,11 +57,11 @@ positive class, not an accuracy problem.
 | | |
 | :--- | :--- |
 | Training data | `data/01_raw/data_train.csv` — **65,620 rows**, **33 columns**, `;`-separated, labeled |
-| Scoring data | `data/01_raw/features_aim.csv` — **7,291 rows**, unlabeled (prediction target) |
+| Scoring data | `data/01_raw/features_aim.csv` — **7,292 rows**, unlabeled (prediction target) |
 | Target | `IsBadBuy` — `0` good buy (87.65 %), `1` bad buy (12.35 %) |
 | Source | StackFuel capstone project (Module 3, Chapter 4) |
 
-Full column reference → [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md).
+Full column reference → [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) · original brief → [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md).
 
 > Raw data and trained models are excluded from the repo via `.gitignore`.
 
