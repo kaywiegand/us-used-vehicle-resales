@@ -171,13 +171,13 @@ performance with a quarter of the features).
 Python 3.12 · pandas · NumPy · scikit-learn (Logistic Regression, Random Forest,
 pipelines, `ColumnTransformer`) · Matplotlib / Seaborn · Jupyter · uv.
 
-All project code and the EDA / experiment helpers live in the installable package
-`us_used_vehicle_resales`. That includes a **self-built `ModelTracker`** — a lightweight experiment
-logger that records F1 / recall / precision / ROC-AUC per run to CSV, flags the best run, and exports
-the fitted pipeline (448 runs across feature sets and model families). These helpers are part of my
-own tooling; a shared, standalone version lives in
-[`wgnd-toolkit`](https://github.com/kaywiegand/wgnd-toolkit), and consolidating this project onto it
-is planned (see workspace backlog).
+Project-specific code (cleaning, feature engineering, the feature/model catalogs) lives in the
+installable package `us_used_vehicle_resales`. The reusable **`ModelTracker`** — a lightweight
+experiment logger that records F1 / recall / precision / ROC-AUC per run to CSV, flags the best run,
+and exports the fitted pipeline (448 runs across feature sets and model families) — was **self-built
+in this project and has since been promoted into my shared
+[`wgnd-toolkit`](https://github.com/kaywiegand/wgnd-toolkit)** (v0.3.0). This project now consumes it
+from there (`from wgnd import ModelTracker`), alongside the shared EDA/output helpers.
 
 > **Related work:** shares the project scaffolding and tooling approach with
 > [**zh-tram-flow**](https://github.com/kaywiegand/zh-tram-flow) — the portfolio's flagship

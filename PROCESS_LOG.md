@@ -198,3 +198,23 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   (EN); der `---`-Divider davor blieb unangetastet (regulärer Kapitel-Break, kein Bug).
 - **Nächster Schritt:** BACKLOG #21 — Kay: manuelle Durchsicht der `public/`-Artefakte, letzter
   Schritt vor Phase-5-Abschluss.
+
+## 2026-07-10 — Toolkit-Konsolidierung: ModelTracker → gemeinsames `wgnd` (Workspace-BACKLOG #24)
+
+- **`ModelTracker` + `save_model` ins gemeinsame `wgnd-toolkit` (v0.3.0) promotet**, dieses Projekt
+  konsumiert sie jetzt von dort statt aus dem lokalen Fork. Ebenso `EdaNotes`/`notes`.
+- **`src/us_used_vehicle_resales/__init__.py`**: `ModelTracker`/`save_model`/`EdaNotes`/`notes` via
+  `from wgnd import …` (Re-Export bleibt, `wg.ModelTracker` in den Notebooks unverändert nutzbar).
+- **`models.py`** auf `inspect_run_full` reduziert — bleibt bewusst lokal (LogReg-/`Good/Bad`-/
+  IsBadBuy-spezifisch, kein allgemeiner Toolkit-Kandidat). **`printing.py`** auf die `print_*`-Helfer
+  reduziert (von `process.py` genutzt); `EdaNotes`/`notes` raus. Tote `utils.py` (Quito-Copy-Paste,
+  nirgends importiert) entfernt.
+- **`pyproject.toml`**: `wgnd @ git+…@main` als Dependency ergänzt (analog zh-tram-flow etc.), alte
+  „helpers live locally / consolidation planned"-Notiz entfernt. **README** entsprechend geflippt.
+- **Entscheidung:** `process`-Split-Funktionen NICHT promotet (projekt-spezifisch) → bleiben lokal.
+- **Verifiziert:** Paket-Import ok, `wg.ModelTracker is wgnd.ModelTracker`, ModelTracker-Smoke-Run
+  grün (gegen lokal editable-installiertes Toolkit 0.3.0; `uv run --no-sync`, da git@main bis zu
+  Kays Push noch 0.2.0 ist). Notebooks bewusst NICHT per nbconvert ausgeführt (würde gespeicherte
+  Outputs überschreiben + braucht 448-Run-Daten) — API identisch, Re-Run bleibt Kay überlassen.
+- **Nächster Schritt:** Kay pusht `wgnd-toolkit` (Tag `v0.3.0`) → danach ziehen Consumer via
+  normalem `uv sync` die neue Version; erst dann `wgnd`-Dep in us-used ohne `--no-sync` auflösbar.
