@@ -214,3 +214,47 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   Outputs überschreiben + braucht 448-Run-Daten) — API identisch, Re-Run bleibt Kay überlassen.
 - **Nächster Schritt:** Kay pusht `wgnd-toolkit` (Tag `v0.3.0`) → danach ziehen Consumer via
   normalem `uv sync` die neue Version; erst dann `wgnd`-Dep in us-used ohne `--no-sync` auflösbar.
+
+## 2026-07-16 — Sprach- und Portfolio-Hygiene über alle Notebooks
+
+- **Übersetzung:** `04_evaluation`, `05_experiment_framework`, `06_error_analysis`, `07_results`
+  waren als einzige Notebooks komplett Englisch (Bruch nach `03_modelling-prep`) — Prosa auf
+  Deutsch gebracht, Headings/Titles bleiben Englisch, analog zu `00`–`03`. README ebenso übersetzt.
+- **Portfolio-Framing:** `docs/DATA_LEAKAGE_AUDIT.md` gelöscht und die „ursprünglich an der
+  Prüfung gescheitert, Leakage vermutet, Resubmit"-Erzählung aus `07_results.ipynb`, README,
+  ROADMAP, BACKLOG entfernt (Kay: sieht sonst nach nicht bestandener Prüfung aus). Die
+  Robustheits-Checks selbst (kein Leakage, Champion F1 0.409 auf echtem Holdout) bleiben als
+  neutraler Befund erhalten.
+- **Chat-Artefakte entfernt:** Zweite-Person-Coach-Sprache („dein Datensatz", „empfehle ich dir",
+  Code-Kommentare wie „Hol dir alle Ergebnisse") und eingefügte Chat-Reste (Meta-Kommentare,
+  KI-Angebote wie „Soll ich dir zeigen...", eine Junk-Zelle, Lorem-Ipsum-Blindtext) über
+  `01_exploring`, `02_processing`, `03a`, `03b`, `04a`, `04b` bereinigt. Nummerierte Headlines
+  (`## 1 · Setup`, `# 04 — Titel`) durchgängig entfernt — typisches KI-Chat-Muster, gehört nicht
+  in handgeschriebene Notebooks. 69 leere Zellen über 5 Notebooks gelöscht.
+- **`01_exploring.ipynb` gesplittet** (BACKLOG #19, statt der ursprünglich geplanten 4er-Aufteilung
+  ein schlankeres 3er-Schema): `01_exploring.ipynb` (Setup, Split, erste EDA-Insights) ·
+  `01a_eda-detail.ipynb` (Data Integrity/Distribution/Relationships/Feature-Engineering-Potential) ·
+  `01b_eda-summary.ipynb` (die 7 Key-Findings-Blöcke zu einer sauberen Tabelle verdichtet, statt
+  wiederholter Fazit-/👉-Bullets). Der nachfolgende Planungs-Block (Feature Handling List,
+  Base-Model-Empfehlung, Processing-Roadmap, Catalog-Strategie, TODO-Liste) wurde verworfen —
+  redundant zu `02_processing.ipynb`/`03_modelling-prep.ipynb`. Navigation in `00_introduction.ipynb`
+  und README auf die 3 Notebooks aktualisiert.
+- **Daten-Handoff zwischen den 3 Notebooks ergänzt** (Kay-Wunsch): `01_exploring` exportiert
+  `df_eda`/`df_impute` als Parquet nach `data/02_interim/`; `01a_eda-detail` lädt sie in einer
+  neuen `## Setup`-Sektion (eigene Imports, da jetzt eigenständiges Notebook) und exportiert am
+  Ende `df_clean`/`df_features`; `01b_eda-summary` lädt alle drei für seine Plots. Komplette Kette
+  end-to-end gegen die echten Daten getestet (Skript-Extraktion aus den Notebooks, via `.venv`
+  ausgeführt) — lief fehlerfrei durch.
+- **`01b_eda-summary.ipynb`: 7 Plots über der Findings-Tabelle ergänzt** (Kay-Wunsch, "dann wäre
+  es auch inhaltlich eine Zusammenfassung") — je Finding-Thema ein neu geschriebener, schlanker
+  Plot (Missing-Data-Heatmap, Integrity-Fehler-Balken, Outlier-Boxplots, Korrelations-Heatmap,
+  Target-Countplot, Kardinalitäts-Balken, WarrantyCost-Boxplot), keine Wiederverwendung der
+  raw geloopten Explorations-Zellen. Alle 7 einzeln gegen echte Daten verifiziert.
+- **Notebooks per `nbconvert --execute --inplace` frisch ausgeführt**: `01_exploring` und
+  `01b_eda-summary` erfolgreich mit echten Outputs. `01a_eda-detail`s Pairplot-Zelle hing über
+  nbconvert/Kernel-Kommunikation (>10 Min, in einem direkten Skript-Test lief derselbe Code in
+  <4 Min durch) — Lauf abgebrochen, Notebook-Datei dabei unbeschädigt (nur die alten,
+  Vor-Split-Outputs + leere neue Setup/Export-Zellen). Code ist verifiziert korrekt; ein frischer
+  Run bleibt offen (gebündelt mit BACKLOG #15).
+- **Nächster Schritt:** BACKLOG #15 — `01`/`01a`/`01b` bis `03b` einmal reproduzierbar
+  durchlaufen lassen (Outputs sind noch aus der ursprünglichen Lernphase bzw. teils leer, s.o.).

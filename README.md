@@ -33,7 +33,7 @@
 | Du bist… | Hier starten |
 | :--- | :--- |
 | Recruiter (30 Sek.) | Dieses README — TL;DR + Ergebnisse |
-| Data Scientist (10 Min.) | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) → [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) |
+| Data Scientist (10 Min.) | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) → [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) → [`01a_eda-detail.ipynb`](notebooks/01a_eda-detail.ipynb) |
 | Modellierungs-Deep-Dive | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) · [`03b_modelling-rf.ipynb`](notebooks/03b_modelling-rf.ipynb) |
 
 ---
@@ -72,7 +72,9 @@ Vollständige Spaltenreferenz → [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) · 
 
 ## Ansatz
 
-**1 · Exploration** ([`01_exploring.ipynb`](notebooks/01_exploring.ipynb)) — Verteilungen,
+**1 · Exploration** ([`01_exploring.ipynb`](notebooks/01_exploring.ipynb) ·
+[`01a_eda-detail.ipynb`](notebooks/01a_eda-detail.ipynb) ·
+[`01b_eda-summary.ipynb`](notebooks/01b_eda-summary.ipynb)) — Verteilungen,
 fehlende Werte, die starke Klassen-Imbalance, und eine bivariate Risikoanalyse, die zeigt, dass
 textartige Spalten (Trim, SubModel, VNZIP1, WheelType) starke Risikotreiber sind, kein Rauschen;
 Preisspalten (MMR-Familie) sind stark korreliert und werden zu 3 Ratio-Features verdichtet.
@@ -158,7 +160,9 @@ einem Viertel der Features).
 | # | Notebook | Inhalt |
 | :--- | :--- | :--- |
 | 00 | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) | Einstiegspunkt: Szenario, Aufgabe, Navigation |
-| 01 | [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) | Explorative Datenanalyse |
+| 01 | [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) | Setup, Split, erste EDA-Insights |
+| 01a | [`01a_eda-detail.ipynb`](notebooks/01a_eda-detail.ipynb) | Explorative Datenanalyse im Detail |
+| 01b | [`01b_eda-summary.ipynb`](notebooks/01b_eda-summary.ipynb) | EDA Summary — wichtigste Findings auf einen Blick |
 | 02 | [`02_processing.ipynb`](notebooks/02_processing.ipynb) | Cleaning, Feature Engineering, Split |
 | 03 | [`03_modelling-prep.ipynb`](notebooks/03_modelling-prep.ipynb) | Modelling-Vorbereitung |
 | 03a | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) | Logistische Regression |
