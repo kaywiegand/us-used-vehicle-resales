@@ -149,7 +149,7 @@ ergänzen — neuere, teurere Bad Buys ohne das `WheelType`-Flag (siehe
 einem Viertel der Features).
 
 > **Vollständige Ausarbeitung:** [`07_results.ipynb`](notebooks/07_results.ipynb) — interne +
-> echte Holdout-Zahlen, das Data-Leakage-Audit und Lessons Learned.
+> echte Holdout-Zahlen, Robustheits-Checks und Lessons Learned.
 
 ---
 
@@ -168,7 +168,7 @@ einem Viertel der Features).
 | 04b | [`04b_evaluation-logreg.ipynb`](notebooks/04b_evaluation-logreg.ipynb) | LogReg-Deployment-Walkthrough (exploratorisch) |
 | 05 | [`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb) | **Engineering-Showcase** — Feature-Catalog, Model-Catalog & der selbstgebaute `ModelTracker` (448-Run-Sweep) |
 | 06 | [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | **Error Analysis** — Confusion Matrix, False-Negative-/False-Positive-Segment-Aufschlüsselung |
-| 07 | [`07_results.ipynb`](notebooks/07_results.ipynb) | **Vollständige Ergebnisse & Retrospektive** — interne + echte Holdout-Zahlen, Root-Cause-Analyse, Lessons Learned |
+| 07 | [`07_results.ipynb`](notebooks/07_results.ipynb) | **Vollständige Ergebnisse & Retrospektive** — interne + echte Holdout-Zahlen, Robustheits-Checks, Lessons Learned |
 
 ---
 
@@ -214,7 +214,7 @@ import us_used_vehicle_resales as wg     # ModelTracker, print_*, save_*, inspec
 
 | Artefakt | Pfad | Inhalt |
 | :--- | :--- | :--- |
-| Ergebnisse & Retrospektive | [`notebooks/07_results.ipynb`](notebooks/07_results.ipynb) | Vollständige Ergebnisse, echter Holdout-Beweis, Root-Cause-Analyse, Lessons Learned |
+| Ergebnisse & Retrospektive | [`notebooks/07_results.ipynb`](notebooks/07_results.ipynb) | Vollständige Ergebnisse, echter Holdout-Beweis, Robustheits-Checks, Lessons Learned |
 | Error Analysis | [`notebooks/06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | Confusion Matrix, False-Negative-/False-Positive-Segment-Aufschlüsselung |
 | Projekt-Hub | [`public/index.html`](public/index.html) | Eigenständige Übersicht: Pitch, Key Charts, Ergebnistabelle |
 | Data Dictionary | [`public/data-dictionary.html`](public/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | Alle 33 Spalten + bekannte Probleme |

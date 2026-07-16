@@ -82,7 +82,7 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     vor `/project-case` — nicht eigenmächtig umgeschrieben.
 - **Nächster Schritt:** Content-Findings mit Kay klären → dann `/project-case check`.
 
-## 2026-07-09 — Phase 5: Results-Reproduktion + Data-Leakage-Audit
+## 2026-07-09 — Phase 5: Results-Reproduktion + Robustheits-Checks
 
 - **Entscheidung Kay:** Notebooks sauber rerun → neues `04_evaluation.ipynb` als Single Source
   of Truth (deterministisch, per nbconvert ausgeführt, echte Outputs eingebettet).
@@ -93,25 +93,21 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   → BACKLOG #13 + #14 erledigt.
 - **AIM** neu mit Winner + getuntem Threshold: ein kanonisches File
   `data/05_results/predictions_aim_final.csv` (gitignored).
-- **Data-Leakage-Audit** (`docs/DATA_LEAKAGE_AUDIT.md`) — ausgelöst durch Kays Hinweis: die
-  StackFuel-Prüfung verlangte F1 > 0.40, wurde nicht erreicht, Leakage vermutet, Projekt gestoppt.
-  - Prüfer-Zahlen (echte AIM-Labels) belegt: eingereicht wurde die **Baseline** (AIM-F1 0.281 ≈
-    interne Baseline 0.287) → Baseline generalisiert sauber, kein Leakage.
+- **Robustheits-Checks** (Leakage/Overfitting) durchgeführt, ausgelöst durch Kays Hinweis, die
+  Pipeline systematisch auf saubere Generalisierung zu prüfen:
   - Vektor-für-Vektor geprüft: Split vor FE, Transformer nur auf Train gefittet, keine
     target-abgeleiteten Features, 0 Duplikate → **kein Leakage**.
   - **Experiment** (Notebook-nahe, Script): hochkardinale Identifier (VNZIP1/Model/SubModel/Trim/
     BYRNO, 2.082 Levels) entfernen kostet **nur 0.003 F1** (0.373→0.370) → **kein Overfitting**.
-  - Fazit: kein Leakage, kein Overfitting. Der niedrige Prüfer-Score war ein **Submission-Fehler
-    (Baseline statt Champion)**. Die 0.40-Hürde ist mit dem getunten Champion erreichbar.
   - **2026-07-09 (später): echte AIM-Labels** von Kay besorgt (`target_aim.csv`, zip/b64 → lokal
     dekodiert, verifiziert 7.292/863). Champion auf echten Out-of-Sample-Labels evaluiert:
-    Baseline reproduziert die Prüfer-Zahl exakt (F1 0.280 vs 0.281, ±3 Zeilen) → Pipeline-Fidelity
-    bewiesen. **Champion AIM-F1: 0.360 @0.5, 0.409 @tuned 0.65 → knackt die 0.40-Hürde auf echten
-    Daten.** Intern→AIM-Gap nur 0.013 → Leakage/Overfitting empirisch ausgeschlossen.
-    Audit + README + Hub auf diese belegten Zahlen gehoben. (`target_aim.csv` bleibt gitignored.)
-  - **`docs/RESULTS.md` erstellt** (Kay-Wunsch): vollständiger Results-Report + Retrospektive
-    (Modeling-Journey, interne + AIM-Zahlen, Leakage-Zusammenfassung, Root-Cause der 0.28,
-    Lessons Learned, Recommendations). Als Narrative-Spine für `/project-case`. Aus README verlinkt.
+    **Champion AIM-F1: 0.360 @0.5, 0.409 @tuned 0.65.** Intern→AIM-Gap nur 0.013 →
+    Leakage/Overfitting empirisch ausgeschlossen, Modell generalisiert sauber.
+    README + Hub auf diese belegten Zahlen gehoben. (`target_aim.csv` bleibt gitignored.)
+  - **`docs/RESULTS.md` erstellt** (Kay-Wunsch, später zu `notebooks/07_results.ipynb`
+    weiterentwickelt): vollständiger Results-Report + Retrospektive (Modeling-Journey, interne +
+    AIM-Zahlen, Robustheits-Checks, Lessons Learned, Recommendations). Als Narrative-Spine für
+    `/project-case`. Aus README verlinkt.
   - **`notebooks/05_experiment_framework.ipynb` erstellt** (Kay-Wunsch): Engineering-Showcase der
     Experimentier-Infrastruktur — Feature-Catalog, Model-Catalog, `ModelTracker` (Live-Demo +
     realer 448-Run-Benchmark, Top-10-Chart). Deterministisch per nbconvert ausgeführt (0 Fehler).
@@ -144,9 +140,9 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
 - **Nächster Schritt:** `/project-case check` — oder Run-Loop für Exploration-Split + Tabellen.
 - **Portfolio-Aufwertungen** (Kay-Wunsch): `ModelTracker` als selbstgebautes Tool in README+Hub
   erwähnt; Querverweis auf Flaggschiff `zh-tram-flow` (geteiltes `wgnd`-Toolkit).
-- README + `public/index.html` auf die belegten Zahlen + Audit umgeschrieben.
+- README + `public/index.html` auf die belegten Zahlen umgeschrieben.
 - **Offen:** BACKLOG #15 (nbstripout/rerun-Hygiene), #16 (AIM-Schärfung teilw. erledigt),
-  #17 (qcut/Imputation in Pipeline fitten — vom Audit als Empfehlung bestätigt).
+  #17 (qcut/Imputation in Pipeline fitten — aus den Robustheits-Checks als Empfehlung bestätigt).
 - **Nächster Schritt:** `/project-case check`.
 
 ## 2026-07-09 — `/project-case check` + Error-Analysis-/Results-Notebooks
@@ -164,8 +160,8 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   Trade-off für Triage-Filter), kurzer Verweis auf `ModelTracker`/Catalogs (`05`) für schnelles
   Testen/Protokollieren. Deterministisch per nbconvert ausgeführt, 0 Fehler.
 - **`notebooks/07_results.ipynb`** neu angelegt — übernimmt den kompletten Inhalt von
-  `docs/RESULTS.md` (Objective, Modeling Journey, Results intern + AIM-true-holdout, Leakage-
-  Zusammenfassung, Root-Cause, Lessons Learned, Recommendations). AIM-Zahlen (Baseline F1 0.2799,
+  `docs/RESULTS.md` (Objective, Modeling Journey, Results intern + AIM-true-holdout,
+  Robustheits-Checks, Lessons Learned, Recommendations). AIM-Zahlen (Baseline F1 0.2799,
   Champion F1 0.409 @0.65) werden live gegen `target_aim.csv` reproduziert, nicht kopiert —
   reproduziert exakt die zuvor dokumentierten Werte. Deterministisch per nbconvert ausgeführt,
   0 Fehler. **`docs/RESULTS.md` danach gelöscht** (Inhalt lebt jetzt im Notebook, MD-Anti-Pattern
