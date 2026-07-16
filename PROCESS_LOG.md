@@ -256,5 +256,28 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
   <4 Min durch) — Lauf abgebrochen, Notebook-Datei dabei unbeschädigt (nur die alten,
   Vor-Split-Outputs + leere neue Setup/Export-Zellen). Code ist verifiziert korrekt; ein frischer
   Run bleibt offen (gebündelt mit BACKLOG #15).
+- **`01_exploring.ipynb`: TOC ergänzt** — hatte als einziges der frisch gesplitteten Notebooks
+  noch kein `## Content` mit Anchor-Links; jetzt analog zu `01a`/`01b` und allen anderen
+  Notebooks.
+- **Modelling-Notebooks (`03`, `03a`, `03b`) konsolidiert** (Kay-Wunsch: "Boilerplate für alle"):
+  - `03_modelling-prep.ipynb`: Debug-Cruft raus (`os.getcwd()`-Ausgabe mit altem Pfad, stale
+    `model_results_tracking-Mixed.csv`-Anzeige), `(KORRIGIERT)`-Marker und ASCII-Banner-Rauschen
+    bereinigt.
+  - `03a_modelling-logreg.ipynb`: 4 Dead-End-Feature-Kompressions-Experimente (PCA auf Preisen,
+    PCA+History, SVD-"Full-Buffet", Turbo-Features — keines davon der Champion, ~230 Zeilen) auf
+    eine 4-Satz-Zusammenfassung verdichtet; exaktes Duplikat + eine Stray-Typo-Zelle
+    ("BEster Lassoo 402") entfernt; 3 Stellen mit hand-gerolltem `ColumnTransformer` auf eine
+    gemeinsame `build_pipeline()`-Funktion umgestellt (Signatur analog zu `03_modelling-prep`).
+  - `03b_modelling-rf.ipynb`: Setup-Imports waren 6-fach dupliziert (`Pipeline`, `ColumnTransformer`
+    etc. je mehrfach importiert) → ein sauberer Block. 7 fast identische Experiment-Zellen
+    (`build_rf_pipeline()` je einzeln neu definiert, ~50–80 Zeilen pro Zelle) auf die gemeinsame
+    `build_pipeline()` umgestellt. Exaktes Duplikat + 4 Cruft-Zellen (Stray-Kommentare, verwaiste
+    Markdown-Fragmente) entfernt. 2 Zellen mit `cell_type: code`, die eigentlich Prosa enthielten
+    (Emoji-Interpretation, Bullet-Listen), auf `markdown` korrigiert.
+  - **Verifikation:** Jede Substitution einzeln gegen `data/03_processed/` getestet — Predictions
+    von alter Hand-Roll-Pipeline und neuer `build_pipeline()`-Version sind bit-identisch. Die
+    Differenz zu den historisch getrackten F1-Werten in den Zell-Outputs kommt von Daten-Drift
+    seit dem letzten echten Notebook-Lauf (bereits unter BACKLOG #15 bekannt), nicht von diesen
+    Änderungen.
 - **Nächster Schritt:** BACKLOG #15 — `01`/`01a`/`01b` bis `03b` einmal reproduzierbar
   durchlaufen lassen (Outputs sind noch aus der ursprünglichen Lernphase bzw. teils leer, s.o.).
