@@ -1,8 +1,9 @@
 # US Used Vehicle Resales — Bad-Buy Prediction
 
-> A classification model that predicts, **before purchase**, whether a used car bought at
-> auction will turn out to be a "Bad Buy" — a lemon that cannot be resold — so a US used-car
-> dealer can stop overpaying for vehicles that generate losses instead of margin.
+> Ein Klassifikationsmodell, das **vor dem Kauf** vorhersagt, ob ein bei einer Auktion gekauftes
+> Gebrauchtfahrzeug sich als "Bad Buy" entpuppt — ein Montagsauto, das nicht weiterverkauft werden
+> kann — damit ein US-Gebrauchtwagenhändler aufhört, für Fahrzeuge zu viel zu bezahlen, die
+> Verluste statt Marge erzeugen.
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Stack](https://img.shields.io/badge/Stack-scikit--learn%20·%20pandas-orange)
@@ -13,156 +14,161 @@
 
 ## TL;DR
 
-- **Task:** binary classification of `IsBadBuy` on **65,620 auctioned vehicles** with **33 features**.
-- **Hard part:** the classes are strongly **imbalanced** — only **12.35 %** of cars are bad buys. A model that always predicts "good buy" would already hit 87.65 % accuracy while catching zero bad buys, so the project optimizes the **F1 score of the bad-buy class** instead.
-- **Systematic testing, not hand-picking:** a self-built `ModelTracker` + a feature/model catalog ran **448 logged experiments** across 19 feature sets × 6 model families in ~62 minutes of active compute — see [`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb).
-- **Casting a wide net wins:** a numeric-only feature set (6 features) tops out at **F1 0.29**; the full catalog (28 features, adding categoricals) reaches **F1 0.37** — consistently, across model families.
-- **Strongest signal is a near-empty field:** `WheelType` is filled in normally for 95.6 % of cars (unremarkable there), but the 4.4 % where it's simply **missing** have a **70.3 % bad-buy rate** — 6× the base rate, and the single strongest predictor.
-- **Best model:** Logistic Regression with L1 penalty (`class_weight='balanced'`) reaches **bad-buy F1 ≈ 0.37** on the held-out test set. Tuning the decision threshold to the triage use case lifts it to **F1 ≈ 0.42 at precision ≈ 0.45**.
-- **Error analysis:** the model's blind spot is newer, pricier bad buys that don't carry the `WheelType = Unknown` flag — see [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb).
+- **Aufgabe:** binäre Klassifikation von `IsBadBuy` auf **65.620 versteigerten Fahrzeugen** mit **33 Features**.
+- **Die Schwierigkeit:** Die Klassen sind stark **unbalanciert** — nur **12,35 %** der Autos sind Bad Buys. Ein Modell, das immer "guter Kauf" vorhersagt, käme schon auf 87,65 % Accuracy, ohne einen einzigen Bad Buy zu erwischen — deshalb optimiert das Projekt stattdessen den **F1-Score der Bad-Buy-Klasse**.
+- **Systematisches Testen statt Handverlesen:** Ein selbstgebauter `ModelTracker` + ein Feature-/Model-Catalog fuhr **448 geloggte Experimente** über 19 Feature-Sets × 6 Modell-Familien in ~62 Minuten aktiver Rechenzeit — siehe [`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb).
+- **Breit angelegt gewinnt:** Ein rein numerisches Feature-Set (6 Features) deckelt bei **F1 0,29**; der volle Catalog (28 Features, plus Kategoriale) erreicht **F1 0,37** — konsistent über alle Modell-Familien hinweg.
+- **Stärkstes Signal ist ein fast leeres Feld:** `WheelType` ist bei 95,6 % der Autos normal befüllt (dort unauffällig), aber die 4,4 %, bei denen es schlicht **fehlt**, haben eine **Bad-Buy-Rate von 70,3 %** — das 6-fache der Basisrate, und der stärkste Einzelprädiktor.
+- **Bestes Modell:** Logistische Regression mit L1-Penalty (`class_weight='balanced'`) erreicht **Bad-Buy-F1 ≈ 0,37** auf dem Held-out-Testset. Das Tunen des Decision-Thresholds auf den Triage-Use-Case hebt es auf **F1 ≈ 0,42 bei Precision ≈ 0,45**.
+- **Error Analysis:** Der blinde Fleck des Modells sind neuere, teurere Bad Buys ohne das `WheelType = Unknown`-Flag — siehe [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb).
 
 ![Class distribution of IsBadBuy](public/img/target_distribution.png)
 
-*Class distribution: ~57,500 good buys vs ~8,100 bad buys — the core modeling challenge.*
+*Klassenverteilung: ~57.500 gute Käufe vs. ~8.100 Bad Buys — die zentrale Modellierungs-Herausforderung.*
 
 ---
 
-## Where to start
+## Wo einsteigen
 
-| You are a… | Start here |
+| Du bist… | Hier starten |
 | :--- | :--- |
-| Recruiter (30 s) | This README — TL;DR + Results |
-| Data Scientist (10 min) | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) → [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) |
-| Modeling deep-dive | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) · [`03b_modelling-rf.ipynb`](notebooks/03b_modelling-rf.ipynb) |
+| Recruiter (30 Sek.) | Dieses README — TL;DR + Ergebnisse |
+| Data Scientist (10 Min.) | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) → [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) |
+| Modellierungs-Deep-Dive | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) · [`03b_modelling-rf.ipynb`](notebooks/03b_modelling-rf.ipynb) |
 
 ---
 
-## Problem Statement
+## Problemstellung
 
-A US used-car dealer buys vehicles cheaply at online auctions to resell them at a margin.
-The biggest risk is a **"Bad Buy"** (a lemon): a car with severe defects that cannot be
-resold and instead generates follow-up costs (storage, repairs, write-downs).
+Ein US-Gebrauchtwagenhändler kauft Fahrzeuge günstig in Onlineauktionen ein, um sie
+gewinnbringend weiterzuverkaufen. Das grösste Risiko ist ein **"Bad Buy"** (ein Montagsauto):
+ein Auto mit schwerwiegenden Mängeln, das nicht weiterverkauft werden kann und stattdessen
+Folgekosten erzeugt (Lagerung, Reparaturen, Wertberichtigungen).
 
-**Guiding question:** Can we predict before purchase whether an offer is a bad buy —
-**without rejecting too many good cars**? This is a precision/recall trade-off on a rare
-positive class, not an accuracy problem.
+**Leitfrage:** Können wir vor dem Kauf vorhersagen, ob ein Angebot ein Bad Buy ist —
+**ohne dabei zu viele gute Autos abzulehnen**? Das ist ein Precision/Recall-Trade-off auf einer
+seltenen Positivklasse, kein Accuracy-Problem.
 
-**Objective (assessment bar):** reach **bad-buy F1 > 0.40** on the hidden scoring set
-`features_aim.csv`, whose labels are known only to the examiner. The deliverable is the set of
-predictions for that file. (Original brief → [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md).)
+**Ziel (Assessment-Hürde):** **Bad-Buy-F1 > 0,40** auf dem verdeckten Scoring-Set
+`features_aim.csv` erreichen, dessen Labels nur der Prüfer kennt. Das Deliverable ist der Satz an
+Predictions für diese Datei. (Original-Briefing → [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md).)
 
 ---
 
-## Dataset
+## Datenbasis
 
 | | |
 | :--- | :--- |
-| Training data | `data/01_raw/data_train.csv` — **65,620 rows**, **33 columns**, `;`-separated, labeled |
-| Scoring data | `data/01_raw/features_aim.csv` — **7,292 rows**, unlabeled (prediction target) |
-| Target | `IsBadBuy` — `0` good buy (87.65 %), `1` bad buy (12.35 %) |
-| Source | StackFuel capstone project (Module 3, Chapter 4) |
+| Trainingsdaten | `data/01_raw/data_train.csv` — **65.620 Zeilen**, **33 Spalten**, `;`-separiert, gelabelt |
+| Scoring-Daten | `data/01_raw/features_aim.csv` — **7.292 Zeilen**, ungelabelt (Vorhersageziel) |
+| Target | `IsBadBuy` — `0` guter Kauf (87,65 %), `1` Bad Buy (12,35 %) |
+| Herkunft | StackFuel-Abschlussprojekt (Modul 3, Kapitel 4) |
 
-Full column reference → [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) · original brief → [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md).
+Vollständige Spaltenreferenz → [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) · Original-Briefing → [`docs/ASSIGNMENT.md`](docs/ASSIGNMENT.md).
 
-> Raw data and trained models are excluded from the repo via `.gitignore`.
+> Rohdaten und trainierte Modelle sind via `.gitignore` aus dem Repo ausgeschlossen.
 
 ---
 
-## Approach
+## Ansatz
 
-**1 · Exploration** ([`01_exploring.ipynb`](notebooks/01_exploring.ipynb)) — distributions,
-missing values, the strong class imbalance, and a bivariate risk analysis showing that
-text-looking columns (Trim, SubModel, VNZIP1, WheelType) are strong risk drivers, not noise;
-price columns (MMR family) are highly correlated and get compressed into 3 ratio features.
+**1 · Exploration** ([`01_exploring.ipynb`](notebooks/01_exploring.ipynb)) — Verteilungen,
+fehlende Werte, die starke Klassen-Imbalance, und eine bivariate Risikoanalyse, die zeigt, dass
+textartige Spalten (Trim, SubModel, VNZIP1, WheelType) starke Risikotreiber sind, kein Rauschen;
+Preisspalten (MMR-Familie) sind stark korreliert und werden zu 3 Ratio-Features verdichtet.
 
-**2 · Preparation** ([`02_processing.ipynb`](notebooks/02_processing.ipynb)) — cleaning,
-feature engineering (price ratios, mileage-per-year, risk buckets), and a **stratified**
-train/test split to preserve the 12.35 % bad-buy rate.
+**2 · Preparation** ([`02_processing.ipynb`](notebooks/02_processing.ipynb)) — Cleaning,
+Feature Engineering (Preis-Ratios, Meilen-pro-Jahr, Risiko-Buckets) und ein **stratifizierter**
+Train/Test-Split, der die 12,35 %-Bad-Buy-Rate erhält.
 
-**3 · Systematic experimentation** ([`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb))
-— a feature catalog (19 sets) × model catalog (6 families), swept and logged by a self-built
-`ModelTracker` (448 runs) instead of hand-picking a feature set upfront.
+**3 · Systematisches Experimentieren** ([`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb))
+— ein Feature-Catalog (19 Sets) × Model-Catalog (6 Familien), gesweept und geloggt von einem
+selbstgebauten `ModelTracker` (448 Runs), statt vorab ein Feature-Set handverlesen auszuwählen.
 
 **4 · Modeling** ([`03a`](notebooks/03a_modelling-logreg.ipynb) ·
-[`03b`](notebooks/03b_modelling-rf.ipynb)) — baseline Logistic Regression → L1 Logistic
-Regression and Random Forest, all with `class_weight='balanced'` to counter the imbalance.
-Decision threshold tuned on the F1 curve.
+[`03b`](notebooks/03b_modelling-rf.ipynb)) — Baseline Logistische Regression → L1 Logistische
+Regression und Random Forest, alle mit `class_weight='balanced'`, um der Imbalance
+entgegenzuwirken. Decision-Threshold auf der F1-Kurve getunt.
 
-**5 · Evaluation** ([`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb)) — all three
-finalists on the same held-out test set, threshold tuning, scoring.
+**5 · Evaluation** ([`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb)) — alle drei
+Finalisten auf demselben Held-out-Testset, Threshold-Tuning, Scoring.
 
-**6 · Error analysis** ([`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb)) — confusion
-matrix plus a segment breakdown of the missed and wrongly-flagged cars.
+**6 · Error Analysis** ([`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb)) — Confusion
+Matrix plus eine Segment-Aufschlüsselung der verpassten und fälschlich geflaggten Autos.
 
 ---
 
-## Results
+## Ergebnisse
 
-Performance on the **bad-buy class** (the minority class that matters), all three on the
-**same held-out test set** (n = 13,124), threshold 0.5:
+Performance auf der **Bad-Buy-Klasse** (der Minoritätsklasse, auf die es ankommt), alle drei auf
+demselben **Held-out-Testset** (n = 13.124), Threshold 0,5:
 
-| Model | Recall | Precision | F1 (bad-buy) | ROC-AUC |
+| Modell | Recall | Precision | F1 (Bad-Buy) | ROC-AUC |
 | :--- | :---: | :---: | :---: | :---: |
-| Baseline — Logistic Regression (8 feat) | 0.61 | 0.19 | 0.29 | 0.67 |
-| Random Forest (deep, balanced) | 0.64 | 0.24 | 0.35 | 0.75 |
-| **Logistic Regression Lasso (L1, balanced)** | 0.60 | 0.27 | **0.37** | 0.77 |
+| Baseline — Logistische Regression (8 Feat.) | 0,61 | 0,19 | 0,29 | 0,67 |
+| Random Forest (deep, balanced) | 0,64 | 0,24 | 0,35 | 0,75 |
+| **Logistische Regression Lasso (L1, balanced)** | 0,60 | 0,27 | **0,37** | 0,77 |
 
-<sub>Reproduced end-to-end in [`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb).</sub>
+<sub>End-to-End reproduziert in [`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb).</sub>
 
-**Casting a wide net beats hand-picking** — across the 448 tracked runs, a numeric-only feature
-set (6 features) tops out at F1 0.2918; the full catalog (28 features, adding categoricals) reaches
-F1 0.3726, consistently across model families:
+**Breit angelegt schlägt Handverlesen** — über die 448 getrackten Runs deckelt ein rein
+numerisches Feature-Set (6 Features) bei F1 0,2918; der volle Catalog (28 Features, plus
+Kategoriale) erreicht F1 0,3726, konsistent über alle Modell-Familien:
 
-| Feature set | Features | Best F1 (tracked runs) |
+| Feature-Set | Features | Bester F1 (getrackte Runs) |
 | :--- | :---: | :---: |
-| `numeric` — price, age, odometer only | 6 | 0.2918 |
-| **`all_in_with_noise` — full catalog** | **28** | **0.3726** |
+| `numeric` — nur Preis, Alter, Kilometerstand | 6 | 0,2918 |
+| **`all_in_with_noise` — voller Catalog** | **28** | **0,3726** |
 
-**Threshold tuning** — with balanced class weights the default 0.5 threshold over-flags. At the
-F1-optimal threshold (0.65) the winning model reaches **F1 0.42 · Precision 0.45 · Recall 0.40**,
-balanced for the triage use case: catch bad buys without rejecting too many good cars.
+**Threshold-Tuning** — bei balancierten Klassengewichten überflaggt der Default-Threshold von
+0,5. Beim F1-optimalen Threshold (0,65) erreicht das Gewinner-Modell **F1 0,42 · Precision 0,45 ·
+Recall 0,40** — ausbalanciert für den Triage-Use-Case: Bad Buys erwischen, ohne zu viele gute
+Autos abzulehnen.
 
-**Most predictive feature: a near-empty field.** `WheelType` is filled in normally for 95.6 % of
-cars — unremarkable there — but the 4.4 % where it's simply missing carry a 70.3 % bad-buy rate:
+**Prädiktivstes Feature: ein fast leeres Feld.** `WheelType` ist bei 95,6 % der Autos normal
+befüllt — dort unauffällig — aber die 4,4 %, bei denen es schlicht fehlt, tragen eine
+Bad-Buy-Rate von 70,3 %:
 
-| WheelType value | Share of cars | Bad-buy rate |
+| WheelType-Wert | Anteil Autos | Bad-Buy-Rate |
 | :--- | :---: | :---: |
-| Alloy | 49.3 % | 11.1 % |
-| Covers | 45.3 % | 8.1 % |
-| Special | 1.0 % | 12.6 % |
-| **Missing** | **4.4 %** | **70.3 %** |
-| Average (all cars) | — | 12.3 % |
+| Alloy | 49,3 % | 11,1 % |
+| Covers | 45,3 % | 8,1 % |
+| Special | 1,0 % | 12,6 % |
+| **Fehlend** | **4,4 %** | **70,3 %** |
+| Durchschnitt (alle Autos) | — | 12,3 % |
 
-**Recommendations:** deploy the **L1 Logistic Regression** at the tuned threshold as a **triage
-filter** — it flags ~10 % of an unlabeled batch for human review at ~0.45 precision, not as an
-automatic reject. Treat a missing `WheelType` as a first-order risk indicator at intake.
+**Empfehlungen:** Die **L1 Logistische Regression** beim getunten Threshold als **Triage-Filter**
+deployen — sie flaggt ~10 % eines ungelabelten Batches zur menschlichen Review bei ~0,45
+Precision, nicht als automatischen Reject. Ein fehlendes `WheelType` als erstrangigen
+Risikoindikator beim Intake behandeln.
 
-**Opportunities:** add a second, independent risk feature for the model's blind spot — newer,
-pricier bad buys that don't carry the `WheelType` flag (see [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb));
-and evaluate the leaner 7-feature `cats_strong` set (F1 0.3587 — 96 % of the full catalog's
-performance with a quarter of the features).
+**Potenzial:** Ein zweites, unabhängiges Risiko-Feature für den blinden Fleck des Modells
+ergänzen — neuere, teurere Bad Buys ohne das `WheelType`-Flag (siehe
+[`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb)); und das schlankere
+7-Feature-Set `cats_strong` evaluieren (F1 0,3587 — 96 % der Performance des vollen Catalogs mit
+einem Viertel der Features).
 
-> **Full write-up:** [`07_results.ipynb`](notebooks/07_results.ipynb) — internal + true-holdout
-> numbers, the data-leakage audit, and lessons learned.
+> **Vollständige Ausarbeitung:** [`07_results.ipynb`](notebooks/07_results.ipynb) — interne +
+> echte Holdout-Zahlen, das Data-Leakage-Audit und Lessons Learned.
 
 ---
 
 ## Notebooks
 
-| # | Notebook | Content |
+| # | Notebook | Inhalt |
 | :--- | :--- | :--- |
-| 00 | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) | Entry point: scenario, task, navigation |
-| 01 | [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) | Exploratory data analysis |
-| 02 | [`02_processing.ipynb`](notebooks/02_processing.ipynb) | Cleaning, feature engineering, split |
-| 03 | [`03_modelling-prep.ipynb`](notebooks/03_modelling-prep.ipynb) | Modeling setup |
-| 03a | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) | Logistic Regression |
+| 00 | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) | Einstiegspunkt: Szenario, Aufgabe, Navigation |
+| 01 | [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) | Explorative Datenanalyse |
+| 02 | [`02_processing.ipynb`](notebooks/02_processing.ipynb) | Cleaning, Feature Engineering, Split |
+| 03 | [`03_modelling-prep.ipynb`](notebooks/03_modelling-prep.ipynb) | Modelling-Vorbereitung |
+| 03a | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) | Logistische Regression |
 | 03b | [`03b_modelling-rf.ipynb`](notebooks/03b_modelling-rf.ipynb) | Random Forest |
-| 04 | [`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb) | **Results SSoT** — all models on the same held-out test, threshold tuning, scoring |
-| 04a | [`04a_evaluation-baseline.ipynb`](notebooks/04a_evaluation-baseline.ipynb) | Baseline evaluation (exploratory) |
-| 04b | [`04b_evaluation-logreg.ipynb`](notebooks/04b_evaluation-logreg.ipynb) | LogReg deployment walk-through (exploratory) |
-| 05 | [`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb) | **Engineering showcase** — feature catalog, model catalog & the self-built `ModelTracker` (448-run sweep) |
-| 06 | [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | **Error analysis** — confusion matrix, false-negative/false-positive segment breakdown |
-| 07 | [`07_results.ipynb`](notebooks/07_results.ipynb) | **Full results & retrospective** — internal + true-holdout numbers, root-cause analysis, lessons learned |
+| 04 | [`04_evaluation.ipynb`](notebooks/04_evaluation.ipynb) | **Ergebnis-SSoT** — alle Modelle auf demselben Held-out-Test, Threshold-Tuning, Scoring |
+| 04a | [`04a_evaluation-baseline.ipynb`](notebooks/04a_evaluation-baseline.ipynb) | Baseline-Evaluation (exploratorisch) |
+| 04b | [`04b_evaluation-logreg.ipynb`](notebooks/04b_evaluation-logreg.ipynb) | LogReg-Deployment-Walkthrough (exploratorisch) |
+| 05 | [`05_experiment_framework.ipynb`](notebooks/05_experiment_framework.ipynb) | **Engineering-Showcase** — Feature-Catalog, Model-Catalog & der selbstgebaute `ModelTracker` (448-Run-Sweep) |
+| 06 | [`06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | **Error Analysis** — Confusion Matrix, False-Negative-/False-Positive-Segment-Aufschlüsselung |
+| 07 | [`07_results.ipynb`](notebooks/07_results.ipynb) | **Vollständige Ergebnisse & Retrospektive** — interne + echte Holdout-Zahlen, Root-Cause-Analyse, Lessons Learned |
 
 ---
 
@@ -171,18 +177,19 @@ performance with a quarter of the features).
 Python 3.12 · pandas · NumPy · scikit-learn (Logistic Regression, Random Forest,
 pipelines, `ColumnTransformer`) · Matplotlib / Seaborn · Jupyter · uv.
 
-Project-specific code (cleaning, feature engineering, the feature/model catalogs) lives in the
-installable package `us_used_vehicle_resales`. The reusable **`ModelTracker`** — a lightweight
-experiment logger that records F1 / recall / precision / ROC-AUC per run to CSV, flags the best run,
-and exports the fitted pipeline (448 runs across feature sets and model families) — was **self-built
-in this project and has since been promoted into my shared
-[`wgnd-toolkit`](https://github.com/kaywiegand/wgnd-toolkit)** (v0.3.0). This project now consumes it
-from there (`from wgnd import ModelTracker`), alongside the shared EDA/output helpers.
+Projekt-spezifischer Code (Cleaning, Feature Engineering, die Feature-/Model-Catalogs) liegt im
+installierbaren Paket `us_used_vehicle_resales`. Der wiederverwendbare **`ModelTracker`** — ein
+schlanker Experiment-Logger, der F1 / Recall / Precision / ROC-AUC pro Run in ein CSV schreibt,
+den besten Run flaggt und die gefittete Pipeline exportiert (448 Runs über Feature-Sets und
+Modell-Familien) — wurde **in diesem Projekt selbstgebaut und ist seitdem ins gemeinsam genutzte
+[`wgnd-toolkit`](https://github.com/kaywiegand/wgnd-toolkit)** (v0.3.0) übernommen worden. Dieses
+Projekt bezieht ihn jetzt von dort (`from wgnd import ModelTracker`), zusammen mit den
+gemeinsamen EDA-/Output-Helfern.
 
-> **Related work:** shares the project scaffolding and tooling approach with
-> [**zh-tram-flow**](https://github.com/kaywiegand/zh-tram-flow) — the portfolio's flagship
-> end-to-end data-science project (a Zürich tram-delay prediction pipeline), which already consumes
-> the shared `wgnd-toolkit`.
+> **Verwandte Arbeit:** teilt das Projekt-Scaffolding und den Tooling-Ansatz mit
+> [**zh-tram-flow**](https://github.com/kaywiegand/zh-tram-flow) — dem Flaggschiff-Projekt des
+> Portfolios (eine End-to-End-Data-Science-Pipeline für Zürcher Tram-Verspätungen), das das
+> gemeinsame `wgnd-toolkit` bereits nutzt.
 
 ---
 
@@ -193,7 +200,7 @@ uv venv && source .venv/bin/activate
 uv pip install -e .            # add ".[dev]" for pytest/ruff/black
 ```
 
-Then open the notebooks in reading order (start with `00_introduction.ipynb`).
+Danach die Notebooks in Lesereihenfolge öffnen (Start mit `00_introduction.ipynb`).
 
 ```python
 from us_used_vehicle_resales.cleaning import clean_data
@@ -203,16 +210,16 @@ import us_used_vehicle_resales as wg     # ModelTracker, print_*, save_*, inspec
 
 ---
 
-## Reports & Artifacts
+## Reports & Artefakte
 
-| Artifact | Path | Content |
+| Artefakt | Pfad | Inhalt |
 | :--- | :--- | :--- |
-| Results & retrospective | [`notebooks/07_results.ipynb`](notebooks/07_results.ipynb) | Full results, true-holdout proof, root-cause analysis, lessons learned |
-| Error analysis | [`notebooks/06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | Confusion matrix, false-negative/false-positive segment breakdown |
-| Project hub | [`public/index.html`](public/index.html) | Self-contained overview: pitch, key charts, results table |
-| Data dictionary | [`public/data-dictionary.html`](public/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | All 33 columns + known issues |
-| Charts | [`public/img/`](public/img/) | Target distribution, correlations, feature importance, threshold curve |
+| Ergebnisse & Retrospektive | [`notebooks/07_results.ipynb`](notebooks/07_results.ipynb) | Vollständige Ergebnisse, echter Holdout-Beweis, Root-Cause-Analyse, Lessons Learned |
+| Error Analysis | [`notebooks/06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | Confusion Matrix, False-Negative-/False-Positive-Segment-Aufschlüsselung |
+| Projekt-Hub | [`public/index.html`](public/index.html) | Eigenständige Übersicht: Pitch, Key Charts, Ergebnistabelle |
+| Data Dictionary | [`public/data-dictionary.html`](public/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | Alle 33 Spalten + bekannte Probleme |
+| Charts | [`public/img/`](public/img/) | Zielverteilung, Korrelationen, Feature Importance, Threshold-Kurve |
 
-## Author
+## Autor
 
 **Kay Wiegand** · [GitHub](https://github.com/kaywiegand) · [LinkedIn](https://www.linkedin.com/in/kaywiegand/)
