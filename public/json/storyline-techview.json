@@ -79,7 +79,7 @@
                 "Key Findings",
                 "Results & Error Analysis",
                 "Empfehlungen & Opportunities",
-                "Learnings & Ausblick"
+                "Project Insights"
               ]
             }
           ]
@@ -430,7 +430,7 @@
             {
               "type": "statement",
               "sentiment": "positive",
-              "text": "Ein Feld, das in 95,6 % der Fälle einfach normal ausgefüllt und damit unauffällig ist, wird in den seltenen 4,4 % zum stärksten Alarmsignal im ganzen Datensatz — sechsmal höher als der Durchschnitt."
+              "text": "Ein in 95,6 % der Fälle unauffälliges Feld wird in den restlichen 4,4 % zum stärksten Alarmsignal – sechsmal höher als der Durchschnitt."
             }
           ]
         },
@@ -477,7 +477,7 @@
             {
               "type": "statement",
               "sentiment": "neutral",
-              "text": "Abgestimmt auf den Triage-Zweck: Fehlkäufe fangen, ohne zu viele gute Autos abzulehnen — nicht auf einen generischen 0,5-Default."
+              "text": "<span class=\"sw-normal\">Ziel: Balance der Triage</span><br><span class=\"sw-thin\">Fehlkäufe blockieren, gute Autos behalten – statt generischem 0,5-Standard.</span>"
             }
           ]
         }
@@ -509,6 +509,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_left",
               "items": [
                 {
                   "label": "Confusion Matrix, Threshold 0,65",
@@ -586,12 +587,12 @@
       ]
     },
     {
-      "nav_label": "Learnings & Ausblick",
-      "nav_tick_label": "Learnings & Ausblick",
+      "nav_label": "Project Insights",
+      "nav_tick_label": "Project Insights",
       "slides": [
         {
           "title": "Projekt-Rahmen",
-          "subtitle": "Tech-Stack, Reproduzierbarkeit, Links",
+          "subtitle": "Tech-Stack, Reproduzierbarkeit",
           "content": [
             {
               "type": "sections",
@@ -608,20 +609,6 @@
                     "12 Notebooks, durchgehend nummeriert (00–07) und ausgeführt",
                     "Selbstgebauter ModelTracker wandert perspektivisch ins eigene wgnd-toolkit"
                   ]
-                }
-              ]
-            },
-            {
-              "type": "links",
-              "primary": "https://github.com/kaywiegand/us-used-vehicle-resales",
-              "items": [
-                {
-                  "label": "Notebooks",
-                  "href": "../notebooks/"
-                },
-                {
-                  "label": "Data Dictionary",
-                  "href": "data-dictionary.html"
                 }
               ]
             }

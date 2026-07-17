@@ -78,7 +78,7 @@
                 "Systematisches Experimentieren",
                 "Key Findings",
                 "Empfehlungen & Opportunities",
-                "Learnings & Ausblick"
+                "Project Insights"
               ]
             }
           ]
@@ -319,12 +319,12 @@
       ]
     },
     {
-      "nav_label": "Learnings & Ausblick",
-      "nav_tick_label": "Learnings & Ausblick",
+      "nav_label": "Project Insights",
+      "nav_tick_label": "Project Insights",
       "slides": [
         {
           "title": "Projekt-Rahmen",
-          "subtitle": "Tech-Stack, Reproduzierbarkeit, Links",
+          "subtitle": "Tech-Stack, Reproduzierbarkeit",
           "content": [
             {
               "type": "sections",
@@ -341,20 +341,6 @@
                     "12 Notebooks, durchgehend nummeriert (00–07) und ausgeführt",
                     "Selbstgebauter ModelTracker wandert perspektivisch ins eigene wgnd-toolkit"
                   ]
-                }
-              ]
-            },
-            {
-              "type": "links",
-              "primary": "https://github.com/kaywiegand/us-used-vehicle-resales",
-              "items": [
-                {
-                  "label": "Notebooks",
-                  "href": "../notebooks/"
-                },
-                {
-                  "label": "Data Dictionary",
-                  "href": "data-dictionary.html"
                 }
               ]
             }

@@ -33,9 +33,9 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `empfehlungen-storyview-overview` | Empfehlungen & Opportunities | Empfehlungen | ✅ |  | ✅ |
 | `opportunities-storyview-overview` | Empfehlungen & Opportunities | Empfehlungen | ✅ |  | ✅ |
 | `empfehlungen-opportunities-techview` | Empfehlungen & Opportunities | Empfehlungen |  | ✅ |  |
-| `learnings-storyview` | Learnings & Ausblick | Abschnitte | ✅ |  |  |
-| `learnings-ausblick-overview` | Learnings & Ausblick | Abschnitte + Links | ✅ | ✅ | ✅ |
-| `learnings-techview` | Learnings & Ausblick | Abschnitte |  | ✅ |  |
+| `learnings-storyview` | Project Insights | Abschnitte | ✅ |  |  |
+| `learnings-ausblick-overview` | Project Insights | Abschnitte | ✅ | ✅ | ✅ |
+| `learnings-techview` | Project Insights | Abschnitte |  | ✅ |  |
 | `ende-closing` | Ende | Statement | ✅ | ✅ | ✅ |
 
 **33 Slide-Einträge total · 21 davon in mehr als 1 View wiederverwendet.**

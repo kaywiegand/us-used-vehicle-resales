@@ -76,7 +76,7 @@ chapters:
               - "Systematisches Experimentieren"
               - "Key Findings"
               - "Empfehlungen & Opportunities"
-              - "Learnings & Ausblick"
+              - "Project Insights"
 
       - id: einstieg-agenda-storyview
         views: [storyview]
@@ -93,7 +93,7 @@ chapters:
               - "Key Findings"
               - "Results & Error Analysis"
               - "Empfehlungen & Opportunities"
-              - "Learnings & Ausblick"
+              - "Project Insights"
 
       - id: einstieg-agenda-techview
         views: [techview]
@@ -110,7 +110,7 @@ chapters:
               - "Key Findings"
               - "Results & Error Analysis"
               - "Empfehlungen & Opportunities"
-              - "Learnings & Ausblick"
+              - "Project Insights"
 
   # ---------------------------------------------------------------------
   # Eigenes Kapitel für Problem/Zielmetrik (vorher Teil von "einstieg"), damit es als
@@ -318,7 +318,7 @@ chapters:
                 highlight: false
           - type: statement
             sentiment: positive
-            text: "Ein Feld, das in 95,6 % der Fälle einfach normal ausgefüllt und damit unauffällig ist, wird in den seltenen 4,4 % zum stärksten Alarmsignal im ganzen Datensatz — sechsmal höher als der Durchschnitt."
+            text: "Ein in 95,6 % der Fälle unauffälliges Feld wird in den restlichen 4,4 % zum stärksten Alarmsignal – sechsmal höher als der Durchschnitt."
 
       - id: findings-threshold-chart
         views: [overview, storyview, techview]
@@ -343,7 +343,7 @@ chapters:
               - {value: "Recall 0,40", label: "bei getuntem Threshold", sentiment: neutral}
           - type: statement
             sentiment: neutral
-            text: "Abgestimmt auf den Triage-Zweck: Fehlkäufe fangen, ohne zu viele gute Autos abzulehnen — nicht auf einen generischen 0,5-Default."
+            text: "<span class=\"sw-normal\">Ziel: Balance der Triage</span><br><span class=\"sw-thin\">Fehlkäufe blockieren, gute Autos behalten – statt generischem 0,5-Standard.</span>"
 
   # ---------------------------------------------------------------------
   - id: results
@@ -366,6 +366,7 @@ chapters:
         subtitle: "Beim getunten Threshold 0,65"
         content:
           - type: chart_refs
+            layout: image_left
             items:
               - label: "Confusion Matrix, Threshold 0,65"
                 source: confusion_matrix
@@ -393,7 +394,7 @@ chapters:
         content:
           - type: statement
             sentiment: neutral
-            text: "Die zu Unrecht markierten guten Autos (FP) sind im Schnitt $1.740 günstiger und 2,3 Jahre älter als die korrekt durchgewunkenen (TN) — ein akzeptabler Kompromiss, weil diese Fahrzeuge günstig einzeln nachzuprüfen sind."
+            text: "<span class=\"sw-normal\">Die zu Unrecht markierten guten Autos (FP) sind im Schnitt $1.740 günstiger und 2,3 Jahre älter als die korrekt durchgewunkenen (TN).<br><br>Ein akzeptabler Kompromiss, weil diese Fahrzeuge günstig einzeln nachzuprüfen sind.</span>"
 
       - id: results-fehlerbild-techview
         views: [techview]
@@ -473,7 +474,7 @@ chapters:
 
   # ---------------------------------------------------------------------
   - id: learnings
-    nav_label: Learnings & Ausblick
+    nav_label: Project Insights
     slides:
       - id: learnings-storyview
         views: [storyview]
@@ -482,17 +483,23 @@ chapters:
         content:
           - type: sections
             items:
-              - label: "Vier Lehren aus diesem Projekt"
+              - label: "Breites Netz vor Vorauswahl"
                 points:
-                  - "Breiten Feature-Net vor dem Aussortieren casten — nicht vorher raten, was wichtig sein könnte"
-                  - "Prüfen, ob 'der Wert fehlt' selbst schon ein Signal ist, bevor man ihn stillschweigend auffüllt"
-                  - "Batch-Statistiken (Median, Quantil-Grenzen) einmal einfrieren, damit auch ein einzelnes neues Auto bewertet werden kann"
-                  - "Alle Modell-Finalisten immer auf demselben Test-Set vergleichen, bevor man einen Gewinner kürt — eine frühere Annahme 'Random Forest ist bestes Modell (F1 ~0,39)' hielt dem nicht stand (tatsächlich F1 0,35, Platz 2)"
+                  - "Vor dem Aussortieren ein breites Feature-Net casten — nicht vorher raten, was wichtig sein könnte."
+              - label: "Fehlen als Signal"
+                points:
+                  - "Prüfen, ob 'der Wert fehlt' selbst schon ein Signal ist, bevor man ihn stillschweigend auffüllt."
+              - label: "Batch-Statistiken einfrieren"
+                points:
+                  - "Median und Quantil-Grenzen einmal einfrieren, damit auch ein einzelnes neues Auto bewertet werden kann."
+              - label: "Gleicher Test-Set-Vergleich"
+                points:
+                  - "Alle Modell-Finalisten immer auf demselben Test-Set vergleichen — eine frühere Annahme 'Random Forest ist bestes Modell (F1 ~0,39)' hielt dem nicht stand (tatsächlich F1 0,35, Platz 2)."
 
       - id: learnings-ausblick-overview
         views: [overview, storyview, techview]
         title: "Projekt-Rahmen"
-        subtitle: "Tech-Stack, Reproduzierbarkeit, Links"
+        subtitle: "Tech-Stack, Reproduzierbarkeit"
         content:
           - type: sections
             items:
@@ -503,11 +510,6 @@ chapters:
                 points:
                   - "12 Notebooks, durchgehend nummeriert (00–07) und ausgeführt"
                   - "Selbstgebauter ModelTracker wandert perspektivisch ins eigene wgnd-toolkit"
-          - type: links
-            primary: "https://github.com/kaywiegand/us-used-vehicle-resales"
-            items:
-              - {label: "Notebooks", href: "../notebooks/"}
-              - {label: "Data Dictionary", href: "data-dictionary.html"}
 
       - id: learnings-techview
         views: [techview]
