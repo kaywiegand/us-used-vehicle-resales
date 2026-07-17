@@ -32,6 +32,7 @@
 
 | Du bist… | Hier starten |
 | :--- | :--- |
+| Willst du es live sehen | [Hub](https://kaywiegand.github.io/us-used-vehicle-resales/) · [Overview](https://kaywiegand.github.io/us-used-vehicle-resales/overview.html) · [StoryView](https://kaywiegand.github.io/us-used-vehicle-resales/storyview.html) · [TechView](https://kaywiegand.github.io/us-used-vehicle-resales/techview.html) |
 | Recruiter (30 Sek.) | Dieses README — TL;DR + Ergebnisse |
 | Data Scientist (10 Min.) | [`00_introduction.ipynb`](notebooks/00_introduction.ipynb) → [`01_exploring.ipynb`](notebooks/01_exploring.ipynb) → [`01a_eda-detail.ipynb`](notebooks/01a_eda-detail.ipynb) |
 | Modellierungs-Deep-Dive | [`03a_modelling-logreg.ipynb`](notebooks/03a_modelling-logreg.ipynb) · [`03b_modelling-rf.ipynb`](notebooks/03b_modelling-rf.ipynb) |
@@ -220,8 +221,11 @@ import us_used_vehicle_resales as wg     # ModelTracker, print_*, save_*, inspec
 | :--- | :--- | :--- |
 | Ergebnisse & Retrospektive | [`notebooks/07_results.ipynb`](notebooks/07_results.ipynb) | Vollständige Ergebnisse, echter Holdout-Beweis, Robustheits-Checks, Lessons Learned |
 | Error Analysis | [`notebooks/06_error_analysis.ipynb`](notebooks/06_error_analysis.ipynb) | Confusion Matrix, False-Negative-/False-Positive-Segment-Aufschlüsselung |
-| Projekt-Hub | [`public/index.html`](public/index.html) | Eigenständige Übersicht: Pitch, Key Charts, Ergebnistabelle |
-| Data Dictionary | [`public/data-dictionary.html`](public/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | Alle 33 Spalten + bekannte Probleme |
+| Projekt-Hub | [Live](https://kaywiegand.github.io/us-used-vehicle-resales/) · [Repo](public/index.html) | Eigenständige Übersicht: Pitch, Key Charts, Ergebnistabelle |
+| Overview | [Live](https://kaywiegand.github.io/us-used-vehicle-resales/overview.html) · [Repo](public/overview.html) | Ergebnisse & Handlungsempfehlungen für Stakeholder |
+| StoryView | [Live](https://kaywiegand.github.io/us-used-vehicle-resales/storyview.html) · [Repo](public/storyview.html) | Der komplette Projektverlauf — Portfolio-Vollansicht |
+| TechView | [Live](https://kaywiegand.github.io/us-used-vehicle-resales/techview.html) · [Repo](public/techview.html) | Technischer Deep-Dive inkl. Robustheits-Checks |
+| Data Dictionary | [Live](https://kaywiegand.github.io/us-used-vehicle-resales/data-dictionary.html) · [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) | Alle 33 Spalten + bekannte Probleme |
 | Charts | [`public/img/`](public/img/) | Zielverteilung, Korrelationen, Feature Importance, Threshold-Kurve |
 
 ## Autor
