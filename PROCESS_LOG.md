@@ -281,3 +281,51 @@ Metriken, Findings, Outputs gehören in Notebooks/Code — nicht hier.
     Änderungen.
 - **Nächster Schritt:** BACKLOG #15 — `01`/`01a`/`01b` bis `03b` einmal reproduzierbar
   durchlaufen lassen (Outputs sind noch aus der ursprünglichen Lernphase bzw. teils leer, s.o.).
+
+## 2026-07-17 — BACKLOG #21 (manuelle Public-Durchsicht) + Story-Rebuild + GitHub Pages
+
+- **Notebook-Nacharbeit vor der Durchsicht:** Zahlenformat (Punkt→Komma) und Sprach-Tippfehler in
+  `01_exploring`/`01a_eda-detail` korrigiert (nur Markdown-Zellen, nbformat-validiert). Marken-Risiko-
+  Fund ergänzt (`01a` Top-Ranking-Tabelle, neue Sektion in `01b_eda-summary` mit Chart + Findings-
+  Zeile — "Seltenheit = Risiko" bestätigt sich unabhängig in einem zweiten Feature neben WheelType).
+  Drei fehlende `savefig()`-Aufrufe nachgerüstet (`target_distribution`, `feature_correlations` in
+  `01b`, `model_comparison_t10` in `05`), neuer Modellvergleichs-Chart in `04_evaluation` gebaut (gab
+  es vorher nicht, obwohl von der Story referenziert). Verwaisten `savefig` ohne Pfad-Präfix in `04b`
+  entfernt (landete in `notebooks/` statt `public/img/`), zwei tote `feature_importance.png`-Kopien
+  gelöscht. Kay hat `01`, `01a`, `01b`, `02`, `03_modelling-prep`, `04`, `04a`, `04b`, `05` danach
+  frisch durchlaufen lassen — `03a`, `03b`, `06`, `07` stehen für BACKLOG #15 weiterhin aus.
+- **BACKLOG #21 durchgeführt:** mehrstündige manuelle Durchsicht von `index.html` + allen drei Views
+  durch Kay, in vielen Runden umgesetzt. Wichtigste Ergebnisse:
+  - **Styleguide-Sprung:** `public/css/slides.css` war vom 7. Juli, 708 Zeilen hinter dem aktuellen
+    Skill-Template zurück (zh-tram-flow nutzte es schon). Komplette Regenerierung über die
+    Skill-Pipeline (`generate_json_from_slides.py` → `generate_html_from_json.py` →
+    `generate_index_from_portfolio.py`) zieht das automatisch nach.
+  - **Struktur:** Agenda von Position 4 auf Position 2 verschoben (direkt nach Titel, analog
+    zh-tram-flow); dafür Problem/Zielmetrik in ein eigenes Kapitel `problem` (nav_label "Einstieg")
+    ausgelagert, das jetzt selbst als Agenda-Punkt auftaucht. Closing-Slide von 3 driftenden
+    Einzel-Slides auf eine kanonische `views:[overview,storyview,techview]`-Slide vereinheitlicht.
+    Kapitel "Learnings & Ausblick" → "Project Insights" umbenannt (überall). Tech-Stack/Reproduzier-
+    barkeit-Slide aus Overview entfernt (zu technisch für den Kurz-Pitch) und später auch aus
+    StoryView (redundant, nur noch TechView).
+  - **TechView-Differenzierung:** neue TechView-only-Slide "Robustheits-Checks" (Leakage-/Overfitting-
+    Check + echte AIM-Holdout-Validierung F1 0,409) — bisher nur in `07_results.ipynb` §5 dokumentiert,
+    füllt die einzige echte Glaubwürdigkeitslücke für die Zielgruppe (Data Scientists/Interviewer).
+  - **Skill-Level-Bugfixes** (betreffen alle Projekte mit diesem Styleguide, u. a. zh-tram-flow —
+    von Kay bestätigt): Agenda-Slide war oben statt vertikal mittig ausgerichtet (`.agenda-cols`
+    hatte keinen `.content-zone`-Wrapper, Fix: `margin: auto 0`). Neues `layout: wide` für Statements
+    neben anderem Content (vorher hart auf 860px gekappt). KPI-Werte 800→600 Font-Weight. Globaler
+    "schweres Element → Statement"-Abstand 3em→2em. Diese vier Fixes liegen im separaten
+    `wgnd-skills`-Repo (Commit dort, nicht hier).
+  - Diverses Content-Feinschliff über ~6 Runden: Slide-Titel geschärft, mehrere Statements auf
+    gemischte Textgewichte (`sw-normal`/`sw-thin`) umgestellt, mehrere Chart-Slides auf
+    Bild-links/Text-rechts-Layout, `sections` mehrfach auf Karten-Grid (ein Punkt pro Box) statt
+    Bullet-Liste umgestellt, `type: steps` erstmals genutzt.
+- **Offen geblieben:** die "448 Runs"-Zahl in Story/README ist inzwischen veraltet (echte
+  Tracking-CSV hat 562 Zeilen, kumulativ über mehrere Sessions gewachsen) — bewusst nicht angefasst,
+  Kay hat "448" in eigenen Formulierungen weiterverwendet.
+- **GitHub Pages eingerichtet:** `.github/workflows/pages.yml` + `public/.nojekyll` angelegt
+  (identisch zu zh-tram-flows Setup — Deploy bei jedem Push auf `main` mit Änderungen in `public/`).
+  Pages-Aktivierung selbst (Settings → Pages → Source: GitHub Actions) ist ein manueller Schritt
+  im GitHub-Web-UI, `gh`-CLI war lokal nicht verfügbar.
+- **Nächster Schritt:** Pages-Aktivierung im Repo bestätigen (Kay), danach BACKLOG #15
+  (`03a`/`03b`/`06`/`07` reproduzierbar durchlaufen) und #17 (qcut-Bug) als nächste offene Punkte.
