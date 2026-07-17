@@ -15,7 +15,7 @@
 | Aufgabe | "Bad Buy"-Vorhersage: Wird ein ersteigerter Gebrauchtwagen ein Fehlkauf ("Montagsauto")? |
 | Stack | Pandas · NumPy · scikit-learn · Matplotlib/Seaborn · Jupyter · uv |
 | Herkunft | StackFuel-Abschlussprojekt (Modul 3, Kapitel 4) |
-| Status | 🔄 in Portfolio-Aufbereitung |
+| Status | ✅ portfolio-ready |
 
 ---
 
