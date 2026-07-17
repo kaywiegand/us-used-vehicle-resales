@@ -433,7 +433,7 @@
               "type": "statement",
               "sentiment": "positive",
               "layout": "wide",
-              "text": "Ein in 95,6 % der Fälle unauffälliges Feld wird in den restlichen 4,4 % zum stärksten Alarmsignal – sechsmal höher als der Durchschnitt."
+              "text": "Ein in 95,6 % der Fälle unauffälliges Feld wird in den restlichen 4,4 % zum stärksten Alarmsignal."
             }
           ]
         },
@@ -443,6 +443,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_left",
               "items": [
                 {
                   "label": "F1 vs. Decision Threshold",

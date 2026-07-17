@@ -248,6 +248,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_left",
               "items": [
                 {
                   "label": "F1 vs. Decision Threshold",
