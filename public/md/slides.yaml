@@ -377,6 +377,21 @@ chapters:
                 source: confusion_matrix
                 caption: "643 von 1.621 echten Fehlkäufen erkannt (TP), 978 verpasst (FN), 778 gute Autos fälschlich markiert (FP), 10.725 korrekt durchgewunken (TN)."
 
+      - id: results-robustheit-techview
+        views: [techview]
+        title: "Robustheits-Checks"
+        subtitle: "Ist das Modell sauber, oder wurde geleakt?"
+        content:
+          - type: figures
+            items:
+              - {value: "F1 0,409", label: "Champion auf echtem AIM-Holdout (7.292 Fahrzeuge)", sentiment: positive}
+              - {value: "~0,01", label: "Lücke intern → echter Holdout", sentiment: positive}
+              - {value: "0,003", label: "F1-Delta nach Entfernen von 2.082 memorisierbaren Kategorie-Levels", sentiment: neutral}
+          - type: statement
+            sentiment: positive
+            layout: wide
+            text: "<span class=\"sw-normal\">Es gibt kein Leakage.</span><br><span class=\"sw-thin\">Split vor Feature Engineering, keine target-abgeleiteten Features, 0 doppelte Zeilen über den Split hinweg — die Lücke zum echten Holdout ist der stärkste empirische Beleg, dass die internen Zahlen sauber sind.</span>"
+
       - id: results-blinder-fleck-storyview
         views: [storyview]
         title: "Blinder Fleck — verpasste Fehlkäufe"
@@ -503,7 +518,7 @@ chapters:
                   - "Alle Modell-Finalisten immer auf demselben Test-Set vergleichen — eine frühere Annahme 'Random Forest ist bestes Modell (F1 ~0,39)' hielt dem nicht stand (tatsächlich F1 0,35, Platz 2)."
 
       - id: learnings-ausblick-overview
-        views: [storyview, techview]
+        views: [techview]
         title: "Project Insights"
         subtitle: "Tech-Stack, Reproduzierbarkeit"
         content:

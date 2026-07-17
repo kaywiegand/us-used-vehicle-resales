@@ -662,30 +662,6 @@
               ]
             }
           ]
-        },
-        {
-          "title": "Project Insights",
-          "subtitle": "Tech-Stack, Reproduzierbarkeit",
-          "content": [
-            {
-              "type": "sections",
-              "items": [
-                {
-                  "label": "Tech-Stack",
-                  "points": [
-                    "Python · pandas · scikit-learn · Matplotlib/Seaborn · Jupyter · uv"
-                  ]
-                },
-                {
-                  "label": "Reproduzierbarkeit",
-                  "points": [
-                    "12 Notebooks, durchgehend nummeriert (00–07) und ausgeführt",
-                    "Selbstgebauter ModelTracker wandert perspektivisch ins eigene wgnd-toolkit"
-                  ]
-                }
-              ]
-            }
-          ]
         }
       ]
     },

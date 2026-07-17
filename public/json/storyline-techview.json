@@ -527,6 +527,38 @@
           ]
         },
         {
+          "title": "Robustheits-Checks",
+          "subtitle": "Ist das Modell sauber, oder wurde geleakt?",
+          "content": [
+            {
+              "type": "figures",
+              "items": [
+                {
+                  "value": "F1 0,409",
+                  "label": "Champion auf echtem AIM-Holdout (7.292 Fahrzeuge)",
+                  "sentiment": "positive"
+                },
+                {
+                  "value": "~0,01",
+                  "label": "Lücke intern → echter Holdout",
+                  "sentiment": "positive"
+                },
+                {
+                  "value": "0,003",
+                  "label": "F1-Delta nach Entfernen von 2.082 memorisierbaren Kategorie-Levels",
+                  "sentiment": "neutral"
+                }
+              ]
+            },
+            {
+              "type": "statement",
+              "sentiment": "positive",
+              "layout": "wide",
+              "text": "<span class=\"sw-normal\">Es gibt kein Leakage.</span><br><span class=\"sw-thin\">Split vor Feature Engineering, keine target-abgeleiteten Features, 0 doppelte Zeilen über den Split hinweg — die Lücke zum echten Holdout ist der stärkste empirische Beleg, dass die internen Zahlen sauber sind.</span>"
+            }
+          ]
+        },
+        {
           "title": "Fehlerbild — FN/FP-Segmente",
           "subtitle": "Blinder Fleck bei verpassten Fehlkäufen, akzeptabler Trade-off bei Fehlalarmen",
           "content": [

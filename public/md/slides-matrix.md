@@ -27,6 +27,7 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `findings-threshold-detail` | Key Findings | KPIs + Statement | ✅ | ✅ |  |
 | `results-modellvergleich-storyview` | Results & Error Analysis | Chart | ✅ | ✅ |  |
 | `results-confusion-matrix-storyview` | Results & Error Analysis | Chart | ✅ | ✅ |  |
+| `results-robustheit-techview` | Results & Error Analysis | KPIs + Statement |  | ✅ |  |
 | `results-blinder-fleck-storyview` | Results & Error Analysis | Annahme/Befund + Statement | ✅ |  |  |
 | `results-falsch-markiert-storyview` | Results & Error Analysis | Statement | ✅ |  |  |
 | `results-fehlerbild-techview` | Results & Error Analysis | Annahme/Befund |  | ✅ |  |
@@ -34,8 +35,8 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `opportunities-storyview-overview` | Empfehlungen & Opportunities | Empfehlungen | ✅ |  | ✅ |
 | `empfehlungen-opportunities-techview` | Empfehlungen & Opportunities | Empfehlungen |  | ✅ |  |
 | `learnings-storyview` | Project Insights | Abschnitte | ✅ |  |  |
-| `learnings-ausblick-overview` | Project Insights | Abschnitte | ✅ | ✅ |  |
+| `learnings-ausblick-overview` | Project Insights | Abschnitte |  | ✅ |  |
 | `learnings-techview` | Project Insights | Abschnitte |  | ✅ |  |
 | `ende-closing` | Ende | Statement | ✅ | ✅ | ✅ |
 
-**33 Slide-Einträge total · 21 davon in mehr als 1 View wiederverwendet.**
+**34 Slide-Einträge total · 20 davon in mehr als 1 View wiederverwendet.**
