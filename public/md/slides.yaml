@@ -76,7 +76,6 @@ chapters:
               - "Systematisches Experimentieren"
               - "Key Findings"
               - "Empfehlungen & Opportunities"
-              - "Project Insights"
 
       - id: einstieg-agenda-storyview
         views: [storyview]
@@ -295,6 +294,7 @@ chapters:
         subtitle: "Das stärkste Signal ist ein fast leeres Datenfeld"
         content:
           - type: chart_refs
+            layout: image_left
             items:
               - label: "LogReg-Lasso Feature Importance"
                 source: logreg_feature_importance
@@ -503,7 +503,7 @@ chapters:
                   - "Alle Modell-Finalisten immer auf demselben Test-Set vergleichen — eine frühere Annahme 'Random Forest ist bestes Modell (F1 ~0,39)' hielt dem nicht stand (tatsächlich F1 0,35, Platz 2)."
 
       - id: learnings-ausblick-overview
-        views: [overview, storyview, techview]
+        views: [storyview, techview]
         title: "Projekt-Rahmen"
         subtitle: "Tech-Stack, Reproduzierbarkeit"
         content:

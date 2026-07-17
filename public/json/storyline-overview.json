@@ -77,8 +77,7 @@
                 "Data & Exploration",
                 "Systematisches Experimentieren",
                 "Key Findings",
-                "Empfehlungen & Opportunities",
-                "Project Insights"
+                "Empfehlungen & Opportunities"
               ]
             }
           ]
@@ -232,6 +231,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_left",
               "items": [
                 {
                   "label": "LogReg-Lasso Feature Importance",
@@ -313,36 +313,6 @@
                   "points": [
                     "cats_strong (7 Feat.) erreicht F1 0,3587 — 96 % der Leistung des vollen 28-Feature-Katalogs",
                     "Lohnt einen echten Vergleich: viel einfacheres, leichter wartbares Modell für kaum F1-Verlust"
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "nav_label": "Project Insights",
-      "nav_tick_label": "Project Insights",
-      "slides": [
-        {
-          "title": "Projekt-Rahmen",
-          "subtitle": "Tech-Stack, Reproduzierbarkeit",
-          "content": [
-            {
-              "type": "sections",
-              "items": [
-                {
-                  "label": "Tech-Stack",
-                  "points": [
-                    "Python · pandas · scikit-learn · Matplotlib/Seaborn · Jupyter · uv"
-                  ]
-                },
-                {
-                  "label": "Reproduzierbarkeit",
-                  "points": [
-                    "12 Notebooks, durchgehend nummeriert (00–07) und ausgeführt",
-                    "Selbstgebauter ModelTracker wandert perspektivisch ins eigene wgnd-toolkit"
                   ]
                 }
               ]

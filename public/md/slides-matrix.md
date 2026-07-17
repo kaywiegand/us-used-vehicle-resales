@@ -34,7 +34,7 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `opportunities-storyview-overview` | Empfehlungen & Opportunities | Empfehlungen | ✅ |  | ✅ |
 | `empfehlungen-opportunities-techview` | Empfehlungen & Opportunities | Empfehlungen |  | ✅ |  |
 | `learnings-storyview` | Project Insights | Abschnitte | ✅ |  |  |
-| `learnings-ausblick-overview` | Project Insights | Abschnitte | ✅ | ✅ | ✅ |
+| `learnings-ausblick-overview` | Project Insights | Abschnitte | ✅ | ✅ |  |
 | `learnings-techview` | Project Insights | Abschnitte |  | ✅ |  |
 | `ende-closing` | Ende | Statement | ✅ | ✅ | ✅ |
 
