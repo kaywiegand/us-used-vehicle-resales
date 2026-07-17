@@ -16,7 +16,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name        = "us_used_vehicle_resales"
 version     = "0.1.0"
-description = "US Used Vehicle Resales – Bad-Buy Classification (DSC)"
+description = "US Used Vehicle Resales – Bad-Buy Classification (DS)"
 requires-python = ">=3.10"
 
 dependencies = [

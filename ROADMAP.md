@@ -6,7 +6,7 @@
 
 ## Ausgangslage
 
-StackFuel-Abschlussprojekt (DSC, Bad-Buy-Klassifikation) mit substanzieller,
+StackFuel-Abschlussprojekt (DS, Bad-Buy-Klassifikation) mit substanzieller,
 ausgeführter Analyse- und Modellierungsarbeit (EDA, mehrere Modelle, Predictions
 auf `features_aim`), aber **ohne Portfolio-Infrastruktur** und ursprünglich **nicht
 versioniert**. Ziel der Aufbereitung: ein nach aussen verständliches Portfolio-Projekt,
@@ -31,7 +31,7 @@ Referenz-Standard: `zh-tram-flow` · Struktur-Referenz: `wgnd-scaffolding`.
 
 ## Ziel
 
-Ein portfolio-ready DSC-Projekt: reproduzierbares Setup (`uv` + `pip install -e ".[dsc]"`),
+Ein portfolio-ready DS-Projekt: reproduzierbares Setup (`uv` + `pip install -e .`),
 saubere lineare Notebook-Strecke, externes Leseartefakt (`public/index.html`),
 aussagekräftige README mit Findings + Modellvergleich (inkl. Baseline) — bereit für
 `/project-case`.
