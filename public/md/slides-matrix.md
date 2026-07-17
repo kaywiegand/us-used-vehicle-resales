@@ -9,6 +9,9 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `einstieg-title-techview` | Einstieg | KPIs |  | ✅ |  |
 | `einstieg-problem` | Einstieg | Statement + Statement | ✅ | ✅ | ✅ |
 | `einstieg-aufgabe` | Einstieg | KPIs+Kontext + Statement | ✅ | ✅ | ✅ |
+| `einstieg-agenda-overview` | Einstieg | Agenda |  |  | ✅ |
+| `einstieg-agenda-storyview` | Einstieg | Agenda | ✅ |  |  |
+| `einstieg-agenda-techview` | Einstieg | Agenda |  | ✅ |  |
 | `daten-cleaning` | Data & Exploration (storyview) / Datenstrategie (techview) | Abschnitte | ✅ | ✅ |  |
 | `daten-imbalance` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Chart | ✅ | ✅ | ✅ |
 | `daten-risk-analyse` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Annahme/Befund | ✅ | ✅ | ✅ |
@@ -33,8 +36,6 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `learnings-storyview` | Learnings & Ausblick | Abschnitte | ✅ |  |  |
 | `learnings-ausblick-overview` | Learnings & Ausblick | Abschnitte + Links | ✅ | ✅ | ✅ |
 | `learnings-techview` | Learnings & Ausblick | Abschnitte |  | ✅ |  |
-| `ende-abbinder-overview` | Ende | KPIs + Links |  |  | ✅ |
-| `ende-abbinder-storyview` | Ende | KPIs + Links | ✅ |  |  |
-| `ende-abbinder-techview` | Ende | KPIs + Links |  | ✅ |  |
+| `ende-closing` | Ende | Statement | ✅ | ✅ | ✅ |
 
-**32 Slide-Einträge total · 20 davon in mehr als 1 View wiederverwendet.**
+**33 Slide-Einträge total · 21 davon in mehr als 1 View wiederverwendet.**

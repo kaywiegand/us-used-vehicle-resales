@@ -34,8 +34,8 @@ chapters:
         role: title
         title: "US Used Vehicle Resales"
         subtitle:
-          - "Bad-Buy Prediction — der gesamte Daten-Lifecycle"
-          - "Data Engineering · Exploration · Experimentieren · Modell · Empfehlungen"
+          - "Bad-Buy Prediction — der komplette Projektverlauf"
+          - "Exploration · Experimentieren · Modell · Empfehlungen"
         content:
           - type: figures
             items:
@@ -93,6 +93,53 @@ chapters:
           - type: statement
             sentiment: neutral
             text: "Rahmen: Triage, nicht Automatik. Das Modell soll auffällige Fahrzeuge markieren, damit ein Mensch sie prüft — nicht automatisch ablehnen oder automatisch durchwinken."
+
+      - id: einstieg-agenda-overview
+        views: [overview]
+        layout: L6
+        kicker: "Agenda"
+        title: "Inhaltsübersicht"
+        subtitle: "Die wichtigsten Informationen mit Fokus auf Business-Impact"
+        content:
+          - type: agenda
+            items:
+              - "Data & Exploration"
+              - "Systematisches Experimentieren"
+              - "Key Findings"
+              - "Empfehlungen & Opportunities"
+              - "Learnings & Ausblick"
+
+      - id: einstieg-agenda-storyview
+        views: [storyview]
+        layout: L6
+        kicker: "Agenda"
+        title: "Inhaltsübersicht"
+        subtitle: "Der komplette Projektverlauf — von der Exploration bis zur Empfehlung"
+        content:
+          - type: agenda
+            items:
+              - "Data & Exploration"
+              - "Systematisches Experimentieren"
+              - "Key Findings"
+              - "Results & Error Analysis"
+              - "Empfehlungen & Opportunities"
+              - "Learnings & Ausblick"
+
+      - id: einstieg-agenda-techview
+        views: [techview]
+        layout: L6
+        kicker: "Agenda"
+        title: "Inhaltsübersicht"
+        subtitle: "Die wichtigsten Technical Insights als Data-Science Deep-Dive"
+        content:
+          - type: agenda
+            items:
+              - "Datenstrategie"
+              - "Systematisches Experimentieren"
+              - "Key Findings"
+              - "Results & Error Analysis"
+              - "Empfehlungen & Opportunities"
+              - "Learnings & Ausblick"
 
   # ---------------------------------------------------------------------
   - id: daten
@@ -474,57 +521,25 @@ chapters:
   - id: ende
     nav_label: Ende
     slides:
-      - id: ende-abbinder-overview
-        views: [overview]
-        role: abbinder
+      # Kanonische Closing-Slide für ALLE 3 Views (analog zh-tram-flow, Kay-Feedback 2026-07-17:
+      # "closing wie gesagt bei allen views gleich"). Ersetzt die vorherigen 3 separaten
+      # Abbinder-Slides — ein Slide-Eintrag, kein Drift mehr zwischen Views möglich.
+      - id: ende-closing
+        views: [overview, storyview, techview]
+        role: closing
+        layout: split
         title: "US Used Vehicle Resales"
-        subtitle: "Kay Wiegand"
+        subtitle: "Bad-Buy Prediction bei Gebrauchtwagen-Auktionen<br>Data-Science-Projekt | StackFuel Capstone"
+        closing_primary_link:
+          {label: "Notebooks durchsuchen", href: "../notebooks/", target: "_blank"}
+        closing_extra_links:
+          - {label: "LinkedIn-Profil", href: "https://www.linkedin.com/in/kaywiegand/", target: "_blank"}
         content:
-          - type: figures
-            items:
-              - {value: "65.620", label: "Auktions-Fahrzeuge", sentiment: neutral}
-              - {value: "448", label: "geloggte Modell-Läufe", sentiment: neutral}
-              - {value: "F1 0,42", label: "Champion, getunter Threshold", sentiment: positive}
-          - type: links
-            primary: "https://github.com/kaywiegand/us-used-vehicle-resales"
-            items:
-              - {label: "Technischer Deep Dive", href: "techview.html"}
-
-      - id: ende-abbinder-storyview
-        views: [storyview]
-        role: abbinder
-        title: "US Used Vehicle Resales"
-        subtitle: "Kay Wiegand"
-        content:
-          - type: figures
-            items:
-              - {value: "65.620", label: "Auktions-Fahrzeuge", sentiment: neutral}
-              - {value: "12", label: "Notebooks", sentiment: neutral}
-              - {value: "448", label: "geloggte Modell-Läufe", sentiment: neutral}
-              - {value: "F1 0,42", label: "Champion, getunter Threshold", sentiment: positive}
-          - type: links
-            primary: "https://github.com/kaywiegand/us-used-vehicle-resales"
-            items:
-              - {label: "Ergebnisübersicht", href: "overview.html"}
-              - {label: "Technischer Deep Dive", href: "techview.html"}
-
-      - id: ende-abbinder-techview
-        views: [techview]
-        role: abbinder
-        title: "US Used Vehicle Resales"
-        subtitle: "Kay Wiegand"
-        content:
-          - type: figures
-            items:
-              - {value: "52.496 / 13.124", label: "Train / Test", sentiment: neutral}
-              - {value: "28", label: "Features Champion", sentiment: neutral}
-              - {value: "448", label: "geloggte Modell-Läufe", sentiment: neutral}
-              - {value: "F1 0,42", label: "Champion, getunter Threshold", sentiment: positive}
-          - type: links
-            primary: "https://github.com/kaywiegand/us-used-vehicle-resales"
-            items:
-              - {label: "Ergebnisübersicht", href: "overview.html"}
-              - {label: "Projektverlauf (Portfolio)", href: "storyview.html"}
+          - type: statement
+            sentiment: neutral
+            layout: lead_copy
+            text: "Ein fast leeres Datenfeld war das stärkste Signal."
+            copy: "Systematisches Testen schlägt Handverlesen: ein breiter Feature-Katalog plus sauberes Threshold-Tuning bringen mehr als ein einzelnes 'besseres' Modell. Der Champion läuft als Triage-Filter, nicht als Automatik — er markiert, ein Mensch entscheidet.<br><br><strong>448 Durchläufe · F1 0,42 · WheelType = Unknown als stärkster Prädiktor</strong>"
 
 # ===========================================================================
 view_meta:
@@ -541,7 +556,7 @@ view_meta:
     period: "StackFuel Capstone"
     author: "Kay Wiegand"
     github: "kaywiegand/us-used-vehicle-resales"
-    presentation_title: "Der gesamte Daten-Lifecycle"
+    presentation_title: "Der komplette Projektverlauf"
     audience: "Portfolio · Konferenz · Vollbild"
     duration_minutes: 25
   techview:
