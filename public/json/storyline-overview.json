@@ -25,10 +25,11 @@
       "slides": [
         {
           "role": "title",
+          "layout": "L6",
           "title": "US Used Vehicle Resales",
           "subtitle": [
-            "Bad-Buy Prediction — Fehlkäufe vor dem Kauf erkennen",
-            "Data-Science-Projekt · 448-Runs-Experimentierframework | StackFuel Capstone"
+            "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen",
+            "Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone"
           ],
           "content": [
             {
@@ -63,6 +64,31 @@
             }
           ]
         },
+        {
+          "layout": "L6",
+          "kicker": "Agenda",
+          "title": "Inhaltsübersicht",
+          "subtitle": "Die wichtigsten Informationen mit Fokus auf Business-Impact",
+          "content": [
+            {
+              "type": "agenda",
+              "items": [
+                "Einstieg",
+                "Data & Exploration",
+                "Systematisches Experimentieren",
+                "Key Findings",
+                "Empfehlungen & Opportunities",
+                "Learnings & Ausblick"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Einstieg",
+      "nav_tick_label": "Einstieg",
+      "slides": [
         {
           "title": "Das Problem",
           "subtitle": "Ein Fehlkauf beim Gebrauchtwagen-Ankauf kostet mehr als den Kaufpreis",
@@ -112,24 +138,6 @@
               "text": "Rahmen: Triage, nicht Automatik. Das Modell soll auffällige Fahrzeuge markieren, damit ein Mensch sie prüft — nicht automatisch ablehnen oder automatisch durchwinken."
             }
           ]
-        },
-        {
-          "layout": "L6",
-          "kicker": "Agenda",
-          "title": "Inhaltsübersicht",
-          "subtitle": "Die wichtigsten Informationen mit Fokus auf Business-Impact",
-          "content": [
-            {
-              "type": "agenda",
-              "items": [
-                "Data & Exploration",
-                "Systematisches Experimentieren",
-                "Key Findings",
-                "Empfehlungen & Opportunities",
-                "Learnings & Ausblick"
-              ]
-            }
-          ]
         }
       ]
     },
@@ -139,15 +147,16 @@
       "slides": [
         {
           "title": "Class Imbalance",
-          "subtitle": "12,35 % Bad Buys — der Kern der Herausforderung",
+          "subtitle": "12,35 % Bad Buys — Balance als Kern der Herausforderung",
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_left",
               "items": [
                 {
                   "label": "Klassenverteilung IsBadBuy",
                   "source": "target_distribution",
-                  "caption": "57.516 gute Käufe (87,65 %) vs. 8.104 Bad Buys (12,35 %). Ein Modell, das immer 'guter Kauf' tippt, hätte 87,65 % Accuracy und würde trotzdem keinen einzigen Fehlkauf finden — deshalb ist F1 der Bad-Buy-Klasse die Leitmetrik, nicht Accuracy."
+                  "caption": "57.516 gute Käufe (87,65 %) vs. 8.104 Bad Buys (12,35 %).<br><br>Ein Modell, das immer 'guter Kauf' tippt, hätte 87,65 % Accuracy und würde trotzdem keinen einzigen Fehlkauf finden — deshalb ist F1 der Bad-Buy-Klasse die Leitmetrik, nicht Accuracy."
                 }
               ]
             }
@@ -205,7 +214,7 @@
             {
               "type": "statement",
               "sentiment": "positive",
-              "text": "Der Vorteil: nach knapp einer Stunde Wartezeit steht eine fertige, sofort auswertbare Tabelle mit allen 448 Kombinationen — statt einzeln nacheinander von Hand zu trainieren und zu vergleichen."
+              "text": "Nach einer Stunde Wartezeit steht sofort eine auswertbare Tabelle mit allen 448 Kombinationen zur Verfügung."
             }
           ]
         }

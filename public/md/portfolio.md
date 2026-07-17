@@ -9,7 +9,7 @@
 ## Project
 
 ```
-name:       US Used Vehicle Resales — Bad-Buy Prediction
+name:       US Used Vehicle Resales
 slug:       us-used-vehicle-resales
 type:       DS (classification)
 stage:      Phase 5 — Re-Review & Case Study, /project-case check passed, story done

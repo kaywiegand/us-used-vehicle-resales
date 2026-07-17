@@ -1,4 +1,4 @@
-# Slide-Matrix — US Used Vehicle Resales — Bad-Buy Prediction
+# Slide-Matrix — US Used Vehicle Resales
 
 Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matrix.py`. Nicht von Hand editieren — bei jeder Registry-Änderung neu ausführen.
 
@@ -7,16 +7,16 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `einstieg-title-overview` | Einstieg | KPIs |  |  | ✅ |
 | `einstieg-title-storyview` | Einstieg | KPIs | ✅ |  |  |
 | `einstieg-title-techview` | Einstieg | KPIs |  | ✅ |  |
-| `einstieg-problem` | Einstieg | Statement + Statement | ✅ | ✅ | ✅ |
-| `einstieg-aufgabe` | Einstieg | KPIs+Kontext + Statement | ✅ | ✅ | ✅ |
 | `einstieg-agenda-overview` | Einstieg | Agenda |  |  | ✅ |
 | `einstieg-agenda-storyview` | Einstieg | Agenda | ✅ |  |  |
 | `einstieg-agenda-techview` | Einstieg | Agenda |  | ✅ |  |
-| `daten-cleaning` | Data & Exploration (storyview) / Datenstrategie (techview) | Abschnitte | ✅ | ✅ |  |
+| `einstieg-problem` | Einstieg | Statement + Statement | ✅ | ✅ | ✅ |
+| `einstieg-aufgabe` | Einstieg | KPIs+Kontext + Statement | ✅ | ✅ | ✅ |
+| `daten-cleaning` | Data & Exploration (storyview) / Datenstrategie (techview) | h_timeline | ✅ | ✅ |  |
 | `daten-imbalance` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Chart | ✅ | ✅ | ✅ |
 | `daten-risk-analyse` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Annahme/Befund | ✅ | ✅ | ✅ |
 | `daten-preis-korrelation` | Data & Exploration (storyview) / Datenstrategie (techview) | Chart | ✅ | ✅ |  |
-| `experimentieren-infrastruktur` | Systematisches Experimentieren | Abschnitte | ✅ | ✅ |  |
+| `experimentieren-infrastruktur` | Systematisches Experimentieren | Schritte | ✅ | ✅ |  |
 | `experimentieren-modeltracker` | Systematisches Experimentieren | Statement | ✅ | ✅ |  |
 | `experimentieren-testreihe-figures` | Systematisches Experimentieren | KPIs + Statement | ✅ | ✅ | ✅ |
 | `experimentieren-testreihe-chart` | Systematisches Experimentieren | Chart | ✅ | ✅ |  |

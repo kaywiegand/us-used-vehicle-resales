@@ -25,10 +25,11 @@
       "slides": [
         {
           "role": "title",
+          "layout": "L6",
           "title": "US Used Vehicle Resales",
           "subtitle": [
-            "Bad-Buy Prediction — Fehlkäufe vor dem Kauf erkennen",
-            "Data-Science-Projekt · 448-Runs-Experimentierframework | StackFuel Capstone"
+            "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen",
+            "Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone"
           ],
           "content": [
             {
@@ -63,6 +64,32 @@
             }
           ]
         },
+        {
+          "layout": "L6",
+          "kicker": "Agenda",
+          "title": "Inhaltsübersicht",
+          "subtitle": "Die wichtigsten Technical Insights als Data-Science Deep-Dive",
+          "content": [
+            {
+              "type": "agenda",
+              "items": [
+                "Einstieg",
+                "Datenstrategie",
+                "Systematisches Experimentieren",
+                "Key Findings",
+                "Results & Error Analysis",
+                "Empfehlungen & Opportunities",
+                "Learnings & Ausblick"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nav_label": "Einstieg",
+      "nav_tick_label": "Einstieg",
+      "slides": [
         {
           "title": "Das Problem",
           "subtitle": "Ein Fehlkauf beim Gebrauchtwagen-Ankauf kostet mehr als den Kaufpreis",
@@ -112,25 +139,6 @@
               "text": "Rahmen: Triage, nicht Automatik. Das Modell soll auffällige Fahrzeuge markieren, damit ein Mensch sie prüft — nicht automatisch ablehnen oder automatisch durchwinken."
             }
           ]
-        },
-        {
-          "layout": "L6",
-          "kicker": "Agenda",
-          "title": "Inhaltsübersicht",
-          "subtitle": "Die wichtigsten Technical Insights als Data-Science Deep-Dive",
-          "content": [
-            {
-              "type": "agenda",
-              "items": [
-                "Datenstrategie",
-                "Systematisches Experimentieren",
-                "Key Findings",
-                "Results & Error Analysis",
-                "Empfehlungen & Opportunities",
-                "Learnings & Ausblick"
-              ]
-            }
-          ]
         }
       ]
     },
@@ -143,28 +151,19 @@
           "subtitle": "65.620 Fahrzeuge, 33 Rohspalten — nichts gelöscht, alles aufgefüllt",
           "content": [
             {
-              "type": "sections",
+              "type": "h_timeline",
               "items": [
                 {
                   "label": "Datensatz",
-                  "points": [
-                    "65.620 Trainings-Fahrzeuge, 33 Rohspalten, StackFuel-Capstone-Datensatz",
-                    "Stratifizierter Split: 52.496 Train / 13.124 Test, 12,35 % Bad-Buy-Rate in beiden identisch erhalten"
-                  ]
+                  "text": "65.620 Trainings-Fahrzeuge, 33 Rohspalten — stratifizierter Split 52.496 Train / 13.124 Test"
                 },
                 {
                   "label": "Bereinigt",
-                  "points": [
-                    "106.348 kategoriale Lücken über mehrere Spalten (u. a. Trim, SubModel, Color, WheelType) gefunden und mit 'Unknown' aufgefüllt statt gelöscht",
-                    "PRIMEUNIT und AUCGUART fehlen bei 95,3 % aller Fahrzeuge — bleiben trotzdem als eigene Kategorie drin",
-                    "621 unplausible Preis-/Alters-/Kilometerstand-Werte (z. B. Preis < 100 $) über gestufte Gruppen-Median-Imputation geheilt (Modell+Baujahr → Marke+Baujahr → Alter → Baujahr)"
-                  ]
+                  "text": "106.348 kategoriale Lücken mit 'Unknown' aufgefüllt, 621 unplausible Werte über Gruppen-Median-Imputation geheilt"
                 },
                 {
                   "label": "Ergebnis",
-                  "points": [
-                    "0 Zeilen gelöscht — 100 % Retention Rate, jedes Auto bleibt im Datensatz"
-                  ]
+                  "text": "0 Zeilen gelöscht — 100 % Retention Rate, jedes Auto bleibt im Datensatz"
                 }
               ]
             }
@@ -172,15 +171,16 @@
         },
         {
           "title": "Class Imbalance",
-          "subtitle": "12,35 % Bad Buys — der Kern der Herausforderung",
+          "subtitle": "12,35 % Bad Buys — Balance als Kern der Herausforderung",
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_left",
               "items": [
                 {
                   "label": "Klassenverteilung IsBadBuy",
                   "source": "target_distribution",
-                  "caption": "57.516 gute Käufe (87,65 %) vs. 8.104 Bad Buys (12,35 %). Ein Modell, das immer 'guter Kauf' tippt, hätte 87,65 % Accuracy und würde trotzdem keinen einzigen Fehlkauf finden — deshalb ist F1 der Bad-Buy-Klasse die Leitmetrik, nicht Accuracy."
+                  "caption": "57.516 gute Käufe (87,65 %) vs. 8.104 Bad Buys (12,35 %).<br><br>Ein Modell, das immer 'guter Kauf' tippt, hätte 87,65 % Accuracy und würde trotzdem keinen einzigen Fehlkauf finden — deshalb ist F1 der Bad-Buy-Klasse die Leitmetrik, nicht Accuracy."
                 }
               ]
             }
@@ -211,6 +211,7 @@
           "content": [
             {
               "type": "chart_refs",
+              "layout": "image_left",
               "items": [
                 {
                   "label": "Korrelation der Preis-Features",
@@ -232,27 +233,22 @@
           "subtitle": "19 Feature-Sets × 6 Modellfamilien statt Ad-hoc-Training",
           "content": [
             {
-              "type": "sections",
+              "type": "steps",
               "items": [
                 {
-                  "label": "Feature-Katalog — jede Gruppe testet eine Ja/Nein-Frage",
-                  "points": [
-                    "baseline_minimal (4 Feat.): Nullpunkt — was passiert mit fast nichts?",
-                    "numeric (6 Feat.): nur rohe Zahlen, keine Kategorien — Referenzwert",
-                    "modern_engineered_only: helfen die gebauten Ratio-/Bin-Features auch ohne komplexe Kategorien?",
-                    "cats_strong / high_impact_categories (7 Feat.): nur die im Risk-Spread-Plot entdeckten starken Kategorien",
-                    "cats_weak: die schwächeren Kategorien (Farbe, Getriebe) — Rauschen oder Signal?",
-                    "champion_v1: beste Kategorien + beste Engineered-Features + Basis-Zahlen kombiniert",
-                    "all_in_with_noise (28 Feat.): wirklich alles rein — verschlechtert sich der Score durch Rauschen?"
-                  ]
+                  "step": "1",
+                  "label": "Feature-Katalog bauen",
+                  "detail": "19 Sets nach Risiko-Hypothese, von baseline_minimal (4 Feat.) bis all_in_with_noise (28 Feat.)"
                 },
                 {
-                  "label": "Model-Katalog — 3 Lernprinzipien, je 2 Ausbaustufen",
-                  "points": [
-                    "Logistische Regression: Ridge (L2, alle Features geschrumpft) vs. Lasso (L1, Feature-Selektion — macht Koeffizienten als Wichtigkeits-Ranking lesbar)",
-                    "Random Forest: flach (Tiefe 7) vs. tief (Tiefe 15) — mehr Baum-Komplexität sinnvoll oder Überanpassung?",
-                    "HistGradientBoosting: Standard vs. aggressiv — der 'State of the Art'-Kandidat für Tabellendaten"
-                  ]
+                  "step": "2",
+                  "label": "Model-Katalog bauen",
+                  "detail": "3 Lernprinzipien × 2 Ausbaustufen: LogReg Ridge/Lasso, Random Forest flach/tief, HistGradientBoosting Standard/aggressiv"
+                },
+                {
+                  "step": "3",
+                  "label": "Kreuzen & Loggen",
+                  "detail": "Jedes Feature-Set gegen jedes Modell — der ModelTracker protokolliert automatisch jede Kombination"
                 }
               ]
             }
@@ -264,8 +260,9 @@
           "content": [
             {
               "type": "statement",
-              "sentiment": "neutral",
-              "text": "Pro Durchlauf werden F1, Recall, Precision und ROC-AUC in eine dauerhafte CSV geschrieben. Ein neuer Bestwert wird automatisch markiert. Das Modell selbst wird nur bei Bestwert oder F1 ≥ 0,30 exportiert ('Smart Export') — kein Datenmüll durch schwache Modelle."
+              "layout": "lead_copy",
+              "text": "Model- und Feature-Kataloge werden automatisch kombiniert",
+              "copy": "Pro Durchlauf werden F1, Recall, Precision und ROC-AUC in eine dauerhafte CSV geschrieben. Ein neuer Bestwert wird automatisch markiert. Das Modell selbst wird nur bei Bestwert oder F1 ≥ 0,30 exportiert ('Smart Export') — kein Datenmüll durch schwache Modelle."
             }
           ]
         },
@@ -296,12 +293,12 @@
             {
               "type": "statement",
               "sentiment": "positive",
-              "text": "Der Vorteil: nach knapp einer Stunde Wartezeit steht eine fertige, sofort auswertbare Tabelle mit allen 448 Kombinationen — statt einzeln nacheinander von Hand zu trainieren und zu vergleichen."
+              "text": "Nach einer Stunde Wartezeit steht sofort eine auswertbare Tabelle mit allen 448 Kombinationen zur Verfügung."
             }
           ]
         },
         {
-          "title": "Die Testreihe",
+          "title": "Benchmark der Testreihe",
           "subtitle": "Top-10 von 448 Durchläufen nach F1",
           "content": [
             {
@@ -354,8 +351,9 @@
             },
             {
               "type": "statement",
-              "sentiment": "positive",
-              "text": "Der Unterschied hält über mehrere Modellfamilien hinweg — kein Zufallstreffer. Casting a wide net statt Vorab-Auswahl nach vermuteter Wichtigkeit war der entscheidende Schritt, nicht ein bestimmter Algorithmus."
+              "layout": "lead_copy",
+              "text": "Noise mit wichtigem Informationsgehalt",
+              "copy": "Der Unterschied hält über mehrere Modellfamilien hinweg — kein Zufallstreffer. In die Breite zu gehen, statt vorab nach vermuteter Wichtigkeit auszuwählen, war der entscheidende Schritt — nicht ein bestimmter Algorithmus."
             }
           ]
         },
