@@ -169,7 +169,6 @@ model:
   - img/model_comparison.png          # baseline vs. RF vs. LogReg Lasso on held-out test
   - img/threshold_f1_curve.png        # F1 vs. decision threshold, tuned optimum at 0.65
   - img/logreg_feature_importance.png # top-15 |coefficients|, WheelType=Unknown dominates
-  - img/feature_importance.png        # feature importance (exploratory / alternate model)
   - img/confusion_matrix.png          # confusion matrix at tuned threshold — error analysis
 ```
 
