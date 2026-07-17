@@ -504,7 +504,7 @@ chapters:
 
       - id: learnings-ausblick-overview
         views: [storyview, techview]
-        title: "Projekt-Rahmen"
+        title: "Project Insights"
         subtitle: "Tech-Stack, Reproduzierbarkeit"
         content:
           - type: sections
@@ -524,12 +524,18 @@ chapters:
         content:
           - type: sections
             items:
-              - label: "Learnings"
+              - label: "Breites Netz vor Vorauswahl"
                 points:
-                  - "Breiten Feature-Net vor dem Aussortieren casten (F1 0,29 → 0,37, siehe Findings)"
-                  - "Prüfen, ob 'fehlt' selbst ein Signal ist, bevor man auffüllt (WheelType-Fund)"
-                  - "Batch-Statistiken für Einzelfall-Scoring einfrieren (Median-Imputation, Quantil-Bins)"
-                  - "Alle Finalisten auf demselben Test-Set vergleichen — RF-0,39-Annahme widerlegt (tatsächlich 0,35)"
+                  - "Breites Feature-Net vor dem Aussortieren casten (F1 0,29 → 0,37, siehe Findings)."
+              - label: "Fehlen als Signal"
+                points:
+                  - "Prüfen, ob 'fehlt' selbst ein Signal ist, bevor man auffüllt (WheelType-Fund)."
+              - label: "Batch-Statistiken einfrieren"
+                points:
+                  - "Batch-Statistiken für Einzelfall-Scoring einfrieren (Median-Imputation, Quantil-Bins)."
+              - label: "Gleicher Test-Set-Vergleich"
+                points:
+                  - "Alle Finalisten auf demselben Test-Set vergleichen — RF-0,39-Annahme widerlegt (tatsächlich 0,35)."
 
   # ---------------------------------------------------------------------
   - id: ende
