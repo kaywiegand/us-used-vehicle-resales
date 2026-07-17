@@ -121,7 +121,7 @@ chapters:
     slides:
       - id: einstieg-problem
         views: [overview, storyview, techview]
-        title: "Das Problem"
+        title: "Die Herausforderung"
         subtitle: "Ein Fehlkauf beim Gebrauchtwagen-Ankauf kostet mehr als den Kaufpreis"
         content:
           - type: statement
@@ -152,7 +152,7 @@ chapters:
                 context: "F1 der Bad-Buy-Klasse zwingt das Modell, die seltene Klasse tatsächlich zu treffen statt sie zu ignorieren."
           - type: statement
             sentiment: neutral
-            text: "Rahmen: Triage, nicht Automatik. Das Modell soll auffällige Fahrzeuge markieren, damit ein Mensch sie prüft — nicht automatisch ablehnen oder automatisch durchwinken."
+            text: "<span class=\"sw-normal\">Triage statt Automatik.</span><br><span class=\"sw-thin\">Das Modell markiert Auffälligkeiten zur menschlichen Prüfung – kein automatisches Ablehnen oder Durchwinken.</span>"
 
   # ---------------------------------------------------------------------
   - id: daten
@@ -238,7 +238,7 @@ chapters:
         content:
           - type: statement
             layout: lead_copy
-            text: "Model- und Feature-Kataloge werden automatisch kombiniert"
+            text: "Kombinationen aus Model- und Feature-Kataloge"
             copy: "Pro Durchlauf werden F1, Recall, Precision und ROC-AUC in eine dauerhafte CSV geschrieben. Ein neuer Bestwert wird automatisch markiert. Das Modell selbst wird nur bei Bestwert oder F1 ≥ 0,30 exportiert ('Smart Export') — kein Datenmüll durch schwache Modelle."
 
       - id: experimentieren-testreihe-figures
@@ -253,6 +253,7 @@ chapters:
               - {value: "~62 Min.", label: "aktive Rechenzeit für alle 448 Durchläufe zusammen", sentiment: positive}
           - type: statement
             sentiment: positive
+            layout: wide
             text: "Nach einer Stunde Wartezeit steht sofort eine auswertbare Tabelle mit allen 448 Kombinationen zur Verfügung."
 
       - id: experimentieren-testreihe-chart
@@ -318,6 +319,7 @@ chapters:
                 highlight: false
           - type: statement
             sentiment: positive
+            layout: wide
             text: "Ein in 95,6 % der Fälle unauffälliges Feld wird in den restlichen 4,4 % zum stärksten Alarmsignal – sechsmal höher als der Durchschnitt."
 
       - id: findings-threshold-chart
@@ -355,6 +357,7 @@ chapters:
         subtitle: "Alle drei Kandidaten auf demselben Held-out-Test (13.124 Fahrzeuge)"
         content:
           - type: chart_refs
+            layout: image_left
             items:
               - label: "Modellvergleich auf dem Test-Set"
                 source: model_comparison
@@ -385,6 +388,7 @@ chapters:
                 finding: "Nur 0,1 % tragen das WheelType-fehlt-Signal — sie sehen 'sauber' aus, sind im Schnitt $672 teurer und 0,9 Jahre neuer als die erkannten."
           - type: statement
             sentiment: warning
+            layout: wide
             text: "Das Modell verlässt sich stark auf ein einziges Signal und hat kein zweites für neuere, teurere Autos, die trotzdem ein Fehlkauf sind."
 
       - id: results-falsch-markiert-storyview
@@ -546,8 +550,8 @@ chapters:
           - type: statement
             sentiment: neutral
             layout: lead_copy
-            text: "Ein fast leeres Datenfeld war das stärkste Signal."
-            copy: "Systematisches Testen schlägt Handverlesen: ein breiter Feature-Katalog plus sauberes Threshold-Tuning bringen mehr als ein einzelnes 'besseres' Modell. Der Champion läuft als Triage-Filter, nicht als Automatik — er markiert, ein Mensch entscheidet.<br><br><strong>448 Durchläufe · F1 0,42 · WheelType = Unknown als stärkster Prädiktor</strong>"
+            text: "Fast leer und doch stark"
+            copy: "Ein fast leeres Datenfeld war das stärkste Signal. Systematisches Testen schlägt Handverlesen: ein breiter Feature-Katalog plus sauberes Threshold-Tuning bringen mehr als ein einzelnes 'besseres' Modell. Der Champion läuft als Triage-Filter, nicht als Automatik — er markiert, ein Mensch entscheidet."
 
 # ===========================================================================
 view_meta:
