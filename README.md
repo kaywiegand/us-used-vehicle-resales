@@ -8,7 +8,7 @@
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Stack](https://img.shields.io/badge/Stack-scikit--learn%20·%20pandas-orange)
 ![Type](https://img.shields.io/badge/Type-Data%20Science%20·%20Classification-green)
-![Status](https://img.shields.io/badge/Status-Portfolio%20WIP-yellow)
+![Status](https://img.shields.io/badge/Status-Phase%205%20complete-brightgreen)
 
 ---
 
