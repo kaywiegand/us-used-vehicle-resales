@@ -135,6 +135,7 @@
             {
               "type": "statement",
               "sentiment": "neutral",
+              "layout": "wide",
               "text": "<span class=\"sw-normal\">Triage statt Automatik.</span><br><span class=\"sw-thin\">Das Modell markiert Auffälligkeiten zur menschlichen Prüfung – kein automatisches Ablehnen oder Durchwinken.</span>"
             }
           ]
