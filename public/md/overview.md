@@ -17,15 +17,29 @@
 
 # US Used Vehicle Resales
 
-**Bad-Buy Prediction — Fehlkäufe vor dem Kauf erkennen**
-**Data-Science-Projekt · 448-Runs-Experimentierframework**
+**Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen**
+**Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone**
 
 * **65.620** — Auktions-Fahrzeuge
 * **12,35 %** — Bad-Buy-Rate (unausgewogen)
 * **F1 0,42** — Champion-Modell (Test)
 * **448** — systematisch getestete Modell-Läufe
 
-## Das Problem
+## Inhaltsübersicht
+*Die wichtigsten Informationen mit Fokus auf Business-Impact*
+
+1. Einstieg
+2. Data & Exploration
+3. Systematisches Experimentieren
+4. Key Findings
+5. Empfehlungen & Opportunities
+
+
+---
+
+### Einstieg
+
+## Die Herausforderung
 *Ein Fehlkauf beim Gebrauchtwagen-Ankauf kostet mehr als den Kaufpreis*
 
 > Ein US-Gebrauchtwagenhändler kauft Fahrzeuge günstig auf Auktionen ein, um sie mit Marge weiterzuverkaufen. Das größte Risiko: ein 'Bad Buy' — ein Fahrzeug mit schweren Mängeln, das sich nicht weiterverkaufen lässt und stattdessen Lager-, Reparatur- und Abschreibungskosten verursacht.
@@ -43,7 +57,7 @@ Stumpfen Modells
 * **F1** — Leitmetrik
 (Bad-Buy-Klasse)
   - F1 der Bad-Buy-Klasse zwingt das Modell, die seltene Klasse tatsächlich zu treffen statt sie zu ignorieren.
-> Rahmen: Triage, nicht Automatik. Das Modell soll auffällige Fahrzeuge markieren, damit ein Mensch sie prüft — nicht automatisch ablehnen oder automatisch durchwinken.
+> <span class="sw-normal">Triage statt Automatik.</span><br><span class="sw-thin">Das Modell markiert Auffälligkeiten zur menschlichen Prüfung – kein automatisches Ablehnen oder Durchwinken.</span>
 
 
 ---
@@ -51,7 +65,7 @@ Stumpfen Modells
 ### Data & Exploration
 
 ## Class Imbalance
-*12,35 % Bad Buys — der Kern der Herausforderung*
+*12,35 % Bad Buys — Balance als Kern der Herausforderung*
 
 
 ## Bivariate Risk-Analyse
@@ -69,7 +83,7 @@ Stumpfen Modells
 * **448** — geloggte Durchläufe (19 Feature-Sets × 6 Modellfamilien)
 * **3 Sek.** — Median-Abstand zwischen Durchläufen
 * **~62 Min.** — aktive Rechenzeit für alle 448 Durchläufe zusammen
-> Der Vorteil: nach knapp einer Stunde Wartezeit steht eine fertige, sofort auswertbare Tabelle mit allen 448 Kombinationen — statt einzeln nacheinander von Hand zu trainieren und zu vergleichen.
+> Nach einer Stunde Wartezeit steht sofort eine auswertbare Tabelle mit allen 448 Kombinationen zur Verfügung.
 
 
 ---
@@ -100,25 +114,9 @@ Stumpfen Modells
 
 ---
 
-### Learnings & Ausblick
-
-## Projekt-Rahmen
-*Tech-Stack, Reproduzierbarkeit, Links*
-
-* **Tech-Stack**
-  - Python · pandas · scikit-learn · Matplotlib/Seaborn · Jupyter · uv
-* **Reproduzierbarkeit**
-  - 12 Notebooks, durchgehend nummeriert (00–07) und ausgeführt
-  - Selbstgebauter ModelTracker wandert perspektivisch ins eigene wgnd-toolkit
-
-
----
-
 ### Ende
 
 ## US Used Vehicle Resales
-*Kay Wiegand*
+*Bad-Buy Prediction bei Gebrauchtwagen-Auktionen<br>Data-Science-Projekt | StackFuel Capstone*
 
-* **65.620** — Auktions-Fahrzeuge
-* **448** — geloggte Modell-Läufe
-* **F1 0,42** — Champion, getunter Threshold
+> Fast leer und doch stark
