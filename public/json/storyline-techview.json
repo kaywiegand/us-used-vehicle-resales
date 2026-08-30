@@ -9,7 +9,7 @@
     "duration_minutes": 15,
     "closing_links": [
       {
-        "href": "../notebooks/",
+        "href": "https://github.com/kaywiegand/us-used-vehicle-resales/tree/main/notebooks",
         "label": "Notebooks"
       },
       {
@@ -700,7 +700,7 @@
           "subtitle": "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen<br>Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone",
           "closing_primary_link": {
             "label": "Notebooks durchsuchen",
-            "href": "../notebooks/",
+            "href": "https://github.com/kaywiegand/us-used-vehicle-resales/tree/main/notebooks",
             "target": "_blank"
           },
           "closing_extra_links": [

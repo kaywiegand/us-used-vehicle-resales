@@ -566,7 +566,7 @@ chapters:
         title: "US Used Vehicle Resales"
         subtitle: "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen<br>Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone"
         closing_primary_link:
-          {label: "Notebooks durchsuchen", href: "../notebooks/", target: "_blank"}
+          {label: "Notebooks durchsuchen", href: "https://github.com/kaywiegand/us-used-vehicle-resales/tree/main/notebooks", target: "_blank"}
         closing_extra_links:
           - {label: "LinkedIn-Profil", href: "https://www.linkedin.com/in/kaywiegand/", target: "_blank"}
         content:
@@ -619,7 +619,7 @@ hub:
     - label: "Ergebnisse & Empfehlungen"
       text: "Champion: Logistische Regression mit L1-Regularisierung, Threshold getunt auf 0,65 (F1 0,37 → 0,42). Einsatz als Triage-Filter, nicht als Automatik. Error Analysis deckt einen blinden Fleck auf: neuere, teurere Fehlkäufe ohne das WheelType-Signal."
   quick_links:
-    - {href: "../notebooks/", label: "Notebooks"}
+    - {href: "https://github.com/kaywiegand/us-used-vehicle-resales/tree/main/notebooks", label: "Notebooks"}
     - {href: "data-dictionary.html", label: "Data Dictionary"}
   view_order: [overview, techview, storyview]
   # Kartentexte kommen aus DEFAULT_VIEW_CARDS im Skill. Hier nur Abweichungen.
