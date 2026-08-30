@@ -56,11 +56,6 @@
                   "sentiment": "positive"
                 }
               ]
-            },
-            {
-              "type": "view_teaser",
-              "label": "Detailed Description",
-              "description": "Der gesamte Daten-Lifecycle: von Rohdaten über systematisches Experimentieren bis Empfehlungen. Portfolio-Vollansicht."
             }
           ]
         },
@@ -87,8 +82,8 @@
       ]
     },
     {
-      "nav_label": "Einstieg",
-      "nav_tick_label": "Einstieg",
+      "nav_label": "Ausgangssituation",
+      "nav_tick_label": "Ausgangssituation",
       "slides": [
         {
           "title": "Die Herausforderung",
@@ -673,7 +668,7 @@
           "role": "closing",
           "layout": "split",
           "title": "US Used Vehicle Resales",
-          "subtitle": "Bad-Buy Prediction bei Gebrauchtwagen-Auktionen<br>Data-Science-Projekt | StackFuel Capstone",
+          "subtitle": "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen<br>Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone",
           "closing_primary_link": {
             "label": "Notebooks durchsuchen",
             "href": "../notebooks/",

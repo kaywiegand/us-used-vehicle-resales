@@ -39,7 +39,7 @@
 
 ---
 
-### Einstieg
+### Ausgangssituation
 
 ## Die Herausforderung
 *Ein Fehlkauf beim Gebrauchtwagen-Ankauf kostet mehr als den Kaufpreis*
@@ -205,6 +205,6 @@ Stumpfen Modells
 ### Ende
 
 ## US Used Vehicle Resales
-*Bad-Buy Prediction bei Gebrauchtwagen-Auktionen<br>Data-Science-Projekt | StackFuel Capstone*
+*Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen<br>Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone*
 
 > Fast leer und doch stark

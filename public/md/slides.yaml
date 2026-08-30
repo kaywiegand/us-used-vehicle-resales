@@ -20,8 +20,8 @@ chapters:
         layout: L6
         title: "US Used Vehicle Resales"
         subtitle:
-          - "Bad-Buy Prediction — Fehlkäufe vor dem Kauf erkennen"
-          - "Data-Science-Projekt · 448-Runs-Experimentierframework"
+          - "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen"
+          - "Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone"
         content:
           - type: figures
             items:
@@ -36,8 +36,8 @@ chapters:
         layout: L6
         title: "US Used Vehicle Resales"
         subtitle:
-          - "Bad-Buy Prediction — der komplette Projektverlauf"
-          - "Exploration · Experimentieren · Modell · Empfehlungen"
+          - "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen"
+          - "Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone"
         content:
           - type: figures
             items:
@@ -52,8 +52,8 @@ chapters:
         layout: L6
         title: "US Used Vehicle Resales"
         subtitle:
-          - "Bad-Buy Prediction als Klassifikations-Case"
-          - "Feature-Katalog · Model-Katalog · ModelTracker · Error Analysis"
+          - "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen"
+          - "Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone"
         content:
           - type: figures
             items:
@@ -116,7 +116,7 @@ chapters:
   # "Einstieg" in der Agenda auftaucht — analog zh-tram-flows "Ausgangssituation" als
   # separates Kapitel nach Titel+Agenda (Kay-Feedback 2026-07-17).
   - id: problem
-    nav_label: Einstieg
+    nav_label: Ausgangssituation
     slides:
       - id: einstieg-problem
         views: [overview, storyview, techview]
@@ -564,7 +564,7 @@ chapters:
         role: closing
         layout: split
         title: "US Used Vehicle Resales"
-        subtitle: "Bad-Buy Prediction bei Gebrauchtwagen-Auktionen<br>Data-Science-Projekt | StackFuel Capstone"
+        subtitle: "Bad-Buy Prediction | Fehlkäufe vor dem Kauf erkennen<br>Data-Science-Projekt mit 448-Runs-Experimentierframework | StackFuel Capstone"
         closing_primary_link:
           {label: "Notebooks durchsuchen", href: "../notebooks/", target: "_blank"}
         closing_extra_links:
@@ -622,25 +622,10 @@ hub:
     - {href: "../notebooks/", label: "Notebooks"}
     - {href: "data-dictionary.html", label: "Data Dictionary"}
   view_order: [overview, techview, storyview]
+  # Kartentexte kommen aus DEFAULT_VIEW_CARDS im Skill. Hier nur Abweichungen.
   view_cards:
-    overview:
-      kicker: "Overview"
-      label: "Basic Information"
-      description: "Ergebnisse & Handlungsempfehlungen für Stakeholder. Fokus auf Business-Impact und konkrete Maßnahmen."
-      badge: "HR · Business"
-      badge_class: blue
     techview:
-      kicker: "Tech View"
-      label: "Technical Insights"
-      description: "Technischer Deep-Dive für Data Scientists. Feature-Katalog, Modellauswahl, Error Analysis im Detail."
-      badge: "Data Science"
-      badge_class: dark
-    storyview:
-      kicker: "Story View"
-      label: "Detailed Description"
-      description: "Der gesamte Daten-Lifecycle: von Rohdaten über systematisches Experimentieren bis Empfehlungen. Portfolio-Vollansicht."
-      badge: "Portfolio"
-      badge_class: purple
+      description: "Technischer Deep-Dive für Data Scientists. Feature-Katalog, Modellauswahl über 448 Runs, Threshold-Tuning und Error Analysis im Detail."
 
 view_composition:
   overview:

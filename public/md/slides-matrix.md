@@ -10,8 +10,8 @@ Automatisch generiert aus `public/md/slides.yaml` via `scripts/print_slide_matri
 | `einstieg-agenda-overview` | Einstieg | Agenda |  |  | ✅ |
 | `einstieg-agenda-storyview` | Einstieg | Agenda | ✅ |  |  |
 | `einstieg-agenda-techview` | Einstieg | Agenda |  | ✅ |  |
-| `einstieg-problem` | Einstieg | Statement + Statement | ✅ | ✅ | ✅ |
-| `einstieg-aufgabe` | Einstieg | KPIs+Kontext + Statement | ✅ | ✅ | ✅ |
+| `einstieg-problem` | Ausgangssituation | Statement + Statement | ✅ | ✅ | ✅ |
+| `einstieg-aufgabe` | Ausgangssituation | KPIs+Kontext + Statement | ✅ | ✅ | ✅ |
 | `daten-cleaning` | Data & Exploration (storyview) / Datenstrategie (techview) | h_timeline | ✅ | ✅ |  |
 | `daten-imbalance` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Chart | ✅ | ✅ | ✅ |
 | `daten-risk-analyse` | Data & Exploration (overview) / Data & Exploration (storyview) / Datenstrategie (techview) | Annahme/Befund | ✅ | ✅ | ✅ |
